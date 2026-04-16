@@ -3,784 +3,647 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>White Coast Travel — Experiencias que perduran</title>
-<meta name="description" content="White Coast Travel — Agencia de viajes premium en la Costa Blanca. Japón, Maldivas, Patagonia y mucho más.">
+<title>White Coast Travel — Luxury Travel from Costa Blanca</title>
+<meta name="description" content="Agencia de viajes premium en la Costa Blanca. Experiencias únicas a medida desde 2009.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --arena: #F5EFE4; --negro: #0F0E0C; --carbon: #1C1A16;
-  --dorado: #C4973A; --dorado-light: #E8C97A; --muted: #8A8070; --blanco: #FDFAF5;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+:root{
+  --ink:#060C16;--ink2:#0B1628;--ink3:#122040;
+  --sea:#0EA5C9;--sea2:#67D5F0;--sea3:#B8EDF8;
+  --sand:#F0E6D0;--sand2:#D8C9A8;
+  --white:#FAFEFF;--gold:#C8A84B;
+  --ease:cubic-bezier(.16,1,.3,1);--ease2:cubic-bezier(.45,0,.55,1);
 }
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Jost', sans-serif; background: var(--negro); color: var(--arena); overflow-x: hidden; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--sand);overflow-x:hidden;cursor:none}
 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.5rem 3rem;
-  transition: background 0.5s var(--ease-in-out), padding 0.4s var(--ease-out);
-}
-nav.scrolled {
-  background: rgba(15,14,12,0.95); backdrop-filter: blur(12px);
-  padding: 1rem 3rem; border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600;
-  letter-spacing: 0.08em; color: var(--blanco); text-decoration: none;
-  opacity: 0; transform: translateY(-8px);
-  animation: fadeDown 0.7s 0.1s var(--ease-out) forwards;
-}
-.nav-logo span { color: var(--dorado); }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links li { opacity: 0; transform: translateY(-8px); }
-.nav-links li:nth-child(1) { animation: fadeDown 0.7s 0.2s var(--ease-out) forwards; }
-.nav-links li:nth-child(2) { animation: fadeDown 0.7s 0.3s var(--ease-out) forwards; }
-.nav-links li:nth-child(3) { animation: fadeDown 0.7s 0.4s var(--ease-out) forwards; }
-.nav-links li:nth-child(4) { animation: fadeDown 0.7s 0.5s var(--ease-out) forwards; }
-.nav-links a {
-  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--arena); text-decoration: none; opacity: 0.7; transition: opacity 0.25s;
-  position: relative;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
-  height: 1px; background: var(--dorado);
-  transform: scaleX(0); transform-origin: right; transition: transform 0.35s var(--ease-out);
-}
-.nav-links a:hover { opacity: 1; }
-.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-.nav-cta {
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-  border: 1px solid var(--dorado); color: var(--dorado); padding: 0.6rem 1.4rem;
-  text-decoration: none; transition: background 0.3s, color 0.3s, transform 0.2s;
-  opacity: 0; animation: fadeDown 0.7s 0.6s var(--ease-out) forwards;
-}
-.nav-cta:hover { background: var(--dorado); color: var(--negro); transform: translateY(-1px); }
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#loader.hide{opacity:0;transform:translateY(-20px);pointer-events:none}
+.ld-logo{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--white);letter-spacing:.04em}
+.ld-logo span{color:var(--sea)}
+.ld-sub{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(240,230,208,.35)}
+.ld-bar{width:200px;height:1px;background:rgba(255,255,255,.07);overflow:hidden;position:relative}
+.ld-bar::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(to right,transparent,var(--sea),transparent);animation:ldSweep 1.6s var(--ease2) forwards}
+@keyframes ldSweep{to{left:100%}}
 
-/* ── HERO ── */
-.hero {
-  position: relative; height: 100vh; min-height: 700px;
-  display: flex; align-items: flex-end; padding: 0 3rem 5rem; overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background: url('https://picsum.photos/seed/travel-hero/1600/900') center/cover no-repeat;
-  transform: scale(1.06); animation: heroZoom 10s var(--ease-in-out) forwards;
-}
-.hero-bg::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(15,14,12,0.88) 35%, rgba(15,14,12,0.2) 100%),
-              linear-gradient(to top, rgba(15,14,12,0.55) 0%, transparent 50%);
-}
-.hero-content { position: relative; z-index: 2; max-width: 680px; }
-.hero-eyebrow {
-  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dorado);
-  margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 1s 0.6s var(--ease-out) forwards;
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--dorado); }
-.hero-title {
-  font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 6vw, 6.5rem);
-  font-weight: 300; line-height: 1.0; color: var(--blanco);
-  opacity: 0; animation: fadeUp 1s 0.85s var(--ease-out) forwards;
-}
-.hero-title em { font-style: italic; color: var(--dorado-light); }
-.hero-sub {
-  margin-top: 1.8rem; font-size: 1rem; font-weight: 300; line-height: 1.8;
-  color: rgba(245,239,228,0.72); max-width: 460px;
-  opacity: 0; animation: fadeUp 1s 1.05s var(--ease-out) forwards;
-}
-.hero-actions {
-  margin-top: 2.8rem; display: flex; gap: 1.2rem; align-items: center;
-  opacity: 0; animation: fadeUp 1s 1.25s var(--ease-out) forwards;
-}
-.btn-primary {
-  background: var(--dorado); color: var(--negro); padding: 1rem 2.4rem;
-  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
-  text-decoration: none; transition: background 0.3s, transform 0.3s var(--ease-out);
-  position: relative; overflow: hidden;
-}
-.btn-primary::after {
-  content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15);
-  transform: translateX(-100%) skewX(-15deg); transition: transform 0.5s var(--ease-out);
-}
-.btn-primary:hover { background: var(--dorado-light); transform: translateY(-2px); }
-.btn-primary:hover::after { transform: translateX(200%) skewX(-15deg); }
-.btn-ghost {
-  color: var(--arena); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-  text-decoration: none; opacity: 0.65; display: flex; align-items: center; gap: 0.6rem;
-  transition: opacity 0.25s, gap 0.3s var(--ease-out);
-}
-.btn-ghost:hover { opacity: 1; gap: 0.9rem; }
-.btn-ghost::after { content: '→'; transition: transform 0.3s var(--ease-out); }
-.btn-ghost:hover::after { transform: translateX(4px); }
-.hero-stats {
-  position: absolute; bottom: 5rem; right: 3rem; z-index: 2;
-  display: flex; gap: 2.5rem; opacity: 0; animation: fadeUp 1s 1.5s var(--ease-out) forwards;
-}
-.hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--blanco); line-height: 1; }
-.hero-stat-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
-.hero-scroll {
-  position: absolute; bottom: 2.5rem; right: 3rem; z-index: 2;
-  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
-  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
-  opacity: 0; animation: fadeIn 1s 1.8s forwards;
-}
-.hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--dorado), transparent); animation: scrollPulse 2s 2s ease-in-out infinite; }
+/* CURSOR */
+#cdot{position:fixed;z-index:9998;pointer-events:none;width:8px;height:8px;background:var(--sea);border-radius:50%;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:transform .15s}
+#cring{position:fixed;z-index:9997;pointer-events:none;width:44px;height:44px;border:1px solid rgba(14,165,201,.45);border-radius:50%;transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease),border-color .3s}
+.cex #cring{width:68px;height:68px;border-color:var(--sea)}
 
-/* ── DESTINOS ── */
-.section-destinos { padding: 7rem 3rem; background: var(--carbon); }
-.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
-.section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.6rem; }
-.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--blanco); }
-.section-title em { font-style: italic; color: var(--dorado-light); }
-.section-link {
-  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
-  text-decoration: none; border-bottom: 1px solid var(--muted); padding-bottom: 2px;
-  transition: color 0.25s, border-color 0.25s; white-space: nowrap; align-self: flex-end; margin-bottom: 4px;
-}
-.section-link:hover { color: var(--dorado); border-color: var(--dorado); }
-.destinos-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 340px 240px; gap: 1rem; }
-.destino-card { position: relative; overflow: hidden; cursor: pointer; }
-.destino-card:first-child { grid-row: 1 / 3; }
-.destino-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
-.destino-card:hover img { transform: scale(1.06); }
-.destino-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(15,14,12,0.9) 0%, rgba(15,14,12,0.05) 60%);
-  display: flex; flex-direction: column; justify-content: flex-end; padding: 1.8rem;
-  transition: background 0.4s;
-}
-.destino-card:hover .destino-overlay { background: linear-gradient(to top, rgba(15,14,12,0.95) 0%, rgba(15,14,12,0.2) 60%); }
-.destino-region { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; transform: translateY(4px); transition: transform 0.4s var(--ease-out); }
-.destino-nombre { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--blanco); transform: translateY(4px); transition: transform 0.4s 0.05s var(--ease-out); }
-.destino-card:first-child .destino-nombre { font-size: 2.2rem; }
-.destino-card:hover .destino-region, .destino-card:hover .destino-nombre { transform: translateY(0); }
-.destino-precio { font-size: 0.7rem; color: rgba(245,239,228,0.5); margin-top: 0.3rem; transform: translateY(8px); opacity: 0; transition: transform 0.4s 0.1s var(--ease-out), opacity 0.4s 0.1s; }
-.destino-card:hover .destino-precio { transform: translateY(0); opacity: 1; }
-.destino-cta { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dorado); margin-top: 0.8rem; transform: translateY(8px); opacity: 0; transition: transform 0.4s 0.15s var(--ease-out), opacity 0.4s 0.15s; display: flex; align-items: center; gap: 0.4rem; }
-.destino-cta::after { content: '→'; }
-.destino-card:hover .destino-cta { transform: translateY(0); opacity: 1; }
-.destino-tag { position: absolute; top: 1.2rem; left: 1.2rem; background: var(--dorado); color: var(--negro); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; padding: 0.3rem 0.7rem; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:2rem 4rem;transition:padding .5s var(--ease),background .5s}
+nav.solid{padding:1rem 4rem;background:rgba(6,12,22,.94);backdrop-filter:blur(24px);border-bottom:1px solid rgba(14,165,201,.1)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:.7rem;opacity:0;animation:fD .8s 1.8s var(--ease) forwards}
+.logo-mk{width:30px;height:30px;background:var(--sea);border-radius:6px;display:grid;place-items:center;font-size:.62rem;font-weight:900;color:var(--ink);transition:transform .4s var(--ease)}
+.nav-logo:hover .logo-mk{transform:rotate(15deg)}
+.nav-links{display:flex;gap:3rem;list-style:none}
+.nav-links li{opacity:0}
+.nav-links li:nth-child(1){animation:fD .7s 1.9s var(--ease) forwards}
+.nav-links li:nth-child(2){animation:fD .7s 2.0s var(--ease) forwards}
+.nav-links li:nth-child(3){animation:fD .7s 2.1s var(--ease) forwards}
+.nav-links li:nth-child(4){animation:fD .7s 2.2s var(--ease) forwards}
+.nav-links a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,230,208,.6);text-decoration:none;transition:color .25s;position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--sea);transition:width .4s var(--ease)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-btn{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;background:transparent;border:1px solid var(--sea);color:var(--sea);padding:.65rem 1.6rem;text-decoration:none;transition:all .3s var(--ease);opacity:0;animation:fD .7s 2.3s var(--ease) forwards}
+.nav-btn:hover{background:var(--sea);color:var(--ink);box-shadow:0 0 30px rgba(14,165,201,.3)}
 
-/* ── VALOR ── */
-.section-valor { padding: 7rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; background: var(--negro); }
-.valor-visual { position: relative; height: 520px; }
-.valor-img-main { position: absolute; top: 0; left: 0; width: 78%; height: 420px; object-fit: cover; transition: transform 0.6s var(--ease-out); }
-.valor-img-main:hover { transform: scale(1.02); }
-.valor-img-secondary { position: absolute; bottom: 0; right: 0; width: 55%; height: 260px; object-fit: cover; border: 4px solid var(--negro); transition: transform 0.6s var(--ease-out); }
-.valor-img-secondary:hover { transform: scale(1.03); }
-.valor-badge { position: absolute; top: 50%; left: 60%; transform: translate(-50%,-50%); width: 110px; height: 110px; border-radius: 50%; background: var(--dorado); color: var(--negro); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; text-align: center; z-index: 10; transition: transform 0.4s var(--ease-out); }
-.valor-badge:hover { transform: translate(-50%,-50%) scale(1.08); }
-.valor-badge strong { font-size: 2rem; font-weight: 600; line-height: 1; }
-.valor-badge span { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
-.valor-items { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
-.valor-item { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: border-color 0.3s; }
-.valor-item:last-child { border-bottom: none; }
-.valor-item:hover { border-color: rgba(196,151,58,0.2); }
-.valor-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--dorado); line-height: 1; flex-shrink: 0; width: 2rem; text-align: right; transition: transform 0.3s var(--ease-out); }
-.valor-item:hover .valor-num { transform: scale(1.1); }
-.valor-text h4 { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blanco); font-weight: 500; margin-bottom: 0.4rem; }
-.valor-text p { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+/* HERO */
+.hero{position:relative;height:100vh;min-height:750px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hslide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s var(--ease2)}
+.hslide.on{opacity:1}
+.hslide img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 8s var(--ease2)}
+.hslide.on img{transform:scale(1)}
+.hslide::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(6,12,22,.88) 0%,rgba(6,12,22,.25) 65%),linear-gradient(to top,rgba(6,12,22,.7) 0%,transparent 50%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:0 4rem 5rem}
+.h-eyebrow{font-size:.67rem;letter-spacing:.35em;text-transform:uppercase;color:var(--sea);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fU 1s 2s var(--ease) forwards}
+.h-eyebrow::before{content:'';width:38px;height:1px;background:var(--sea)}
+.h-title{font-family:'Playfair Display',serif;font-size:clamp(4rem,7.5vw,8rem);font-weight:900;line-height:.95;color:var(--white);opacity:0;animation:fU 1.1s 2.1s var(--ease) forwards}
+.h-title .it{font-style:italic;font-weight:400;color:var(--sea2)}
+.h-title .sk{-webkit-text-stroke:1.5px var(--sea2);color:transparent}
+.h-row{display:flex;align-items:flex-end;justify-content:space-between;margin-top:2rem;opacity:0;animation:fU 1s 2.3s var(--ease) forwards}
+.h-sub{font-size:1rem;font-weight:300;line-height:1.75;color:rgba(240,230,208,.62);max-width:440px}
+.h-actions{display:flex;gap:1rem}
+.btn-f{background:var(--sea);color:var(--ink);padding:1rem 2.4rem;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .3s var(--ease);position:relative;overflow:hidden}
+.btn-f::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.2);transform:translateX(-110%) skewX(-12deg);transition:transform .6s var(--ease)}
+.btn-f:hover{background:var(--sea2);box-shadow:0 12px 40px rgba(14,165,201,.35);transform:translateY(-2px)}
+.btn-f:hover::before{transform:translateX(110%) skewX(-12deg)}
+.btn-o{border:1px solid rgba(240,230,208,.25);color:var(--sand);padding:1rem 2.2rem;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .3s}
+.btn-o:hover{border-color:var(--sea);color:var(--sea);background:rgba(14,165,201,.08)}
+.h-dots{position:absolute;bottom:2.5rem;right:4rem;z-index:5;display:flex;gap:.5rem}
+.hdot{width:28px;height:3px;background:rgba(255,255,255,.22);cursor:pointer;transition:background .3s,width .4s var(--ease)}
+.hdot.on{background:var(--sea);width:52px}
+.h-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(240,230,208,.28);opacity:0;animation:fI 1s 3.5s forwards}
+.scrl-ln{width:1px;height:50px;background:linear-gradient(to bottom,var(--sea),transparent);animation:scrlPls 2.2s 3.7s ease-in-out infinite}
 
-/* ── PORTAL ── */
-.section-portal { padding: 7rem 3rem; background: var(--carbon); text-align: center; }
-.portal-mockup { margin: 3.5rem auto 0; background: var(--negro); border: 1px solid rgba(196,151,58,0.15); max-width: 860px; padding: 2.5rem; position: relative; transition: border-color 0.4s, transform 0.4s var(--ease-out); }
-.portal-mockup:hover { border-color: rgba(196,151,58,0.3); transform: translateY(-4px); }
-.portal-mockup::before { content: ''; position: absolute; top: -1px; left: 10%; right: 10%; height: 2px; background: var(--dorado); transition: left 0.4s var(--ease-out), right 0.4s var(--ease-out); }
-.portal-mockup:hover::before { left: 5%; right: 5%; }
-.mockup-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
-.mockup-url { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 0.3rem 0.8rem; font-size: 0.7rem; color: var(--muted); text-align: center; }
-.itinerario-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-.itinerario-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--blanco); text-align: left; }
-.itinerario-badge { background: rgba(196,151,58,0.15); color: var(--dorado); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.9rem; border: 1px solid rgba(196,151,58,0.3); }
-.dias-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 2rem; }
-.dia-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 1.2rem; text-align: left; cursor: pointer; transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease-out); }
-.dia-card:hover { transform: translateY(-2px); }
-.dia-card.active { border-color: rgba(196,151,58,0.5); background: rgba(196,151,58,0.05); }
-.dia-num { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; }
-.dia-lugar { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blanco); }
-.dia-desc { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
-.docs-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-.doc-pill { display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 0.6rem 1rem; font-size: 0.72rem; color: var(--muted); cursor: pointer; transition: border-color 0.3s, color 0.3s, transform 0.3s var(--ease-out); }
-.doc-pill:hover { border-color: rgba(196,151,58,0.4); color: var(--arena); transform: translateY(-2px); }
+/* MARQUEE */
+.mq{background:var(--sea);padding:.85rem 0;overflow:hidden;white-space:nowrap}
+.mq-tr{display:inline-block;animation:mq 22s linear infinite}
+.mqi{display:inline-flex;align-items:center;gap:1rem;padding:0 2.5rem;font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.mqd{width:4px;height:4px;border-radius:50%;background:rgba(6,12,22,.32)}
 
-/* ── TESTIMONIOS ── */
-.section-testimonios { padding: 7rem 3rem; background: var(--negro); }
-.testimonios-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3.5rem; }
-.testimonio { padding: 2rem; border: 1px solid rgba(255,255,255,0.06); position: relative; transition: border-color 0.4s, transform 0.4s var(--ease-out); }
-.testimonio:hover { border-color: rgba(196,151,58,0.3); transform: translateY(-4px); }
-.testimonio::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: var(--dorado); opacity: 0.25; position: absolute; top: -0.5rem; left: 1.5rem; line-height: 1; transition: opacity 0.4s; }
-.testimonio:hover::before { opacity: 0.45; }
-.testimonio-texto { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: rgba(245,239,228,0.8); margin-bottom: 1.5rem; padding-top: 1rem; }
-.testimonio-autor { display: flex; align-items: center; gap: 0.8rem; }
-.autor-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(196,151,58,0.3); transition: border-color 0.3s; }
-.testimonio:hover .autor-avatar { border-color: rgba(196,151,58,0.6); }
-.autor-nombre { font-size: 0.8rem; font-weight: 500; color: var(--blanco); }
-.autor-viaje { font-size: 0.7rem; color: var(--muted); }
+/* INTRO */
+.s-intro{padding:10rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center}
+.s-tag{font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--sea);margin-bottom:1.2rem;display:flex;align-items:center;gap:.7rem}
+.s-tag::before{content:'';width:26px;height:1px;background:var(--sea)}
+.s-ttl{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:700;line-height:1.1;color:var(--white)}
+.s-ttl em{font-style:italic;font-weight:400;color:var(--sea2)}
+.s-body{font-size:1rem;font-weight:300;line-height:1.85;color:rgba(240,230,208,.58);margin-top:1.5rem}
+.awards{display:flex;gap:1.2rem;margin-top:2.5rem;flex-wrap:wrap}
+.award{display:flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:.45rem .9rem;font-size:.68rem;color:rgba(240,230,208,.55);letter-spacing:.04em}
+.astar{color:var(--gold)}
+.intro-vis{position:relative}
+.intro-img{width:100%;height:520px;object-fit:cover}
+.intro-badge{position:absolute;bottom:-1.8rem;left:-1.8rem;background:var(--sea);padding:1.8rem 2rem}
+.intro-badge strong{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:var(--ink);display:block;line-height:1}
+.intro-badge span{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);opacity:.7;margin-top:.3rem;display:block}
 
-/* ── CONTACTO ── */
-.section-contacto { padding: 7rem 3rem; background: var(--carbon); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-.contacto-info p { font-size: 1rem; font-weight: 300; line-height: 1.8; color: var(--muted); margin: 1.5rem 0 2.5rem; }
-.contacto-datos { display: flex; flex-direction: column; gap: 1rem; }
-.contacto-dato { display: flex; gap: 1rem; align-items: center; padding: 0.8rem; border: 1px solid transparent; transition: border-color 0.3s, transform 0.3s var(--ease-out); }
-.contacto-dato:hover { border-color: rgba(196,151,58,0.2); transform: translateX(4px); }
-.dato-icon { width: 36px; height: 36px; border: 1px solid rgba(196,151,58,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; transition: background 0.3s, border-color 0.3s; }
-.contacto-dato:hover .dato-icon { background: rgba(196,151,58,0.1); border-color: rgba(196,151,58,0.5); }
-.dato-text { font-size: 0.85rem; color: var(--arena); font-weight: 300; }
-.dato-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-.contacto-form { display: flex; flex-direction: column; gap: 1.2rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.form-group label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-.form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--arena); padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; transition: border-color 0.3s, background 0.3s; outline: none; resize: none; }
-.form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
-.form-group select { appearance: none; cursor: pointer; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(196,151,58,0.5); background: rgba(255,255,255,0.05); }
-.form-submit { background: var(--dorado); color: var(--negro); border: none; cursor: pointer; padding: 1rem 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s, transform 0.3s var(--ease-out); width: 100%; position: relative; overflow: hidden; }
-.form-submit::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15); transform: translateX(-100%) skewX(-15deg); transition: transform 0.5s var(--ease-out); }
-.form-submit:hover { background: var(--dorado-light); transform: translateY(-1px); }
-.form-submit:hover::after { transform: translateX(200%) skewX(-15deg); }
-.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-.form-nota { font-size: 0.72rem; color: var(--muted); text-align: center; line-height: 1.5; }
-.req { color: var(--dorado); font-size: 0.8em; }
-.field-error { display: none; font-size: 0.7rem; color: #E05252; margin-top: 0.25rem; }
-.form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea { border-color: rgba(224,82,82,0.6); }
-.form-group.has-error .field-error { display: block; }
-.form-group.is-ok input, .form-group.is-ok select, .form-group.is-ok textarea { border-color: rgba(29,158,117,0.45); }
-.input-prefix-wrap { position: relative; }
-.input-prefix { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: center; padding: 0 0.75rem; font-size: 0.85rem; color: var(--muted); font-weight: 300; border-right: 1px solid rgba(255,255,255,0.08); pointer-events: none; }
-.form-check { margin-top: 0.2rem; }
-.check-label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; }
-.check-label input[type="checkbox"] { display: none; }
-.check-custom { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
-.check-label input:checked + .check-custom { background: var(--dorado); border-color: var(--dorado); }
-.check-label input:checked + .check-custom::after { content: ''; display: block; width: 9px; height: 5px; border-left: 2px solid var(--negro); border-bottom: 2px solid var(--negro); transform: rotate(-45deg) translateY(-1px); }
-.check-text { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
-.check-link { color: var(--dorado); text-decoration: none; }
-.form-check.has-error .check-custom { border-color: rgba(224,82,82,0.6); }
-.form-check.has-error .field-error { display: block; }
-.form-success { display: none; text-align: center; padding: 3rem 2rem; border: 1px solid rgba(196,151,58,0.3); background: rgba(196,151,58,0.05); }
-.form-success h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--blanco); font-weight: 400; margin-bottom: 0.6rem; }
-.form-success p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+/* DESTINOS */
+.s-dest{padding:8rem 4rem;background:var(--ink2)}
+.s-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem}
+.link-all{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,230,208,.38);text-decoration:none;border-bottom:1px solid rgba(240,230,208,.18);padding-bottom:2px;transition:color .25s,border-color .25s;white-space:nowrap;margin-bottom:4px}
+.link-all:hover{color:var(--sea);border-color:var(--sea)}
+.dgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:380px 260px;gap:1.2rem}
+.dc{position:relative;overflow:hidden;cursor:pointer}
+.dc:first-child{grid-row:1/3}
+.dc img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.dc:hover img{transform:scale(1.07)}
+.dlayer{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,12,22,.95) 0%,rgba(6,12,22,.08) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.8rem;transition:background .4s}
+.dc:hover .dlayer{background:linear-gradient(to top,rgba(6,12,22,1) 0%,rgba(6,12,22,.28) 55%,transparent 100%)}
+.didx{position:absolute;top:1.2rem;left:1.5rem;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.18);font-family:'Playfair Display',serif}
+.dreg{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sea);margin-bottom:.35rem;transform:translateY(5px);transition:transform .4s var(--ease)}
+.dname{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--white);line-height:1;transform:translateY(5px);transition:transform .4s .04s var(--ease)}
+.dc:first-child .dname{font-size:2.6rem}
+.dc:hover .dreg,.dc:hover .dname{transform:translateY(0)}
+.dmeta{display:flex;gap:.8rem;align-items:center;margin-top:.7rem;opacity:0;transform:translateY(8px);transition:opacity .4s .08s,transform .4s .08s var(--ease)}
+.dc:hover .dmeta{opacity:1;transform:translateY(0)}
+.dprice{font-size:.8rem;color:var(--sea2);font-weight:500}
+.ddays{font-size:.7rem;color:rgba(240,230,208,.42)}
+.darrow{margin-top:.8rem;display:inline-flex;align-items:center;gap:.5rem;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sea);opacity:0;transform:translateY(8px);transition:opacity .4s .12s,transform .4s .12s var(--ease)}
+.darrow svg{transition:transform .3s var(--ease)}
+.dc:hover .darrow{opacity:1;transform:translateY(0)}
+.dc:hover .darrow svg{transform:translateX(4px)}
+.dhot{position:absolute;top:1.2rem;right:1.2rem;background:var(--sea);color:var(--ink);font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:.28rem .75rem}
 
-/* ── MODAL ── */
-.modal-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(10,9,8,0); overflow-y: auto; padding: 2rem 1rem; transition: background 0.4s var(--ease-out); }
-.modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; background: rgba(10,9,8,0.9); }
-.modal { background: var(--carbon); width: 100%; max-width: 860px; position: relative; margin: auto; opacity: 0; transform: translateY(40px) scale(0.97); transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out); }
-.modal-overlay.open .modal { opacity: 1; transform: translateY(0) scale(1); }
-.modal-close { position: absolute; top: 1rem; right: 1rem; z-index: 10; width: 40px; height: 40px; background: rgba(15,14,12,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--arena); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.3s var(--ease-out); }
-.modal-close:hover { background: rgba(196,151,58,0.2); transform: rotate(90deg); }
-.modal-hero { position: relative; height: 300px; overflow: hidden; }
-.modal-hero img { width: 100%; height: 100%; object-fit: cover; transition: transform 8s var(--ease-in-out); }
-.modal-overlay.open .modal-hero img { transform: scale(1.04); }
-.modal-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,26,22,1) 0%, rgba(28,26,22,0.05) 60%); }
-.modal-hero-info { position: absolute; bottom: 1.5rem; left: 2rem; right: 2rem; display: flex; justify-content: space-between; align-items: flex-end; }
-.modal-region { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; }
-.modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--blanco); line-height: 1; }
-.modal-precio-badge { background: var(--dorado); color: var(--negro); padding: 0.5rem 1.2rem; text-align: right; flex-shrink: 0; }
-.modal-precio-desde { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; }
-.modal-precio-num { font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
-.modal-precio-dias { font-size: 0.65rem; }
-.modal-fotos { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem; padding: 0 2rem; }
-.modal-foto { height: 100px; overflow: hidden; }
-.modal-foto img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s var(--ease-out); }
-.modal-foto:hover img { transform: scale(1.08); }
-.modal-body { padding: 1.8rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.modal-section-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.8rem; }
-.modal-desc { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: rgba(245,239,228,0.8); }
-.modal-itinerario { display: flex; flex-direction: column; gap: 0.5rem; }
-.modal-dia { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.6rem 0.8rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.25s, background 0.25s, transform 0.25s var(--ease-out); }
-.modal-dia:hover { border-color: rgba(196,151,58,0.3); background: rgba(196,151,58,0.04); transform: translateX(3px); }
-.modal-dia-num { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--dorado); font-weight: 300; flex-shrink: 0; width: 1.6rem; text-align: center; }
-.modal-dia-lugar { font-size: 0.82rem; font-weight: 500; color: var(--blanco); }
-.modal-dia-desc { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
-.modal-incluidos { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
-.modal-lista { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-.modal-lista li { font-size: 0.82rem; font-weight: 300; color: rgba(245,239,228,0.8); display: flex; gap: 0.6rem; align-items: flex-start; line-height: 1.5; transition: color 0.25s, transform 0.25s var(--ease-out); }
-.modal-lista li:hover { color: var(--arena); transform: translateX(3px); }
-.modal-lista li::before { content: '✓'; color: var(--dorado); flex-shrink: 0; font-size: 0.75rem; }
-.modal-lista.no li::before { content: '✗'; color: #E05252; }
-.modal-footer { padding: 1.4rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 1rem; align-items: center; justify-content: space-between; background: rgba(15,14,12,0.5); }
-.modal-footer p { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+/* VIDEO JAPÓN */
+.s-japan{position:relative;height:100vh;min-height:660px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.jpx{position:absolute;inset:-25%;will-change:transform}
+.jpx video{width:100%;height:100%;object-fit:cover}
+.jink{position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,12,22,.83) 0%,rgba(6,12,22,.42) 50%,rgba(6,12,22,.79) 100%)}
+.jcontent{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding:2rem}
+.jbadge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(14,165,201,.38);padding:.4rem 1.2rem;font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sea);opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.jbadge.v{opacity:1;transform:translateY(0)}
+.jbdot{width:6px;height:6px;border-radius:50%;background:var(--sea);animation:pulse 2s infinite}
+.jkanji{font-size:clamp(5rem,13vw,11rem);color:transparent;-webkit-text-stroke:1.5px rgba(14,165,201,.52);font-family:serif;font-weight:900;line-height:1;letter-spacing:.08em;opacity:0;transform:translateY(22px);transition:opacity 1s .1s var(--ease),transform 1s .1s var(--ease);animation:kglow 4s ease-in-out infinite}
+.jkanji.v{opacity:1;transform:translateY(0)}
+.jtitle{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:900;color:var(--white);line-height:1;letter-spacing:-.02em;opacity:0;transform:translateY(22px);transition:opacity 1s .18s var(--ease),transform 1s .18s var(--ease)}
+.jtitle.v{opacity:1;transform:translateY(0)}
+.jsub{font-size:clamp(.9rem,1.4vw,1.05rem);font-weight:300;color:rgba(240,230,208,.68);max-width:480px;line-height:1.7;opacity:0;transition:opacity .9s .28s var(--ease)}
+.jsub.v{opacity:1}
+.jstats{display:flex;opacity:0;transition:opacity .9s .36s var(--ease)}
+.jstats.v{opacity:1}
+.jstat{padding:.85rem 2rem;background:rgba(6,12,22,.55);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.09);text-align:center}
+.jstat+.jstat{border-left:none}
+.jsn{display:block;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--sea2);line-height:1}
+.jsl{display:block;font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,230,208,.38);margin-top:.2rem}
+.jcta{display:inline-flex;align-items:center;gap:.8rem;background:var(--sea);color:var(--ink);padding:1rem 2.5rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;border:none;cursor:none;opacity:0;transform:translateY(15px);transition:opacity .9s .44s var(--ease),transform .9s .44s var(--ease),background .3s,box-shadow .3s}
+.jcta.v{opacity:1;transform:translateY(0)}
+.jcta:hover{background:var(--sea2);box-shadow:0 12px 40px rgba(14,165,201,.35)}
+.jcta svg{transition:transform .3s var(--ease)}
+.jcta:hover svg{transform:translateX(5px)}
+.jscrl{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.jscrl-ln{width:1px;height:48px;background:linear-gradient(to bottom,var(--sea),transparent);animation:scrlPls 2.2s ease-in-out infinite}
 
-/* ── WHATSAPP ── */
-.whatsapp-fab { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.35s var(--ease-out), box-shadow 0.35s; opacity: 0; animation: fadeIn 1s 2.5s forwards; box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
-.whatsapp-fab:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
-.whatsapp-fab svg { width: 28px; height: 28px; fill: white; }
-.whatsapp-tooltip { position: absolute; right: 68px; top: 50%; transform: translateY(-50%); background: var(--carbon); color: var(--arena); font-size: 0.72rem; white-space: nowrap; padding: 0.4rem 0.8rem; pointer-events: none; opacity: 0; transition: opacity 0.25s; border: 1px solid rgba(255,255,255,0.08); }
-.whatsapp-fab:hover .whatsapp-tooltip { opacity: 1; }
+/* EXPERIENCIA */
+.s-exp{padding:9rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.ev{position:relative;height:600px}
+.ev-img1{position:absolute;top:0;right:0;width:80%;height:440px;object-fit:cover}
+.ev-img2{position:absolute;bottom:0;left:0;width:58%;height:300px;object-fit:cover;border:5px solid var(--ink)}
+.ev-badge{position:absolute;bottom:18px;right:-12px;z-index:3;background:var(--sea);padding:1.6rem 1.8rem;text-align:center}
+.ev-badge strong{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--ink);display:block;line-height:1}
+.ev-badge span{font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);opacity:.72;margin-top:.25rem;display:block}
+.eitems{margin-top:2.5rem;display:flex;flex-direction:column}
+.eitem{display:flex;gap:1.4rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.05);transition:border-color .3s}
+.eitem:last-child{border-bottom:none}
+.eitem:hover{border-color:rgba(14,165,201,.18)}
+.eicon{width:46px;height:46px;border-radius:10px;background:rgba(14,165,201,.1);border:1px solid rgba(14,165,201,.18);display:grid;place-items:center;font-size:1.1rem;flex-shrink:0;transition:background .3s,transform .3s var(--ease)}
+.eitem:hover .eicon{background:rgba(14,165,201,.2);transform:scale(1.08)}
+.etxt h4{font-size:.88rem;font-weight:500;color:var(--white);margin-bottom:.35rem}
+.etxt p{font-size:.85rem;font-weight:300;color:rgba(240,230,208,.52);line-height:1.7}
 
-/* ── FOOTER ── */
-footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; background: var(--negro); }
-.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.08em; color: var(--blanco); }
-.footer-logo span { color: var(--dorado); }
-.footer-links { display: flex; gap: 2rem; }
-.footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.25s; }
-.footer-links a:hover { color: var(--arena); }
-.footer-copy { font-size: 0.7rem; color: var(--muted); }
+/* NÚMEROS */
+.s-nums{padding:5rem 4rem;background:var(--ink2);display:grid;grid-template-columns:repeat(4,1fr)}
+.nitem{padding:2.5rem 2rem;text-align:center;border-right:1px solid rgba(255,255,255,.05)}
+.nitem:last-child{border-right:none}
+.nval{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;color:var(--sea2);line-height:1}
+.nlbl{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,230,208,.38);margin-top:.5rem}
 
-/* ── REVEAL ── */
-.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
-.reveal-left.visible { opacity: 1; transform: translateX(0); }
-.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
-.reveal-right.visible { opacity: 1; transform: translateX(0); }
-.reveal-scale { opacity: 0; transform: scale(0.95); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
-.reveal-scale.visible { opacity: 1; transform: scale(1); }
+/* TESTIMONIOS */
+.s-test{padding:8rem 4rem}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.tcard{padding:2.5rem;background:rgba(11,22,40,.55);border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:border-color .4s,transform .4s var(--ease)}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--sea),var(--sea2),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.tcard:hover{border-color:rgba(14,165,201,.2);transform:translateY(-5px)}
+.tcard:hover::before{transform:scaleX(1)}
+.tstars{color:var(--gold);font-size:.85rem;letter-spacing:.08em;margin-bottom:1.2rem}
+.ttxt{font-size:.9rem;font-weight:300;line-height:1.85;color:rgba(240,230,208,.76);margin-bottom:1.8rem;font-style:italic}
+.tauthor{display:flex;align-items:center;gap:.9rem}
+.tavatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(14,165,201,.22);transition:border-color .3s}
+.tcard:hover .tavatar{border-color:var(--sea)}
+.tname{font-size:.85rem;font-weight:500;color:var(--white)}
+.ttrip{font-size:.7rem;color:var(--sea);margin-top:.1rem}
 
-/* ── KEYFRAMES ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-@keyframes heroZoom { from{transform:scale(1.06)} to{transform:scale(1)} }
-@keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:0.9;transform:scaleY(1.3)} }
+/* CONTACTO */
+.s-contact{padding:8rem 4rem;background:var(--ink2);display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:start}
+.contact-img-wrap{position:relative;margin-top:2.5rem}
+.cimg{width:100%;height:420px;object-fit:cover}
+.ccard{position:absolute;bottom:-1.8rem;right:-1.8rem;background:var(--sea);padding:2rem;width:195px}
+.ccard h4{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:.4rem}
+.ccard p{font-size:.7rem;color:var(--ink);opacity:.75;font-weight:500}
+.cdata{display:flex;flex-direction:column;gap:.8rem;margin-top:3.5rem}
+.citem{display:flex;gap:1rem;align-items:center;padding:.9rem;border:1px solid transparent;transition:border-color .3s,transform .3s var(--ease),background .3s}
+.citem:hover{border-color:rgba(14,165,201,.18);background:rgba(14,165,201,.04);transform:translateX(5px)}
+.cico{width:38px;height:38px;border-radius:9px;background:rgba(14,165,201,.1);border:1px solid rgba(14,165,201,.18);display:grid;place-items:center;font-size:.95rem;flex-shrink:0;transition:background .3s}
+.citem:hover .cico{background:rgba(14,165,201,.2)}
+.clbl{font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,230,208,.35);margin-bottom:.15rem}
+.cval{font-size:.86rem;color:var(--sand)}
 
+/* FORMULARIO */
+.fbox{background:rgba(11,22,40,.5);border:1px solid rgba(255,255,255,.07);padding:2.8rem}
+.fttl{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--white);margin-bottom:.4rem}
+.fsub2{font-size:.84rem;color:rgba(240,230,208,.42);margin-bottom:2rem}
+.cform{display:flex;flex-direction:column;gap:1rem}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,230,208,.42)}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--sand);padding:.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;outline:none;resize:none;transition:border-color .3s,background .3s}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(240,230,208,.22)}
+.fg select{appearance:none;cursor:pointer}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sea);background:rgba(14,165,201,.05)}
+.fg.err input,.fg.err select,.fg.err textarea{border-color:rgba(248,113,113,.5)}
+.fg.ok input,.fg.ok select,.fg.ok textarea{border-color:rgba(14,165,201,.42)}
+.ferr{display:none;font-size:.63rem;color:#f87171;margin-top:.2rem}
+.fg.err .ferr{display:block}
+.pfxw{position:relative}
+.pfx{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;padding:0 .75rem;font-size:.85rem;color:rgba(240,230,208,.32);border-right:1px solid rgba(255,255,255,.07);pointer-events:none}
+.fchk{margin-top:.2rem}
+.chklbl{display:flex;gap:.75rem;align-items:flex-start;cursor:pointer}
+.chklbl input{display:none}
+.chkbox{flex-shrink:0;width:16px;height:16px;margin-top:2px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.chklbl input:checked+.chkbox{background:var(--sea);border-color:var(--sea)}
+.chklbl input:checked+.chkbox::after{content:'';display:block;width:9px;height:5px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg) translateY(-1px)}
+.chktxt{font-size:.75rem;color:rgba(240,230,208,.42);line-height:1.6}
+.chklink{color:var(--sea);text-decoration:none}
+.fchk.err .chkbox{border-color:rgba(248,113,113,.5)}
+.req{color:var(--sea)}
+.fsbm{background:var(--sea);color:var(--ink);border:none;padding:1.05rem;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;width:100%;cursor:none;margin-top:.5rem;position:relative;overflow:hidden;transition:background .3s,transform .3s var(--ease),box-shadow .3s}
+.fsbm::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.2);transform:translateX(-110%) skewX(-12deg);transition:transform .6s var(--ease)}
+.fsbm:hover{background:var(--sea2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(14,165,201,.3)}
+.fsbm:hover::before{transform:translateX(110%) skewX(-12deg)}
+.fsbm:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.fnota{font-size:.67rem;color:rgba(240,230,208,.28);text-align:center;line-height:1.5;margin-top:.5rem}
+.fok{display:none;text-align:center;padding:3rem 1rem}
+.fok .ficon{font-size:3rem;margin-bottom:1rem}
+.fok h4{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--white);margin-bottom:.6rem}
+.fok p{font-size:.87rem;color:rgba(240,230,208,.48);line-height:1.7}
 
-/* ── VIDEO PARALLAX ── */
-.section-video {
-  position: relative; height: 70vh; min-height: 500px;
-  overflow: hidden; display: flex; align-items: center; justify-content: center;
-}
-.video-container {
-  position: absolute; inset: -20%;
-  will-change: transform;
-}
-.video-container video {
-  width: 100%; height: 100%; object-fit: cover;
-}
-.video-overlay {
-  position: absolute; inset: 0;
-  background: rgba(10,9,8,0.55);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 2rem; z-index: 2;
-}
-.video-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3.8rem);
-  font-weight: 300; line-height: 1.2; color: var(--blanco);
-  max-width: 800px;
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
-}
-.video-quote.visible { opacity: 1; transform: translateY(0); }
-.video-quote em { font-style: italic; color: var(--dorado-light); }
-.video-quote-sub {
-  font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
-  color: rgba(245,239,228,0.6); margin-top: 1.5rem;
-  opacity: 0; transform: translateY(10px);
-  transition: opacity 1s 0.3s var(--ease-out), transform 1s 0.3s var(--ease-out);
-}
-.video-quote-sub.visible { opacity: 1; transform: translateY(0); }
+/* MODAL */
+.moverlay{display:none;position:fixed;inset:0;z-index:700;overflow-y:auto;padding:2rem 1rem;background:rgba(3,8,16,0);transition:background .4s var(--ease)}
+.moverlay.on{display:flex;align-items:flex-start;justify-content:center;background:rgba(3,8,16,.93)}
+.modal{background:var(--ink3);width:100%;max-width:920px;position:relative;margin:auto;border:1px solid rgba(14,165,201,.12);opacity:0;transform:translateY(40px) scale(.97);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.moverlay.on .modal{opacity:1;transform:translateY(0) scale(1)}
+.mclose{position:absolute;top:1.2rem;right:1.2rem;z-index:10;width:40px;height:40px;background:rgba(6,12,22,.8);border:1px solid rgba(255,255,255,.09);color:var(--sand);font-size:.95rem;cursor:none;display:grid;place-items:center;border-radius:50%;transition:background .25s,transform .3s var(--ease)}
+.mclose:hover{background:rgba(14,165,201,.2);transform:rotate(90deg)}
+.mhero{position:relative;height:320px;overflow:hidden}
+.mhero img{width:100%;height:100%;object-fit:cover;transition:transform 8s var(--ease2)}
+.moverlay.on .mhero img{transform:scale(1.04)}
+.mhfade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink3) 0%,rgba(18,32,64,.04) 60%)}
+.mhinfo{position:absolute;bottom:1.5rem;left:2rem;right:2rem;display:flex;justify-content:space-between;align-items:flex-end}
+.mreg{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sea);margin-bottom:.4rem}
+.mttl{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--white);line-height:1}
+.mpbox{background:var(--sea);padding:.6rem 1.4rem;text-align:right;flex-shrink:0}
+.mfrom{font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;display:block;font-weight:500;color:var(--ink)}
+.mprice{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;line-height:1.2;color:var(--ink)}
+.mdays{font-size:.62rem;color:var(--ink);opacity:.8}
+.mphotos{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;padding:0 2rem}
+.mphoto{height:110px;overflow:hidden}
+.mphoto img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.mphoto:hover img{transform:scale(1.08)}
+.mbody{padding:2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.mstitle{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sea);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.mstitle::before{content:'';width:14px;height:1px;background:var(--sea)}
+.mdesc{font-size:.87rem;font-weight:300;line-height:1.8;color:rgba(240,230,208,.76)}
+.mitin{display:flex;flex-direction:column;gap:.5rem}
+.mday{display:flex;gap:.9rem;padding:.65rem .85rem;background:rgba(6,12,22,.5);border:1px solid rgba(255,255,255,.05);transition:border-color .25s,transform .25s var(--ease)}
+.mday:hover{border-color:rgba(14,165,201,.3);transform:translateX(4px)}
+.mdnum{font-family:'Playfair Display',serif;font-size:1rem;color:var(--sea);font-weight:700;flex-shrink:0;width:1.8rem;text-align:center}
+.mdplace{font-size:.8rem;font-weight:500;color:var(--white)}
+.mddesc{font-size:.7rem;color:rgba(240,230,208,.42);margin-top:.1rem}
+.minc{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem}
+.mlist{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.mlist li{font-size:.8rem;font-weight:300;color:rgba(240,230,208,.75);display:flex;gap:.65rem;align-items:flex-start;line-height:1.5;transition:color .25s,transform .25s var(--ease)}
+.mlist li:hover{color:var(--sand);transform:translateX(3px)}
+.mlist li::before{content:'✓';color:var(--sea);flex-shrink:0;font-size:.72rem;font-weight:700}
+.mlist.no li::before{content:'✗';color:#f87171}
+.mfooter{padding:1.5rem 2rem;border-top:1px solid rgba(255,255,255,.05);display:flex;gap:1rem;align-items:center;justify-content:space-between;background:rgba(6,12,22,.4)}
+.mfooter p{font-size:.77rem;color:rgba(240,230,208,.38)}
 
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-  nav{padding:1.2rem 1.5rem} .nav-links{display:none}
-  .hero{padding:0 1.5rem 4rem} .hero-stats{display:none}
-  .section-destinos,.section-valor,.section-portal,.section-testimonios,.section-contacto{padding:4rem 1.5rem}
-  .destinos-grid{grid-template-columns:1fr;grid-template-rows:auto}
-  .destino-card:first-child{grid-row:auto;height:300px} .destino-card{height:220px}
-  .section-valor{grid-template-columns:1fr} .valor-visual{height:300px}
-  .testimonios-grid{grid-template-columns:1fr}
-  .section-contacto{grid-template-columns:1fr;gap:3rem}
-  .form-row{grid-template-columns:1fr} .dias-grid{grid-template-columns:1fr}
-  .modal-body{grid-template-columns:1fr} .modal-incluidos{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:1.5rem;text-align:center}
-  .section-header{flex-direction:column;align-items:flex-start;gap:0.5rem}
+/* FOOTER */
+footer{background:#030810;border-top:1px solid rgba(255,255,255,.04);padding:5rem 4rem 2.5rem}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:4rem}
+.ftlogo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.ftmk{width:28px;height:28px;background:var(--sea);border-radius:6px;display:grid;place-items:center;font-size:.6rem;font-weight:900;color:var(--ink)}
+.ftdesc{font-size:.82rem;font-weight:300;color:rgba(240,230,208,.32);line-height:1.7;max-width:260px}
+.ftcol h5{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sea);margin-bottom:1.2rem}
+.ftlinks{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.ftlinks a{font-size:.8rem;color:rgba(240,230,208,.35);text-decoration:none;transition:color .25s}
+.ftlinks a:hover{color:var(--sand)}
+.ft-bot{padding-top:2rem;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center}
+.ftcopy{font-size:.68rem;color:rgba(240,230,208,.22)}
+.ftsoc{display:flex;gap:.8rem}
+.soc{width:34px;height:34px;border:1px solid rgba(255,255,255,.08);border-radius:50%;display:grid;place-items:center;font-size:.72rem;color:rgba(240,230,208,.32);text-decoration:none;transition:all .25s}
+.soc:hover{border-color:var(--sea);color:var(--sea);background:rgba(14,165,201,.09)}
+
+/* WA */
+.wa{position:fixed;bottom:2rem;right:2rem;z-index:400;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.28);transition:transform .35s var(--ease),box-shadow .35s;opacity:0;animation:fI 1s 4s forwards}
+.wa:hover{transform:scale(1.12) translateY(-2px);box-shadow:0 12px 36px rgba(37,211,102,.5)}
+.wa svg{width:28px;height:28px;fill:#fff}
+.wa-tip{position:absolute;right:68px;top:50%;transform:translateY(-50%);background:var(--ink3);color:var(--sand);font-size:.7rem;white-space:nowrap;padding:.45rem .9rem;border:1px solid rgba(255,255,255,.08);pointer-events:none;opacity:0;transition:opacity .25s}
+.wa:hover .wa-tip{opacity:1}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.v{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-50px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rl.v{opacity:1;transform:translateX(0)}
+.rr{opacity:0;transform:translateX(50px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rr.v{opacity:1;transform:translateX(0)}
+
+/* KEYFRAMES */
+@keyframes fU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fD{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fI{from{opacity:0}to{opacity:1}}
+@keyframes scrlPls{0%,100%{opacity:.32;transform:scaleY(1)}50%{opacity:.9;transform:scaleY(1.35)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes kglow{0%,100%{-webkit-text-stroke:1.5px rgba(14,165,201,.52)}50%{-webkit-text-stroke:1.5px rgba(103,213,240,.92)}}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}.nav-links{display:none}
+  .hero-content{padding:0 1.5rem 4rem}.h-row{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .s-intro,.s-exp,.s-contact{grid-template-columns:1fr;padding:5rem 1.5rem;gap:3rem}
+  .s-dest,.s-test,.s-nums{padding:5rem 1.5rem}
+  .dgrid{grid-template-columns:1fr;grid-template-rows:auto}.dc{height:280px}.dc:first-child{grid-row:auto}
+  .tgrid{grid-template-columns:1fr}.s-nums{grid-template-columns:repeat(2,1fr)}
+  .mbody{grid-template-columns:1fr}.minc{grid-template-columns:1fr}
+  footer{padding:3rem 1.5rem 2rem}.ft-top{grid-template-columns:1fr 1fr}.ft-bot{flex-direction:column;gap:1rem;text-align:center}
+  body{cursor:auto}#cdot,#cring{display:none}
+  .intro-vis,.ev,.contact-img-wrap{display:none}
+  .fr{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
+<div id="loader">
+  <div class="ld-logo">White Coast<span>.</span>Travel</div>
+  <div class="ld-bar"></div>
+  <div class="ld-sub">Preparing your journey</div>
+</div>
+
+<div id="cdot"></div>
+<div id="cring"></div>
+
 <nav id="nav">
-  <a href="#" class="nav-logo">White Coast<span>.</span>Travel</a>
+  <a href="#" class="nav-logo"><div class="logo-mk">WC</div>White Coast Travel</a>
   <ul class="nav-links">
     <li><a href="#destinos">Destinos</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#portal">Tu viaje</a></li>
+    <li><a href="#japon">Japón</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="#contacto" class="nav-cta">Consulta gratuita</a>
+  <a href="#contacto" class="nav-btn">Planifica tu viaje</a>
 </nav>
 
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-slides" id="hslides">
+    <div class="hslide on"><img src="https://picsum.photos/seed/coast-hero1/1600/900" alt="White Coast Travel"></div>
+    <div class="hslide"><img src="https://picsum.photos/seed/japan-night2/1600/900" alt="Japón"></div>
+    <div class="hslide"><img src="https://picsum.photos/seed/maldives-aerial/1600/900" alt="Maldivas"></div>
+    <div class="hslide"><img src="https://picsum.photos/seed/patagonia-sky2/1600/900" alt="Patagonia"></div>
+  </div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Agencia de viajes premium · Costa Blanca</p>
-    <h1 class="hero-title">El viaje que<br>siempre <em>imaginaste</em></h1>
-    <p class="hero-sub">Diseñamos experiencias de viaje a medida. Cada detalle, cada destino, pensado únicamente para ti.</p>
-    <div class="hero-actions">
-      <a href="#contacto" class="btn-primary">Planifica tu viaje</a>
-      <a href="#destinos" class="btn-ghost">Ver destinos</a>
+    <p class="h-eyebrow">Costa Blanca · España · Est. 2009</p>
+    <h1 class="h-title">Viaja<br><span class="it">diferente</span><br><span class="sk">al mundo</span></h1>
+    <div class="h-row">
+      <p class="h-sub">Desde la Costa Blanca diseñamos experiencias que van más allá de lo ordinario. Cada destino, cada momento, pensado solo para ti.</p>
+      <div class="h-actions">
+        <a href="#destinos" class="btn-f">Explorar destinos</a>
+        <a href="#contacto" class="btn-o">Hablar con un agente</a>
+      </div>
     </div>
   </div>
-  <div class="hero-stats">
-    <div><div class="hero-stat-num">+1.200</div><div class="hero-stat-label">Viajeros felices</div></div>
-    <div><div class="hero-stat-num">48</div><div class="hero-stat-label">Destinos activos</div></div>
-    <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Años de experiencia</div></div>
-  </div>
-  <div class="hero-scroll"><span>scroll</span><div class="hero-scroll-line"></div></div>
+  <div class="h-dots" id="hdots"></div>
+  <div class="h-scroll"><div class="scrl-ln"></div><span>scroll</span></div>
 </section>
 
-<section class="section-destinos" id="destinos">
-  <div class="section-header reveal">
-    <div><p class="section-label">Destinos destacados</p><h2 class="section-title">El mundo <em>te espera</em></h2></div>
-    <a href="#contacto" class="section-link">Ver todos los destinos</a>
+<div class="mq"><div class="mq-tr">
+  <span class="mqi">Japón<span class="mqd"></span></span><span class="mqi">Maldivas<span class="mqd"></span></span><span class="mqi">Islandia<span class="mqd"></span></span><span class="mqi">Patagonia<span class="mqd"></span></span><span class="mqi">Marrakech<span class="mqd"></span></span><span class="mqi">Tailandia<span class="mqd"></span></span><span class="mqi">Nueva Zelanda<span class="mqd"></span></span><span class="mqi">Costa Rica<span class="mqd"></span></span>
+  <span class="mqi">Japón<span class="mqd"></span></span><span class="mqi">Maldivas<span class="mqd"></span></span><span class="mqi">Islandia<span class="mqd"></span></span><span class="mqi">Patagonia<span class="mqd"></span></span><span class="mqi">Marrakech<span class="mqd"></span></span><span class="mqi">Tailandia<span class="mqd"></span></span><span class="mqi">Nueva Zelanda<span class="mqd"></span></span><span class="mqi">Costa Rica<span class="mqd"></span></span>
+</div></div>
+
+<section class="s-intro" id="nosotros">
+  <div class="rl">
+    <p class="s-tag">Quiénes somos</p>
+    <h2 class="s-ttl">Una agencia que convierte<br>viajes en <em>memorias eternas</em></h2>
+    <p class="s-body">En White Coast Travel no vendemos paquetes. Diseñamos experiencias únicas que se adaptan a quien eres y al mundo que quieres descubrir. 15 años desde la Costa Blanca llegando a todos los rincones del planeta.</p>
+    <div class="awards">
+      <div class="award"><span class="astar">★</span>Luxury Travel Award 2024</div>
+      <div class="award"><span class="astar">★</span>Top Agencia España 2023</div>
+      <div class="award"><span class="astar">★</span>Virtuoso Member</div>
+    </div>
   </div>
-  <div class="destinos-grid reveal">
-    <div class="destino-card" onclick="abrirModal('japon')">
-      <img src="https://picsum.photos/seed/japan/800/600" alt="Japón">
-      <div class="destino-overlay">
-        <p class="destino-region">Asia Oriental</p><h3 class="destino-nombre">Japón</h3>
-        <p class="destino-precio">Desde 2.890 € / persona · 12 días</p><p class="destino-cta">Descubrir</p>
-      </div>
-      <span class="destino-tag">Más solicitado</span>
-    </div>
-    <div class="destino-card" onclick="abrirModal('marrakech')">
-      <img src="https://picsum.photos/seed/marrakech/600/400" alt="Marrakech">
-      <div class="destino-overlay">
-        <p class="destino-region">Norte de África</p><h3 class="destino-nombre">Marrakech</h3>
-        <p class="destino-precio">Desde 890 € · 7 días</p><p class="destino-cta">Descubrir</p>
-      </div>
-    </div>
-    <div class="destino-card" onclick="abrirModal('maldivas')">
-      <img src="https://picsum.photos/seed/maldives/600/400" alt="Maldivas">
-      <div class="destino-overlay">
-        <p class="destino-region">Océano Índico</p><h3 class="destino-nombre">Maldivas</h3>
-        <p class="destino-precio">Desde 3.200 € · 10 días</p><p class="destino-cta">Descubrir</p>
-      </div>
-    </div>
-    <div class="destino-card" onclick="abrirModal('islandia')">
-      <img src="https://picsum.photos/seed/iceland/600/400" alt="Islandia">
-      <div class="destino-overlay">
-        <p class="destino-region">Europa del Norte</p><h3 class="destino-nombre">Islandia</h3>
-        <p class="destino-precio">Desde 1.650 € · 8 días</p><p class="destino-cta">Descubrir</p>
-      </div>
-    </div>
-    <div class="destino-card" onclick="abrirModal('patagonia')">
-      <img src="https://picsum.photos/seed/patagonia/600/400" alt="Patagonia">
-      <div class="destino-overlay">
-        <p class="destino-region">Sudamérica</p><h3 class="destino-nombre">Patagonia</h3>
-        <p class="destino-precio">Desde 4.100 € · 15 días</p><p class="destino-cta">Descubrir</p>
-      </div>
-    </div>
+  <div class="intro-vis rr">
+    <img class="intro-img" src="https://picsum.photos/seed/luxury-coast-wct/700/600" alt="White Coast Travel">
+    <div class="intro-badge"><strong>15+</strong><span>años de<br>experiencia</span></div>
   </div>
 </section>
 
+<section class="s-dest" id="destinos">
+  <div class="s-hdr rv">
+    <div><p class="s-tag">Destinos destacados</p><h2 class="s-ttl">El mundo<br><em>te espera</em></h2></div>
+    <a href="#contacto" class="link-all">Ver todos →</a>
+  </div>
+  <div class="dgrid rv">
+    <div class="dc" onclick="abrirModal('japon')">
+      <img src="https://picsum.photos/seed/japan-temple2/700/900" alt="Japón">
+      <div class="dlayer"><span class="didx">01</span><p class="dreg">Asia Oriental</p><h3 class="dname">Japón</h3><div class="dmeta"><span class="dprice">Desde 2.890 €</span><span class="ddays">· 12 días</span></div><span class="darrow">Descubrir<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      <span class="dhot">Más solicitado</span>
+    </div>
+    <div class="dc" onclick="abrirModal('maldivas')">
+      <img src="https://picsum.photos/seed/maldives-bung/700/500" alt="Maldivas">
+      <div class="dlayer"><span class="didx">02</span><p class="dreg">Océano Índico</p><h3 class="dname">Maldivas</h3><div class="dmeta"><span class="dprice">Desde 3.200 €</span><span class="ddays">· 10 días</span></div><span class="darrow">Descubrir<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    </div>
+    <div class="dc" onclick="abrirModal('islandia')">
+      <img src="https://picsum.photos/seed/iceland-aur/700/500" alt="Islandia">
+      <div class="dlayer"><span class="didx">03</span><p class="dreg">Europa del Norte</p><h3 class="dname">Islandia</h3><div class="dmeta"><span class="dprice">Desde 1.650 €</span><span class="ddays">· 8 días</span></div><span class="darrow">Descubrir<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    </div>
+    <div class="dc" onclick="abrirModal('marrakech')">
+      <img src="https://picsum.photos/seed/marrakech-sk/700/400" alt="Marrakech">
+      <div class="dlayer"><span class="didx">04</span><p class="dreg">Norte de África</p><h3 class="dname">Marrakech</h3><div class="dmeta"><span class="dprice">Desde 890 €</span><span class="ddays">· 7 días</span></div><span class="darrow">Descubrir<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    </div>
+    <div class="dc" onclick="abrirModal('patagonia')">
+      <img src="https://picsum.photos/seed/patagonia-tr/700/400" alt="Patagonia">
+      <div class="dlayer"><span class="didx">05</span><p class="dreg">Sudamérica</p><h3 class="dname">Patagonia</h3><div class="dmeta"><span class="dprice">Desde 4.100 €</span><span class="ddays">· 15 días</span></div><span class="darrow">Descubrir<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    </div>
+  </div>
+</section>
 
-<!-- VIDEO PARALLAX -->
-<section class="section-video" id="video-section">
-  <div class="video-container" id="videoParallax">
-    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+<section class="s-japan" id="japon">
+  <div class="jpx" id="jpx">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover">
+      <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
       <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
     </video>
   </div>
-  <div class="video-overlay">
-    <p class="video-quote" id="videoQuote">
-      Cada viaje es una historia <em>única</em><br>esperando ser vivida
-    </p>
-    <p class="video-quote-sub" id="videoQuoteSub">White Coast Travel · Costa Blanca, España</p>
+  <div class="jink"></div>
+  <div class="jcontent">
+    <div class="jbadge" id="jb"><div class="jbdot"></div>Destino estrella 2026</div>
+    <div class="jkanji" id="jk">日本</div>
+    <h2 class="jtitle" id="jt">Japón</h2>
+    <p class="jsub" id="js">Donde el futuro y la tradición conviven. Cherry blossoms, templos milenarios y Tokio de noche.</p>
+    <div class="jstats" id="jst">
+      <div class="jstat"><span class="jsn">12</span><span class="jsl">días</span></div>
+      <div class="jstat"><span class="jsn">2.890€</span><span class="jsl">desde</span></div>
+      <div class="jstat"><span class="jsn">4.9★</span><span class="jsl">valoración</span></div>
+    </div>
+    <button class="jcta" id="jc" onclick="abrirModal('japon')">Descubrir Japón<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
+  <div class="jscrl"><div class="jscrl-ln"></div></div>
 </section>
 
-<section class="section-valor" id="nosotros">
-  <div class="valor-visual reveal-left">
-    <img class="valor-img-main" src="https://picsum.photos/seed/beach-luxury/700/500" alt="Playa paradisiaca">
-    <img class="valor-img-secondary" src="https://picsum.photos/seed/planning/500/350" alt="Planificando viaje">
-    <div class="valor-badge"><strong>15+</strong><span>años de<br>experiencia</span></div>
+<section class="s-exp">
+  <div class="ev rl">
+    <img class="ev-img1" src="https://picsum.photos/seed/beach-lux-wct/700/500" alt="Lujo">
+    <img class="ev-img2" src="https://picsum.photos/seed/travel-plan-wct/500/350" alt="Planificación">
+    <div class="ev-badge"><strong>15+</strong><span>años de<br>confianza</span></div>
   </div>
-  <div class="valor-content reveal-right">
-    <p class="section-label">Por qué elegirnos</p>
-    <h2 class="section-title">Viajes <em>diseñados</em><br>con alma</h2>
-    <div class="valor-items">
-      <div class="valor-item"><span class="valor-num">01</span><div class="valor-text"><h4>A medida, sin plantillas</h4><p>Cada itinerario es único. Escuchamos tus deseos y construimos el viaje desde cero, sin paquetes prefabricados.</p></div></div>
-      <div class="valor-item"><span class="valor-num">02</span><div class="valor-text"><h4>Tu agente, siempre disponible</h4><p>Antes, durante y después del viaje. Estamos contigo en cada etapa, incluso si surgen imprevistos a las 3 de la mañana.</p></div></div>
-      <div class="valor-item"><span class="valor-num">03</span><div class="valor-text"><h4>Portal del viajero exclusivo</h4><p>Todos tus documentos, itinerario y contactos en un portal privado. Accede desde el móvil en cualquier destino.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section-portal" id="portal">
-  <div class="reveal">
-    <p class="section-label">Tecnología al servicio del viaje</p>
-    <h2 class="section-title">Tu viaje, en <em>tu bolsillo</em></h2>
-    <p style="font-size:0.95rem;font-weight:300;color:var(--muted);max-width:500px;margin:1rem auto 0;line-height:1.7;">Cada cliente recibe acceso a su portal privado con itinerario completo, documentos descargables y contacto directo con su agente.</p>
-  </div>
-  <div class="portal-mockup reveal-scale">
-    <div class="mockup-bar">
-      <div class="mockup-dot" style="background:#FF5F57"></div>
-      <div class="mockup-dot" style="background:#FFBD2E"></div>
-      <div class="mockup-dot" style="background:#28C840"></div>
-      <div class="mockup-url">whitecoasttravel.com/mi-viaje/japon-2026</div>
-    </div>
-    <div class="itinerario-header">
-      <div>
-        <p style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dorado);margin-bottom:0.3rem;">Tu próximo viaje</p>
-        <h3 class="itinerario-titulo">Japón Esencial · 12 días</h3>
-        <p style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">15 Mar — 26 Mar 2026 · 2 viajeros</p>
-      </div>
-      <div class="itinerario-badge">Confirmado ✓</div>
-    </div>
-    <div class="dias-grid">
-      <div class="dia-card active"><p class="dia-num">Día 1 · 15 Mar</p><p class="dia-lugar">Tokio</p><p class="dia-desc">Llegada · Hotel Shinjuku</p></div>
-      <div class="dia-card"><p class="dia-num">Día 3 · 17 Mar</p><p class="dia-lugar">Kyoto</p><p class="dia-desc">Tren bala · Arashiyama</p></div>
-      <div class="dia-card"><p class="dia-num">Día 8 · 22 Mar</p><p class="dia-lugar">Osaka</p><p class="dia-desc">Dotonbori · Namba</p></div>
-    </div>
-    <div class="docs-row">
-      <div class="doc-pill">✈ Vuelos PDF</div>
-      <div class="doc-pill">🏨 Hoteles</div>
-      <div class="doc-pill">🗺 Mapa interactivo</div>
-      <div class="doc-pill">💬 Chat con agente</div>
+  <div class="rr">
+    <p class="s-tag">Por qué elegirnos</p>
+    <h2 class="s-ttl">Viajes diseñados<br>con <em>alma</em></h2>
+    <div class="eitems">
+      <div class="eitem"><div class="eicon">✈️</div><div class="etxt"><h4>100% a medida</h4><p>Cada itinerario es único. Sin paquetes prefabricados. Construimos tu viaje desde cero.</p></div></div>
+      <div class="eitem"><div class="eicon">📱</div><div class="etxt"><h4>Siempre disponibles</h4><p>WhatsApp 24/7 antes, durante y después del viaje. Ante cualquier imprevisto, estamos ahí.</p></div></div>
+      <div class="eitem"><div class="eicon">🌐</div><div class="etxt"><h4>Portal del viajero</h4><p>Todos tus documentos en un portal privado. Accede desde cualquier dispositivo, en cualquier destino.</p></div></div>
+      <div class="eitem"><div class="eicon">🏆</div><div class="etxt"><h4>15 años de confianza</h4><p>Más de 1.200 familias y parejas viajan con nosotros cada año desde la Costa Blanca.</p></div></div>
     </div>
   </div>
 </section>
 
-<section class="section-testimonios">
-  <div class="section-header reveal">
-    <div><p class="section-label">Viajeros que confían en nosotros</p><h2 class="section-title">Lo que <em>dicen</em></h2></div>
-  </div>
-  <div class="testimonios-grid">
-    <div class="testimonio reveal">
-      <p class="testimonio-texto">Llevábamos años queriendo ir a Japón y no sabíamos ni por dónde empezar. Velada lo organizó todo al detalle. Fue el viaje de nuestra vida.</p>
-      <div class="testimonio-autor"><img class="autor-avatar" src="https://picsum.photos/seed/woman-ana/80/80" alt="Ana M."><div><p class="autor-nombre">Ana Martínez</p><p class="autor-viaje">Japón · 12 días</p></div></div>
-    </div>
-    <div class="testimonio reveal" style="transition-delay:0.15s">
-      <p class="testimonio-texto">El portal del viajero es una pasada. Tenía todo en el móvil: vuelos, hoteles, actividades. Y cuando tuve un problema, me respondieron en minutos.</p>
-      <div class="testimonio-autor"><img class="autor-avatar" src="https://picsum.photos/seed/man-carlos/80/80" alt="Carlos R."><div><p class="autor-nombre">Carlos Rubio</p><p class="autor-viaje">Maldivas · 10 días</p></div></div>
-    </div>
-    <div class="testimonio reveal" style="transition-delay:0.3s">
-      <p class="testimonio-texto">Nunca había contratado una agencia y fue la mejor decisión. Nos ahorraron semanas de planificación y el viaje salió perfecto. Repetiremos seguro.</p>
-      <div class="testimonio-autor"><img class="autor-avatar" src="https://picsum.photos/seed/woman-laura/80/80" alt="Laura S."><div><p class="autor-nombre">Laura Sánchez</p><p class="autor-viaje">Patagonia · 15 días</p></div></div>
-    </div>
+<section class="s-nums rv">
+  <div class="nitem"><div class="nval" data-target="1200">0</div><div class="nlbl">Viajeros felices</div></div>
+  <div class="nitem"><div class="nval" data-target="48">0</div><div class="nlbl">Destinos activos</div></div>
+  <div class="nitem"><div class="nval" data-target="15">0</div><div class="nlbl">Años de experiencia</div></div>
+  <div class="nitem"><div class="nval" data-target="98">0</div><div class="nlbl">% satisfacción</div></div>
+</section>
+
+<section class="s-test">
+  <div class="rv"><p class="s-tag">Lo que dicen</p><h2 class="s-ttl">Viajeros que <em>confían</em> en nosotros</h2></div>
+  <div class="tgrid">
+    <div class="tcard rv"><div class="tstars">★★★★★</div><p class="ttxt">"Llevábamos años queriendo ir a Japón. White Coast organizó todo al detalle. Fue el viaje de nuestra vida."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/woman-ana/80/80" alt="Ana"><div><p class="tname">Ana Martínez</p><p class="ttrip">Japón · 12 días</p></div></div></div>
+    <div class="tcard rv" style="transition-delay:.15s"><div class="tstars">★★★★★</div><p class="ttxt">"El portal del viajero es increíble. Todo en el móvil. Cuando surgió un problema me respondieron en minutos."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/man-carlos/80/80" alt="Carlos"><div><p class="tname">Carlos Rubio</p><p class="ttrip">Maldivas · 10 días</p></div></div></div>
+    <div class="tcard rv" style="transition-delay:.3s"><div class="tstars">★★★★★</div><p class="ttxt">"Primera vez con agencia y fue la mejor decisión. Ahorramos semanas de planificación. 100% repetiremos."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/woman-laura/80/80" alt="Laura"><div><p class="tname">Laura Sánchez</p><p class="ttrip">Patagonia · 15 días</p></div></div></div>
   </div>
 </section>
 
-<section class="section-contacto" id="contacto">
-  <div class="contacto-info reveal-left">
-    <p class="section-label">Hablemos</p>
-    <h2 class="section-title">Empieza a<br><em>planificar</em></h2>
-    <p>Cuéntanos tu destino soñado y te preparamos una propuesta personalizada sin compromiso. Respondemos en menos de 24 horas.</p>
-    <div class="contacto-datos">
-      <div class="contacto-dato"><div class="dato-icon">📞</div><div><p class="dato-label">Teléfono</p><p class="dato-text">+34 91 234 56 78</p></div></div>
-      <div class="contacto-dato"><div class="dato-icon">✉️</div><div><p class="dato-label">Email</p><p class="dato-text">hola@whitecoasttravel.com</p></div></div>
-      <div class="contacto-dato"><div class="dato-icon">💬</div><div><p class="dato-label">WhatsApp</p><p class="dato-text">+34 666 123 456 · Respuesta inmediata</p></div></div>
+<section class="s-contact" id="contacto">
+  <div class="rl">
+    <p class="s-tag">Hablemos</p>
+    <h2 class="s-ttl">Empieza a<br><em>planificar</em></h2>
+    <div class="contact-img-wrap">
+      <img class="cimg" src="https://picsum.photos/seed/agent-wct/600/500" alt="Agente">
+      <div class="ccard"><h4>Respuesta en 24h</h4><p>Sin compromiso · 100% personalizado</p></div>
+    </div>
+    <div class="cdata">
+      <div class="citem"><div class="cico">📞</div><div><p class="clbl">Teléfono</p><p class="cval">+34 96 589 12 34</p></div></div>
+      <div class="citem"><div class="cico">✉️</div><div><p class="clbl">Email</p><p class="cval">hola@whitecoasttravel.com</p></div></div>
+      <div class="citem"><div class="cico">💬</div><div><p class="clbl">WhatsApp</p><p class="cval">+34 666 123 456</p></div></div>
+      <div class="citem"><div class="cico">📍</div><div><p class="clbl">Oficina</p><p class="cval">Villajoyosa, Costa Blanca</p></div></div>
     </div>
   </div>
-  <div class="reveal-right" style="transition-delay:0.2s">
-    <div class="contacto-form" id="contactoForm">
-      <div class="form-row">
-        <div class="form-group" id="fg-nombre"><label for="f-nombre">Nombre <span class="req">*</span></label><input type="text" id="f-nombre" placeholder="Tu nombre completo"><span class="field-error" id="err-nombre">Indica tu nombre</span></div>
-        <div class="form-group" id="fg-email"><label for="f-email">Email <span class="req">*</span></label><input type="email" id="f-email" placeholder="tu@email.com"><span class="field-error" id="err-email">Email no válido</span></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group" id="fg-telefono">
-          <label for="f-telefono">Teléfono <span class="req">*</span></label>
-          <div class="input-prefix-wrap"><span class="input-prefix">+34</span><input type="tel" id="f-telefono" placeholder="612 345 678" style="padding-left:3.2rem"></div>
-          <span class="field-error" id="err-telefono">Indica un teléfono válido</span>
+  <div class="rr" style="transition-delay:.15s">
+    <div class="fbox">
+      <h3 class="fttl">Planifica tu viaje</h3>
+      <p class="fsub2">Cuéntanos tu destino soñado. Te preparamos una propuesta personalizada sin compromiso.</p>
+      <div class="cform" id="contactoForm">
+        <div class="fr">
+          <div class="fg" id="fg-nombre"><label>Nombre <span class="req">*</span></label><input type="text" id="f-nombre" placeholder="Tu nombre"><span class="ferr" id="err-nombre">Indica tu nombre</span></div>
+          <div class="fg" id="fg-email"><label>Email <span class="req">*</span></label><input type="email" id="f-email" placeholder="tu@email.com"><span class="ferr" id="err-email">Email no válido</span></div>
         </div>
-        <div class="form-group" id="fg-viajeros">
-          <label for="f-viajeros">Viajeros <span class="req">*</span></label>
-          <select id="f-viajeros"><option value="">¿Cuántos viajáis?</option><option value="1">1 — Solo/a</option><option value="2">2 — Pareja</option><option value="3-4">3 o 4</option><option value="5+">5 o más</option></select>
-          <span class="field-error" id="err-viajeros">Selecciona el número</span>
+        <div class="fr">
+          <div class="fg" id="fg-telefono"><label>Teléfono <span class="req">*</span></label><div class="pfxw"><span class="pfx">+34</span><input type="tel" id="f-telefono" placeholder="612 345 678" style="padding-left:3.2rem"></div><span class="ferr" id="err-telefono">Teléfono no válido</span></div>
+          <div class="fg" id="fg-viajeros"><label>Viajeros <span class="req">*</span></label><select id="f-viajeros"><option value="">¿Cuántos?</option><option value="1">1 — Solo/a</option><option value="2">2 — Pareja</option><option value="3-4">3 o 4</option><option value="5+">5 o más</option></select><span class="ferr" id="err-viajeros">Selecciona</span></div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group" id="fg-destino"><label for="f-destino">Destino <span class="req">*</span></label><input type="text" id="f-destino" placeholder="Japón, Maldivas…"><span class="field-error" id="err-destino">Indica el destino</span></div>
-        <div class="form-group"><label for="f-presupuesto">Presupuesto por persona</label><select id="f-presupuesto"><option value="">Selecciona rango</option><option value="<1000">Hasta 1.000 €</option><option value="1000-3000">1.000 – 3.000 €</option><option value="3000-6000">3.000 – 6.000 €</option><option value=">6000">Más de 6.000 €</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group" id="fg-fecha">
-          <label for="f-fecha">¿Cuándo viajas? <span class="req">*</span></label>
-          <select id="f-fecha"><option value="">Mes y año</option><option value="2026-05">Mayo 2026</option><option value="2026-06">Junio 2026</option><option value="2026-07">Julio 2026</option><option value="2026-08">Agosto 2026</option><option value="2026-09">Septiembre 2026</option><option value="2026-10">Octubre 2026</option><option value="2026-11">Noviembre 2026</option><option value="2026-12">Diciembre 2026</option><option value="2027-01">Enero 2027</option><option value="2027-02">Febrero 2027</option><option value="2027-03">Marzo 2027</option><option value="2027-04">Abril 2027</option><option value="flexible">Fechas flexibles</option></select>
-          <span class="field-error" id="err-fecha">Indica cuándo quieres viajar</span>
+        <div class="fr">
+          <div class="fg" id="fg-destino"><label>Destino <span class="req">*</span></label><input type="text" id="f-destino" placeholder="Japón, Maldivas…"><span class="ferr" id="err-destino">Indica el destino</span></div>
+          <div class="fg"><label>Presupuesto</label><select id="f-presupuesto"><option value="">Selecciona</option><option value="<1000">Hasta 1.000 €</option><option value="1000-3000">1.000–3.000 €</option><option value="3000-6000">3.000–6.000 €</option><option value=">6000">+6.000 €</option></select></div>
         </div>
-        <div class="form-group"><label for="f-duracion">Duración</label><select id="f-duracion"><option value="">¿Cuántos días?</option><option value="3-5">3–5 días</option><option value="7-10">7–10 días</option><option value="11-15">11–15 días</option><option value="15+">Más de 15 días</option></select></div>
+        <div class="fr">
+          <div class="fg" id="fg-fecha"><label>¿Cuándo? <span class="req">*</span></label><select id="f-fecha"><option value="">Mes y año</option><option value="2026-05">Mayo 2026</option><option value="2026-06">Junio 2026</option><option value="2026-07">Julio 2026</option><option value="2026-08">Agosto 2026</option><option value="2026-09">Septiembre 2026</option><option value="2026-10">Octubre 2026</option><option value="2026-11">Noviembre 2026</option><option value="2026-12">Diciembre 2026</option><option value="2027-01">Enero 2027</option><option value="2027-02">Febrero 2027</option><option value="2027-03">Marzo 2027</option><option value="2027-04">Abril 2027</option><option value="flexible">Fechas flexibles</option></select><span class="ferr" id="err-fecha">Indica cuándo</span></div>
+          <div class="fg"><label>Duración</label><select id="f-duracion"><option value="">¿Cuántos días?</option><option value="3-5">3–5 días</option><option value="7-10">7–10 días</option><option value="11-15">11–15 días</option><option value="15+">+15 días</option></select></div>
+        </div>
+        <div class="fg"><label>Mensaje</label><textarea id="f-mensaje" rows="3" placeholder="Tipo de viaje, preferencias…"></textarea></div>
+        <div class="fchk" id="fg-rgpd"><label class="chklbl"><input type="checkbox" id="f-rgpd"><span class="chkbox"></span><span class="chktxt">Acepto la <a href="#" class="chklink">política de privacidad</a>. <span class="req">*</span></span></label><span class="ferr" id="err-rgpd">Debes aceptar</span></div>
+        <button class="fsbm" id="btnSubmit" onclick="submitForm()"><span id="btnText">Solicitar propuesta gratuita</span><span id="btnLoader" style="display:none">Enviando…</span></button>
+        <p class="fnota">Sin compromiso · Respuesta en menos de 24 h · Datos confidenciales</p>
       </div>
-      <div class="form-group"><label for="f-mensaje">Cuéntanos más</label><textarea id="f-mensaje" rows="4" placeholder="Tipo de viaje, alojamiento, actividades…"></textarea></div>
-      <div class="form-check" id="fg-rgpd">
-        <label class="check-label"><input type="checkbox" id="f-rgpd"><span class="check-custom"></span><span class="check-text">Acepto la <a href="#" class="check-link">política de privacidad</a>. <span class="req">*</span></span></label>
-        <span class="field-error" id="err-rgpd">Debes aceptar la política de privacidad</span>
-      </div>
-      <button class="form-submit" id="btnSubmit" onclick="submitForm()">
-        <span id="btnText">Solicitar propuesta gratuita</span>
-        <span id="btnLoader" style="display:none">Enviando…</span>
-      </button>
-      <p class="form-nota">Sin compromiso · Respuesta en menos de 24 h · Tu información es confidencial</p>
-    </div>
-    <div class="form-success" id="formSuccess">
-      <h4>¡Recibido con mucho gusto!</h4>
-      <p>Te contactaremos en menos de 24 horas.<br>Revisa tu bandeja de entrada — te hemos enviado confirmación.</p>
+      <div class="fok" id="formSuccess"><div class="ficon">✈️</div><h4>¡Recibido!</h4><p>Te contactamos en menos de 24 horas para diseñar tu viaje perfecto.</p></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">White Coast<span>.</span>Travel</div>
-  <div class="footer-links"><a href="#">Destinos</a><a href="#">Portal del viajero</a><a href="#">Privacidad</a><a href="#">Aviso legal</a></div>
-  <p class="footer-copy">© 2026 White Coast Travel · Todos los derechos reservados</p>
+  <div class="ft-top">
+    <div><div class="ftlogo"><div class="ftmk">WC</div>White Coast Travel</div><p class="ftdesc">Agencia de viajes premium en la Costa Blanca. Experiencias únicas a medida desde 2009.</p></div>
+    <div class="ftcol"><h5>Destinos</h5><ul class="ftlinks"><li><a href="#">Japón</a></li><li><a href="#">Maldivas</a></li><li><a href="#">Islandia</a></li><li><a href="#">Patagonia</a></li><li><a href="#">Marrakech</a></li></ul></div>
+    <div class="ftcol"><h5>Agencia</h5><ul class="ftlinks"><li><a href="#">Sobre nosotros</a></li><li><a href="#">Portal del viajero</a></li><li><a href="#">Blog de viajes</a></li><li><a href="#">Trabaja con nosotros</a></li></ul></div>
+    <div class="ftcol"><h5>Legal</h5><ul class="ftlinks"><li><a href="#">Privacidad</a></li><li><a href="#">Aviso legal</a></li><li><a href="#">Cookies</a></li><li><a href="#">Condiciones</a></li></ul></div>
+  </div>
+  <div class="ft-bot">
+    <p class="ftcopy">© 2026 White Coast Travel · Villajoyosa, Costa Blanca · Todos los derechos reservados</p>
+    <div class="ftsoc"><a href="#" class="soc">ig</a><a href="#" class="soc">fb</a><a href="#" class="soc">yt</a><a href="#" class="soc">tk</a></div>
+  </div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+<div class="moverlay" id="moverlay" onclick="cerrarModal(event)">
   <div class="modal" id="modal">
-    <button class="modal-close" onclick="cerrarModalBtn()">✕</button>
-    <div class="modal-hero"><img id="modal-img" src="" alt=""><div class="modal-hero-overlay"></div>
-      <div class="modal-hero-info">
-        <div><p class="modal-region" id="modal-region"></p><h2 class="modal-titulo" id="modal-titulo"></h2></div>
-        <div class="modal-precio-badge"><span class="modal-precio-desde">desde</span><span class="modal-precio-num" id="modal-precio"></span><span class="modal-precio-dias" id="modal-dias"></span></div>
-      </div>
-    </div>
-    <div class="modal-fotos" id="modal-fotos"></div>
-    <div class="modal-body">
-      <div><p class="modal-section-title">Sobre el destino</p><p class="modal-desc" id="modal-desc"></p></div>
-      <div><p class="modal-section-title">Itinerario</p><div class="modal-itinerario" id="modal-itinerario"></div></div>
-      <div class="modal-incluidos">
-        <div><p class="modal-section-title">Incluido</p><ul class="modal-lista" id="modal-incluido"></ul></div>
-        <div><p class="modal-section-title">No incluido</p><ul class="modal-lista no" id="modal-no-incluido"></ul></div>
-      </div>
-    </div>
-    <div class="modal-footer"><p id="modal-nota"></p><a id="modal-cta" href="#contacto" class="btn-primary">Solicitar este viaje</a></div>
+    <button class="mclose" onclick="cerrarModalBtn()">✕</button>
+    <div class="mhero"><img id="m-img" src="" alt=""><div class="mhfade"></div><div class="mhinfo"><div><p class="mreg" id="m-reg"></p><h2 class="mttl" id="m-ttl"></h2></div><div class="mpbox"><span class="mfrom">desde</span><span class="mprice" id="m-price"></span><span class="mdays" id="m-days"></span></div></div></div>
+    <div class="mphotos" id="m-photos"></div>
+    <div class="mbody"><div><p class="mstitle">Sobre el destino</p><p class="mdesc" id="m-desc"></p></div><div><p class="mstitle">Itinerario</p><div class="mitin" id="m-itin"></div></div><div class="minc"><div><p class="mstitle">Incluido</p><ul class="mlist" id="m-inc"></ul></div><div><p class="mstitle">No incluido</p><ul class="mlist no" id="m-ninc"></ul></div></div></div>
+    <div class="mfooter"><p id="m-nota"></p><a id="m-cta" href="#contacto" class="btn-f">Solicitar este viaje</a></div>
   </div>
 </div>
 
-<!-- WHATSAPP -->
-<a href="https://wa.me/34666123456?text=Hola,%20me%20interesa%20planificar%20un%20viaje" class="whatsapp-fab" target="_blank">
-  <span class="whatsapp-tooltip">Escríbenos ahora</span>
+<a href="https://wa.me/34666123456?text=Hola,%20quiero%20planificar%20un%20viaje" class="wa" target="_blank">
+  <span class="wa-tip">Escríbenos ahora</span>
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-
-// ── VIDEO PARALLAX ──────────────────────────────────────────────────────────
-const videoParallax = document.getElementById('videoParallax');
-const videoSection = document.getElementById('video-section');
-const videoQuote = document.getElementById('videoQuote');
-const videoQuoteSub = document.getElementById('videoQuoteSub');
-
-if (videoParallax && videoSection) {
-  const handleParallax = () => {
-    const rect = videoSection.getBoundingClientRect();
-    const windowH = window.innerHeight;
-
-    // Parallax del vídeo
-    if (rect.bottom > 0 && rect.top < windowH) {
-      const progress = (windowH - rect.top) / (windowH + rect.height);
-      const offset = (progress - 0.5) * 25;
-      videoParallax.style.transform = `translateY(${offset}%)`;
-    }
-
-    // Reveal del texto
-    if (rect.top < windowH * 0.75) {
-      videoQuote.classList.add('visible');
-      videoQuoteSub.classList.add('visible');
-    }
-  };
-
-  window.addEventListener('scroll', handleParallax, { passive: true });
-  handleParallax();
-}
-
-// NAV SCROLL
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
-}, {passive:true});
-
-// SCROLL REVEAL
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
-}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => obs.observe(el));
-
-// DIAS
-document.querySelectorAll('.dia-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.querySelectorAll('.dia-card').forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
-  });
-});
-
-// DATOS DESTINOS
-const destinos = {
-  japon:{region:'Asia Oriental',titulo:'Japón',precio:'2.890 €',dias:'12 días',img:'https://picsum.photos/seed/japan/860/400',fotos:['https://picsum.photos/seed/japan2/400/200','https://picsum.photos/seed/japan3/400/200','https://picsum.photos/seed/japan4/400/200'],desc:'Japón es un viaje a otro mundo. Templos milenarios junto a rascacielos de neón, gastronomía excepcional y una cultura única que te dejará sin palabras. Diseñamos cada día para que vivas lo auténtico: mercados locales, onsen privados y los cerezos en flor.',itinerario:[{dia:'1-2',lugar:'Tokio',desc:'Llegada, Shinjuku, Akihabara'},{dia:'3-4',lugar:'Nikko',desc:'Santuarios y naturaleza'},{dia:'5-6',lugar:'Kyoto',desc:'Fushimi Inari, Arashiyama'},{dia:'7-8',lugar:'Nara',desc:'Ciervos sagrados, Todai-ji'},{dia:'9-10',lugar:'Osaka',desc:'Dotonbori, gastronomía'},{dia:'11-12',lugar:'Tokio',desc:'Día libre · Vuelo regreso'}],incluido:['Vuelos internacionales','Hoteles 4★ céntricos','Tren bala (JR Pass)','Traslados aeropuerto','Guía español días 1-3','Seguro de viaje'],noIncluido:['Comidas (salvo desayunos)','Actividades opcionales','Gastos personales'],nota:'Precio por persona en hab. doble · Salidas garantizadas todo el año'},
-  marrakech:{region:'Norte de África',titulo:'Marrakech',precio:'890 €',dias:'7 días',img:'https://picsum.photos/seed/marrakech/860/400',fotos:['https://picsum.photos/seed/marrakech2/400/200','https://picsum.photos/seed/marrakech3/400/200','https://picsum.photos/seed/marrakech4/400/200'],desc:'La ciudad roja te envuelve con sus colores, aromas y sonidos desde el primer momento. Nos sumergimos en la medina histórica, los zocos laberínticos y los jardines secretos. Un destino que estimula todos los sentidos y está a solo 3 horas de España.',itinerario:[{dia:'1',lugar:'Llegada',desc:'Riad en la medina, té de bienvenida'},{dia:'2',lugar:'Medina',desc:'Djemaa el-Fna, zocos, tintorería'},{dia:'3',lugar:'Jardines',desc:'Majorelle, Menara, palacio Bahía'},{dia:'4',lugar:'Atlas',desc:'Excursión valles bereberes'},{dia:'5',lugar:'Esauira',desc:'Ciudad costera, día libre'},{dia:'6-7',lugar:'Marrakech',desc:'Hammam, compras · Vuelo regreso'}],incluido:['Vuelos desde España','Riad 4★ en medina','Desayunos incluidos','Traslados aeropuerto','Excursión Atlas','Seguro de viaje'],noIncluido:['Comidas y cenas','Propinas','Actividades opcionales','Gastos personales'],nota:'Precio por persona en hab. doble · Salida todos los viernes'},
-  maldivas:{region:'Océano Índico',titulo:'Maldivas',precio:'3.200 €',dias:'10 días',img:'https://picsum.photos/seed/maldives/860/400',fotos:['https://picsum.photos/seed/maldives2/400/200','https://picsum.photos/seed/maldives3/400/200','https://picsum.photos/seed/maldives4/400/200'],desc:'Las Maldivas son el paraíso en estado puro: agua turquesa cristalina, bungalós sobre el agua y arrecifes de coral que quitan el aliento. Seleccionamos los resorts más exclusivos con la mejor relación calidad-precio para que vivas una experiencia de lujo auténtico.',itinerario:[{dia:'1-2',lugar:'Vuelo + llegada',desc:'Transfer en hidroavión al resort'},{dia:'3-4',lugar:'Resort',desc:'Snorkel, kayak, descanso'},{dia:'5',lugar:'Excursión',desc:'Isla local, pesca tradicional'},{dia:'6-7',lugar:'Resort',desc:'Buceo opcional, spa, sunset'},{dia:'8-9',lugar:'Resort',desc:'Días libres en el paraíso'},{dia:'10',lugar:'Regreso',desc:'Transfer · Vuelo a España'}],incluido:['Vuelos internacionales','Transfer en hidroavión','Resort 5★ todo incluido','Snorkel y kayak','Excursión isla local','Seguro de viaje'],noIncluido:['Buceo (curso opcional)','Tratamientos de spa','Bebidas premium','Gastos personales'],nota:'Precio por persona en bungaló sobre el agua · Mínimo 2 personas'},
-  islandia:{region:'Europa del Norte',titulo:'Islandia',precio:'1.650 €',dias:'8 días',img:'https://picsum.photos/seed/iceland/860/400',fotos:['https://picsum.photos/seed/iceland2/400/200','https://picsum.photos/seed/iceland3/400/200','https://picsum.photos/seed/iceland4/400/200'],desc:'La isla del fuego y el hielo es un paisaje de otro planeta. Geiseres, cascadas, glaciares y auroras boreales en invierno. Conducimos en coche de alquiler por la famosa Ruta 1 a tu ritmo, con alojamientos seleccionados en plena naturaleza.',itinerario:[{dia:'1',lugar:'Reikiavik',desc:'Llegada, centro histórico'},{dia:'2',lugar:'Círculo Dorado',desc:'Geisir, Gullfoss, Þingvellir'},{dia:'3',lugar:'Costa Sur',desc:'Skógafoss, playa negra'},{dia:'4',lugar:'Jökulsárlón',desc:'Laguna glaciar, Diamond Beach'},{dia:'5-6',lugar:'Fiordos Este',desc:'Paisajes salvajes, fauna'},{dia:'7-8',lugar:'Norte',desc:'Mývatn, aurora boreal · Regreso'}],incluido:['Vuelos desde España','Coche de alquiler 4x4','Alojamientos seleccionados','Desayunos','GPS y mapas offline','Seguro de viaje'],noIncluido:['Comidas y cenas','Gasolina','Actividades opcionales','Gastos personales'],nota:'Precio por persona · Mejor época: junio–agosto y dic–feb (auroras)'},
-  patagonia:{region:'Sudamérica',titulo:'Patagonia',precio:'4.100 €',dias:'15 días',img:'https://picsum.photos/seed/patagonia/860/400',fotos:['https://picsum.photos/seed/patagonia2/400/200','https://picsum.photos/seed/patagonia3/400/200','https://picsum.photos/seed/patagonia4/400/200'],desc:'El fin del mundo te llama. La Patagonia es el último gran territorio salvaje del planeta: el Fitz Roy, las Torres del Paine, los glaciares Perito Moreno y Grey. Un viaje para aventureros que quieren enfrentarse a la naturaleza en su estado más puro.',itinerario:[{dia:'1-2',lugar:'Buenos Aires',desc:'Vuelo, llegada, aclimatación'},{dia:'3-4',lugar:'El Calafate',desc:'Glaciar Perito Moreno'},{dia:'5-7',lugar:'El Chaltén',desc:'Trekking Fitz Roy y Cerro Torre'},{dia:'8-10',lugar:'Pto. Natales',desc:'Torres del Paine W trek'},{dia:'11-12',lugar:'Punta Arenas',desc:'Glaciar Grey, fauna'},{dia:'13-15',lugar:'Ushuaia',desc:'Fin del mundo · Vuelo regreso'}],incluido:['Vuelos internacionales','Alojamientos eco-lodge','Traslados entre destinos','Entradas parques nacionales','Guía de montaña 3 días','Seguro de viaje'],noIncluido:['Comidas','Equipo de trekking','Vuelos internos opcionales','Gastos personales'],nota:'Precio por persona · Mejor época: noviembre–marzo · Nivel físico medio'},
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hide');setTimeout(()=>document.getElementById('loader').style.display='none',900);},1800);});
+const cd=document.getElementById('cdot'),cr=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.dc,.tcard').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('cex'));el.addEventListener('mouseleave',()=>document.body.classList.remove('cex'));});
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('solid',window.scrollY>70);},{passive:true});
+const slides=document.querySelectorAll('.hslide'),dotsC=document.getElementById('hdots');
+let cur=0,tmr;
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='hdot'+(i===0?' on':'');d.onclick=()=>go(i);dotsC.appendChild(d);});
+function go(n){slides[cur].classList.remove('on');dotsC.children[cur].classList.remove('on');cur=n;slides[cur].classList.add('on');dotsC.children[cur].classList.add('on');clearInterval(tmr);tmr=setInterval(()=>go((cur+1)%slides.length),5000);}
+tmr=setInterval(()=>go((cur+1)%slides.length),5000);
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');ro.unobserve(x.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rl,.rr').forEach(el=>ro.observe(el));
+const co=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.querySelectorAll('[data-target]').forEach(el=>{const t=+el.dataset.target;let c=0,s=t/60;const ti=setInterval(()=>{c=Math.min(c+s,t);el.textContent=t>=1000?'+'+Math.floor(c/100)*100:Math.floor(c)+(el.dataset.target==='98'?'%':'');if(c>=t)clearInterval(ti);},25);});co.unobserve(x.target);}});},{threshold:.3});
+const nm=document.querySelector('.s-nums');if(nm)co.observe(nm);
+const jsec=document.getElementById('japon'),jpx=document.getElementById('jpx');
+const jels=['jb','jk','jt','js','jst','jc'].map(id=>document.getElementById(id));
+const hj=()=>{if(!jsec)return;const r=jsec.getBoundingClientRect(),wh=window.innerHeight;if(r.bottom>0&&r.top<wh)jpx.style.transform=`translateY(${((wh-r.top)/(wh+r.height)-.5)*26}%)`;if(r.top<wh*.75)jels.forEach(el=>el&&el.classList.add('v'));};
+window.addEventListener('scroll',hj,{passive:true});hj();
+const destinos={
+  japon:{region:'Asia Oriental',titulo:'Japón',precio:'2.890 €',dias:'12 días',img:'https://picsum.photos/seed/japan/860/400',fotos:['https://picsum.photos/seed/japan2/400/200','https://picsum.photos/seed/japan3/400/200','https://picsum.photos/seed/japan4/400/200'],desc:'Japón es un viaje a otro mundo. Templos milenarios junto a rascacielos de neón, gastronomía excepcional y una cultura única. Diseñamos cada día para que vivas lo auténtico.',itinerario:[{dia:'1-2',lugar:'Tokio',desc:'Llegada, Shinjuku'},{dia:'3-4',lugar:'Nikko',desc:'Santuarios y naturaleza'},{dia:'5-6',lugar:'Kyoto',desc:'Fushimi Inari'},{dia:'7-8',lugar:'Nara',desc:'Ciervos sagrados'},{dia:'9-10',lugar:'Osaka',desc:'Dotonbori, gastronomía'},{dia:'11-12',lugar:'Tokio',desc:'Día libre · Regreso'}],incluido:['Vuelos internacionales','Hoteles 4★','Tren bala JR Pass','Traslados','Guía español','Seguro'],noIncluido:['Comidas (salvo desayunos)','Actividades opcionales','Gastos personales'],nota:'Por persona en hab. doble · Salidas todo el año'},
+  maldivas:{region:'Océano Índico',titulo:'Maldivas',precio:'3.200 €',dias:'10 días',img:'https://picsum.photos/seed/maldives/860/400',fotos:['https://picsum.photos/seed/maldives2/400/200','https://picsum.photos/seed/maldives3/400/200','https://picsum.photos/seed/maldives4/400/200'],desc:'Las Maldivas son el paraíso en estado puro: agua turquesa, bungalós sobre el agua y arrecifes de coral. Seleccionamos los resorts más exclusivos para ti.',itinerario:[{dia:'1-2',lugar:'Vuelo + llegada',desc:'Transfer en hidroavión'},{dia:'3-4',lugar:'Resort',desc:'Snorkel, kayak'},{dia:'5',lugar:'Excursión',desc:'Isla local, pesca'},{dia:'6-7',lugar:'Resort',desc:'Spa, sunset'},{dia:'8-9',lugar:'Resort',desc:'Días libres'},{dia:'10',lugar:'Regreso',desc:'Transfer · Vuelo'}],incluido:['Vuelos internacionales','Transfer hidroavión','Resort 5★ todo incluido','Snorkel y kayak','Excursión local','Seguro'],noIncluido:['Buceo opcional','Tratamientos spa','Bebidas premium','Gastos personales'],nota:'Por persona en bungaló · Mínimo 2 personas'},
+  islandia:{region:'Europa del Norte',titulo:'Islandia',precio:'1.650 €',dias:'8 días',img:'https://picsum.photos/seed/iceland/860/400',fotos:['https://picsum.photos/seed/iceland2/400/200','https://picsum.photos/seed/iceland3/400/200','https://picsum.photos/seed/iceland4/400/200'],desc:'La isla del fuego y el hielo. Geiseres, cascadas, glaciares y auroras boreales. Conducimos la Ruta 1 a tu ritmo.',itinerario:[{dia:'1',lugar:'Reikiavik',desc:'Llegada, centro'},{dia:'2',lugar:'Círculo Dorado',desc:'Geisir, Gullfoss'},{dia:'3',lugar:'Costa Sur',desc:'Skógafoss'},{dia:'4',lugar:'Jökulsárlón',desc:'Laguna glaciar'},{dia:'5-6',lugar:'Fiordos Este',desc:'Fauna salvaje'},{dia:'7-8',lugar:'Norte',desc:'Auroras · Regreso'}],incluido:['Vuelos desde España','Coche 4x4','Alojamientos','Desayunos','GPS offline','Seguro'],noIncluido:['Comidas y cenas','Gasolina','Actividades opcionales','Gastos personales'],nota:'Por persona · Mejor época: junio–agosto o diciembre–febrero'},
+  marrakech:{region:'Norte de África',titulo:'Marrakech',precio:'890 €',dias:'7 días',img:'https://picsum.photos/seed/marrakech/860/400',fotos:['https://picsum.photos/seed/marrakech2/400/200','https://picsum.photos/seed/marrakech3/400/200','https://picsum.photos/seed/marrakech4/400/200'],desc:'La ciudad roja te envuelve con sus colores y aromas. Zocos, jardines secretos y hammams privados a 3 horas de España.',itinerario:[{dia:'1',lugar:'Llegada',desc:'Riad en la medina'},{dia:'2',lugar:'Medina',desc:'Djemaa el-Fna, zocos'},{dia:'3',lugar:'Jardines',desc:'Majorelle, Bahía'},{dia:'4',lugar:'Atlas',desc:'Excursión bereberes'},{dia:'5',lugar:'Esauira',desc:'Ciudad costera'},{dia:'6-7',lugar:'Marrakech',desc:'Hammam · Regreso'}],incluido:['Vuelos desde España','Riad 4★','Desayunos','Traslados','Excursión Atlas','Seguro'],noIncluido:['Comidas y cenas','Propinas','Actividades opcionales','Gastos personales'],nota:'Por persona · Salida todos los viernes'},
+  patagonia:{region:'Sudamérica',titulo:'Patagonia',precio:'4.100 €',dias:'15 días',img:'https://picsum.photos/seed/patagonia/860/400',fotos:['https://picsum.photos/seed/patagonia2/400/200','https://picsum.photos/seed/patagonia3/400/200','https://picsum.photos/seed/patagonia4/400/200'],desc:'El fin del mundo. Fitz Roy, Torres del Paine, glaciares Perito Moreno y Grey. Naturaleza en estado puro.',itinerario:[{dia:'1-2',lugar:'Buenos Aires',desc:'Vuelo, llegada'},{dia:'3-4',lugar:'El Calafate',desc:'Perito Moreno'},{dia:'5-7',lugar:'El Chaltén',desc:'Trekking Fitz Roy'},{dia:'8-10',lugar:'Pto. Natales',desc:'Torres del Paine'},{dia:'11-12',lugar:'Punta Arenas',desc:'Glaciar Grey'},{dia:'13-15',lugar:'Ushuaia',desc:'Fin del mundo · Regreso'}],incluido:['Vuelos internacionales','Eco-lodge','Traslados','Entradas parques','Guía montaña','Seguro'],noIncluido:['Comidas','Equipo trekking','Vuelos internos opcionales','Gastos personales'],nota:'Por persona · Mejor época: noviembre–marzo'},
 };
-
-// MODAL
-function abrirModal(id) {
-  const d = destinos[id]; if(!d) return;
-  const overlay = document.getElementById('modalOverlay');
-  document.getElementById('modal-img').src = d.img;
-  document.getElementById('modal-img').alt = d.titulo;
-  document.getElementById('modal-region').textContent = d.region;
-  document.getElementById('modal-titulo').textContent = d.titulo;
-  document.getElementById('modal-precio').textContent = d.precio;
-  document.getElementById('modal-dias').textContent = d.dias;
-  document.getElementById('modal-desc').textContent = d.desc;
-  document.getElementById('modal-nota').textContent = d.nota;
-  document.getElementById('modal-fotos').innerHTML = d.fotos.map(f=>`<div class="modal-foto"><img src="${f}" alt="${d.titulo}" loading="lazy"></div>`).join('');
-  document.getElementById('modal-itinerario').innerHTML = d.itinerario.map(i=>`<div class="modal-dia"><div class="modal-dia-num">${i.dia}</div><div><div class="modal-dia-lugar">${i.lugar}</div><div class="modal-dia-desc">${i.desc}</div></div></div>`).join('');
-  document.getElementById('modal-incluido').innerHTML = d.incluido.map(i=>`<li>${i}</li>`).join('');
-  document.getElementById('modal-no-incluido').innerHTML = d.noIncluido.map(i=>`<li>${i}</li>`).join('');
-  document.getElementById('modal-cta').onclick = () => {
-    const el = document.getElementById('f-destino'); if(el) el.value = d.titulo;
-    cerrarModalBtn();
-    setTimeout(()=>document.getElementById('contacto').scrollIntoView({behavior:'smooth'}),350);
-  };
-  overlay.style.display = 'flex';
-  requestAnimationFrame(()=>overlay.classList.add('open'));
-  document.body.style.overflow = 'hidden';
+function abrirModal(id){
+  const d=destinos[id];if(!d)return;
+  const ov=document.getElementById('moverlay');
+  document.getElementById('m-img').src=d.img;
+  document.getElementById('m-reg').textContent=d.region;
+  document.getElementById('m-ttl').textContent=d.titulo;
+  document.getElementById('m-price').textContent=d.precio;
+  document.getElementById('m-days').textContent=d.dias;
+  document.getElementById('m-desc').textContent=d.desc;
+  document.getElementById('m-nota').textContent=d.nota;
+  document.getElementById('m-photos').innerHTML=d.fotos.map(f=>`<div class="mphoto"><img src="${f}" alt="${d.titulo}" loading="lazy"></div>`).join('');
+  document.getElementById('m-itin').innerHTML=d.itinerario.map(i=>`<div class="mday"><div class="mdnum">${i.dia}</div><div><div class="mdplace">${i.lugar}</div><div class="mddesc">${i.desc}</div></div></div>`).join('');
+  document.getElementById('m-inc').innerHTML=d.incluido.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('m-ninc').innerHTML=d.noIncluido.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('m-cta').onclick=()=>{const el=document.getElementById('f-destino');if(el)el.value=d.titulo;cerrarModalBtn();setTimeout(()=>document.getElementById('contacto').scrollIntoView({behavior:'smooth'}),350);};
+  ov.style.display='flex';requestAnimationFrame(()=>ov.classList.add('on'));
+  document.body.style.overflow='hidden';
 }
-function cerrarModalBtn() {
-  const o = document.getElementById('modalOverlay');
-  o.classList.remove('open');
-  setTimeout(()=>{o.style.display='none';},450);
-  document.body.style.overflow='';
-}
-function cerrarModal(e) { if(e.target===document.getElementById('modalOverlay')) cerrarModalBtn(); }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarModalBtn(); });
-
-// VALIDACIÓN
-const groupMap={'f-nombre':'fg-nombre','f-email':'fg-email','f-telefono':'fg-telefono','f-viajeros':'fg-viajeros','f-destino':'fg-destino','f-fecha':'fg-fecha'};
-function setError(g){const el=document.getElementById(g);if(el){el.classList.add('has-error');el.classList.remove('is-ok');}}
-function setOk(g){const el=document.getElementById(g);if(el){el.classList.remove('has-error');el.classList.add('is-ok');}}
-function validateField(id){
-  const el=document.getElementById(id);if(!el)return true;
-  const val=el.value.trim(),gId=groupMap[id];if(!gId)return true;
-  if(id==='f-email'){const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);ok?setOk(gId):setError(gId);return ok;}
-  if(id==='f-telefono'){const ok=/^[0-9\s\-]{7,}$/.test(val);ok?setOk(gId):setError(gId);return ok;}
-  if(val){setOk(gId);return true;}setError(gId);return false;
-}
-Object.keys(groupMap).forEach(id=>{
-  const el=document.getElementById(id);if(!el)return;
-  el.addEventListener('blur',()=>validateField(id));
-  el.addEventListener('input',()=>{if(document.getElementById(groupMap[id]).classList.contains('has-error'))validateField(id);});
-});
-document.getElementById('f-rgpd').addEventListener('change',function(){if(this.checked)document.getElementById('fg-rgpd').classList.remove('has-error');});
-
+function cerrarModalBtn(){const o=document.getElementById('moverlay');o.classList.remove('on');setTimeout(()=>{o.style.display='none';},450);document.body.style.overflow='';}
+function cerrarModal(e){if(e.target===document.getElementById('moverlay'))cerrarModalBtn();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarModalBtn();});
+const gm={'f-nombre':'fg-nombre','f-email':'fg-email','f-telefono':'fg-telefono','f-viajeros':'fg-viajeros','f-destino':'fg-destino','f-fecha':'fg-fecha'};
+function se(g){const e=document.getElementById(g);if(e){e.classList.add('err');e.classList.remove('ok');}}
+function sok(g){const e=document.getElementById(g);if(e){e.classList.remove('err');e.classList.add('ok');}}
+function vf(id){const el=document.getElementById(id);if(!el)return true;const v=el.value.trim(),g=gm[id];if(!g)return true;if(id==='f-email'){const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);ok?sok(g):se(g);return ok;}if(id==='f-telefono'){const ok=/^[0-9\s\-]{7,}$/.test(v);ok?sok(g):se(g);return ok;}if(v){sok(g);return true;}se(g);return false;}
+Object.keys(gm).forEach(id=>{const el=document.getElementById(id);if(!el)return;el.addEventListener('blur',()=>vf(id));el.addEventListener('input',()=>{if(document.getElementById(gm[id]).classList.contains('err'))vf(id);});});
+document.getElementById('f-rgpd').addEventListener('change',function(){if(this.checked)document.getElementById('fg-rgpd').classList.remove('err');});
 function submitForm(){
   const req=['f-nombre','f-email','f-telefono','f-viajeros','f-destino','f-fecha'];
-  let valid=true;req.forEach(id=>{if(!validateField(id))valid=false;});
-  const rgpd=document.getElementById('f-rgpd');
-  if(!rgpd.checked){document.getElementById('fg-rgpd').classList.add('has-error');valid=false;}
-  else{document.getElementById('fg-rgpd').classList.remove('has-error');}
-  if(!valid){const f=document.querySelector('.has-error input,.has-error select,.has-error .check-custom');if(f)f.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  let ok=true;req.forEach(id=>{if(!vf(id))ok=false;});
+  const r=document.getElementById('f-rgpd');
+  if(!r.checked){document.getElementById('fg-rgpd').classList.add('err');ok=false;}else document.getElementById('fg-rgpd').classList.remove('err');
+  if(!ok){const f=document.querySelector('.err input,.err select,.err .chkbox');if(f)f.scrollIntoView({behavior:'smooth',block:'center'});return;}
   const btn=document.getElementById('btnSubmit');btn.disabled=true;
   document.getElementById('btnText').style.display='none';
   document.getElementById('btnLoader').style.display='inline';
-  const payload={nombre:document.getElementById('f-nombre').value.trim(),email:document.getElementById('f-email').value.trim(),telefono:'+34 '+document.getElementById('f-telefono').value.trim(),viajeros:document.getElementById('f-viajeros').value,destino:document.getElementById('f-destino').value.trim(),presupuesto:document.getElementById('f-presupuesto').value,fecha:document.getElementById('f-fecha').value,duracion:document.getElementById('f-duracion').value,mensaje:document.getElementById('f-mensaje').value.trim()};
-  fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-  .then(r=>r.ok?r.json():Promise.reject(r)).then(()=>ok()).catch(()=>ok());
-  function ok(){document.getElementById('contactoForm').style.display='none';document.getElementById('formSuccess').style.display='block';}
+  const p={nombre:document.getElementById('f-nombre').value.trim(),email:document.getElementById('f-email').value.trim(),telefono:'+34 '+document.getElementById('f-telefono').value.trim(),viajeros:document.getElementById('f-viajeros').value,destino:document.getElementById('f-destino').value.trim(),presupuesto:document.getElementById('f-presupuesto').value,fecha:document.getElementById('f-fecha').value,duracion:document.getElementById('f-duracion').value,mensaje:document.getElementById('f-mensaje').value.trim()};
+  fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).then(r=>r.ok?r.json():Promise.reject()).then(done).catch(done);
+  function done(){document.getElementById('contactoForm').style.display='none';document.getElementById('formSuccess').style.display='block';}
 }
 </script>
 </body>
