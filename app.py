@@ -1,6 +1,6 @@
 import os
 import psycopg2
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from leads_route import leads_bp, init_leads_table
 from admin_route import admin_bp
 
@@ -13,6 +13,14 @@ app.register_blueprint(admin_bp)
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/debug-vars")
+def debug_vars():
+    return jsonify({
+        "ADMIN_USER": os.environ.get("ADMIN_USER", "NO DEFINIDA"),
+        "ADMIN_PASSWORD": os.environ.get("ADMIN_PASSWORD", "NO DEFINIDA"),
+        "SECRET_KEY": os.environ.get("SECRET_KEY", "NO DEFINIDA"),
+    })
 
 def _add_nota_column():
     conn = psycopg2.connect(os.environ["DATABASE_URL"])
