@@ -4,534 +4,365 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Velada Viajes — Experiencias que perduran</title>
+<meta name="description" content="Agencia de viajes premium. Diseñamos experiencias únicas a medida. Japón, Maldivas, Patagonia y mucho más.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --arena: #F5EFE4;
-    --arena-dark: #EDE3D0;
-    --negro: #0F0E0C;
-    --carbon: #1C1A16;
-    --dorado: #C4973A;
-    --dorado-light: #E8C97A;
-    --muted: #8A8070;
-    --blanco: #FDFAF5;
-  }
+:root {
+  --arena: #F5EFE4; --negro: #0F0E0C; --carbon: #1C1A16;
+  --dorado: #C4973A; --dorado-light: #E8C97A; --muted: #8A8070; --blanco: #FDFAF5;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; background: var(--negro); color: var(--arena); overflow-x: hidden; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 3rem;
+  transition: background 0.5s var(--ease-in-out), padding 0.4s var(--ease-out);
+}
+nav.scrolled {
+  background: rgba(15,14,12,0.95); backdrop-filter: blur(12px);
+  padding: 1rem 3rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600;
+  letter-spacing: 0.08em; color: var(--blanco); text-decoration: none;
+  opacity: 0; transform: translateY(-8px);
+  animation: fadeDown 0.7s 0.1s var(--ease-out) forwards;
+}
+.nav-logo span { color: var(--dorado); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links li { opacity: 0; transform: translateY(-8px); }
+.nav-links li:nth-child(1) { animation: fadeDown 0.7s 0.2s var(--ease-out) forwards; }
+.nav-links li:nth-child(2) { animation: fadeDown 0.7s 0.3s var(--ease-out) forwards; }
+.nav-links li:nth-child(3) { animation: fadeDown 0.7s 0.4s var(--ease-out) forwards; }
+.nav-links li:nth-child(4) { animation: fadeDown 0.7s 0.5s var(--ease-out) forwards; }
+.nav-links a {
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--arena); text-decoration: none; opacity: 0.7; transition: opacity 0.25s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--dorado);
+  transform: scaleX(0); transform-origin: right; transition: transform 0.35s var(--ease-out);
+}
+.nav-links a:hover { opacity: 1; }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav-cta {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  border: 1px solid var(--dorado); color: var(--dorado); padding: 0.6rem 1.4rem;
+  text-decoration: none; transition: background 0.3s, color 0.3s, transform 0.2s;
+  opacity: 0; animation: fadeDown 0.7s 0.6s var(--ease-out) forwards;
+}
+.nav-cta:hover { background: var(--dorado); color: var(--negro); transform: translateY(-1px); }
 
-  html { scroll-behavior: smooth; }
+/* ── HERO ── */
+.hero {
+  position: relative; height: 100vh; min-height: 700px;
+  display: flex; align-items: flex-end; padding: 0 3rem 5rem; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://picsum.photos/seed/travel-hero/1600/900') center/cover no-repeat;
+  transform: scale(1.06); animation: heroZoom 10s var(--ease-in-out) forwards;
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(15,14,12,0.88) 35%, rgba(15,14,12,0.2) 100%),
+              linear-gradient(to top, rgba(15,14,12,0.55) 0%, transparent 50%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 680px; }
+.hero-eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dorado);
+  margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 1s 0.6s var(--ease-out) forwards;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--dorado); }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 6vw, 6.5rem);
+  font-weight: 300; line-height: 1.0; color: var(--blanco);
+  opacity: 0; animation: fadeUp 1s 0.85s var(--ease-out) forwards;
+}
+.hero-title em { font-style: italic; color: var(--dorado-light); }
+.hero-sub {
+  margin-top: 1.8rem; font-size: 1rem; font-weight: 300; line-height: 1.8;
+  color: rgba(245,239,228,0.72); max-width: 460px;
+  opacity: 0; animation: fadeUp 1s 1.05s var(--ease-out) forwards;
+}
+.hero-actions {
+  margin-top: 2.8rem; display: flex; gap: 1.2rem; align-items: center;
+  opacity: 0; animation: fadeUp 1s 1.25s var(--ease-out) forwards;
+}
+.btn-primary {
+  background: var(--dorado); color: var(--negro); padding: 1rem 2.4rem;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+  text-decoration: none; transition: background 0.3s, transform 0.3s var(--ease-out);
+  position: relative; overflow: hidden;
+}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15);
+  transform: translateX(-100%) skewX(-15deg); transition: transform 0.5s var(--ease-out);
+}
+.btn-primary:hover { background: var(--dorado-light); transform: translateY(-2px); }
+.btn-primary:hover::after { transform: translateX(200%) skewX(-15deg); }
+.btn-ghost {
+  color: var(--arena); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; opacity: 0.65; display: flex; align-items: center; gap: 0.6rem;
+  transition: opacity 0.25s, gap 0.3s var(--ease-out);
+}
+.btn-ghost:hover { opacity: 1; gap: 0.9rem; }
+.btn-ghost::after { content: '→'; transition: transform 0.3s var(--ease-out); }
+.btn-ghost:hover::after { transform: translateX(4px); }
+.hero-stats {
+  position: absolute; bottom: 5rem; right: 3rem; z-index: 2;
+  display: flex; gap: 2.5rem; opacity: 0; animation: fadeUp 1s 1.5s var(--ease-out) forwards;
+}
+.hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--blanco); line-height: 1; }
+.hero-stat-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; right: 3rem; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+  opacity: 0; animation: fadeIn 1s 1.8s forwards;
+}
+.hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--dorado), transparent); animation: scrollPulse 2s 2s ease-in-out infinite; }
 
-  body {
-    font-family: 'Jost', sans-serif;
-    background: var(--negro);
-    color: var(--arena);
-    overflow-x: hidden;
-  }
+/* ── DESTINOS ── */
+.section-destinos { padding: 7rem 3rem; background: var(--carbon); }
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+.section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.6rem; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--blanco); }
+.section-title em { font-style: italic; color: var(--dorado-light); }
+.section-link {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+  text-decoration: none; border-bottom: 1px solid var(--muted); padding-bottom: 2px;
+  transition: color 0.25s, border-color 0.25s; white-space: nowrap; align-self: flex-end; margin-bottom: 4px;
+}
+.section-link:hover { color: var(--dorado); border-color: var(--dorado); }
+.destinos-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: 340px 240px; gap: 1rem; }
+.destino-card { position: relative; overflow: hidden; cursor: pointer; }
+.destino-card:first-child { grid-row: 1 / 3; }
+.destino-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
+.destino-card:hover img { transform: scale(1.06); }
+.destino-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,14,12,0.9) 0%, rgba(15,14,12,0.05) 60%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 1.8rem;
+  transition: background 0.4s;
+}
+.destino-card:hover .destino-overlay { background: linear-gradient(to top, rgba(15,14,12,0.95) 0%, rgba(15,14,12,0.2) 60%); }
+.destino-region { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; transform: translateY(4px); transition: transform 0.4s var(--ease-out); }
+.destino-nombre { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--blanco); transform: translateY(4px); transition: transform 0.4s 0.05s var(--ease-out); }
+.destino-card:first-child .destino-nombre { font-size: 2.2rem; }
+.destino-card:hover .destino-region, .destino-card:hover .destino-nombre { transform: translateY(0); }
+.destino-precio { font-size: 0.7rem; color: rgba(245,239,228,0.5); margin-top: 0.3rem; transform: translateY(8px); opacity: 0; transition: transform 0.4s 0.1s var(--ease-out), opacity 0.4s 0.1s; }
+.destino-card:hover .destino-precio { transform: translateY(0); opacity: 1; }
+.destino-cta { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dorado); margin-top: 0.8rem; transform: translateY(8px); opacity: 0; transition: transform 0.4s 0.15s var(--ease-out), opacity 0.4s 0.15s; display: flex; align-items: center; gap: 0.4rem; }
+.destino-cta::after { content: '→'; }
+.destino-card:hover .destino-cta { transform: translateY(0); opacity: 1; }
+.destino-tag { position: absolute; top: 1.2rem; left: 1.2rem; background: var(--dorado); color: var(--negro); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; padding: 0.3rem 0.7rem; }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.5rem 3rem;
-    background: linear-gradient(to bottom, rgba(15,14,12,0.9) 0%, transparent 100%);
-    backdrop-filter: blur(2px);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-weight: 600; letter-spacing: 0.08em;
-    color: var(--blanco); text-decoration: none;
-  }
-  .nav-logo span { color: var(--dorado); }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--arena); text-decoration: none; opacity: 0.7;
-    transition: opacity 0.2s;
-  }
-  .nav-links a:hover { opacity: 1; }
-  .nav-cta {
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    border: 1px solid var(--dorado); color: var(--dorado);
-    padding: 0.6rem 1.4rem; text-decoration: none;
-    transition: background 0.25s, color 0.25s;
-  }
-  .nav-cta:hover { background: var(--dorado); color: var(--negro); }
+/* ── VALOR ── */
+.section-valor { padding: 7rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; background: var(--negro); }
+.valor-visual { position: relative; height: 520px; }
+.valor-img-main { position: absolute; top: 0; left: 0; width: 78%; height: 420px; object-fit: cover; transition: transform 0.6s var(--ease-out); }
+.valor-img-main:hover { transform: scale(1.02); }
+.valor-img-secondary { position: absolute; bottom: 0; right: 0; width: 55%; height: 260px; object-fit: cover; border: 4px solid var(--negro); transition: transform 0.6s var(--ease-out); }
+.valor-img-secondary:hover { transform: scale(1.03); }
+.valor-badge { position: absolute; top: 50%; left: 60%; transform: translate(-50%,-50%); width: 110px; height: 110px; border-radius: 50%; background: var(--dorado); color: var(--negro); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; text-align: center; z-index: 10; transition: transform 0.4s var(--ease-out); }
+.valor-badge:hover { transform: translate(-50%,-50%) scale(1.08); }
+.valor-badge strong { font-size: 2rem; font-weight: 600; line-height: 1; }
+.valor-badge span { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.valor-items { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
+.valor-item { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: border-color 0.3s; }
+.valor-item:last-child { border-bottom: none; }
+.valor-item:hover { border-color: rgba(196,151,58,0.2); }
+.valor-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--dorado); line-height: 1; flex-shrink: 0; width: 2rem; text-align: right; transition: transform 0.3s var(--ease-out); }
+.valor-item:hover .valor-num { transform: scale(1.1); }
+.valor-text h4 { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blanco); font-weight: 500; margin-bottom: 0.4rem; }
+.valor-text p { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
 
-  /* ── HERO ── */
-  .hero {
-    position: relative; height: 100vh; min-height: 700px;
-    display: flex; align-items: flex-end;
-    padding: 0 3rem 5rem;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(to right, rgba(15,14,12,0.85) 40%, rgba(15,14,12,0.2) 100%),
-      url('https://picsum.photos/seed/travel-hero/1600/900') center/cover no-repeat;
-  }
-  .hero-content { position: relative; z-index: 2; max-width: 680px; }
-  .hero-eyebrow {
-    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--dorado); margin-bottom: 1.2rem;
-    opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
-  }
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 6vw, 6rem);
-    font-weight: 300; line-height: 1.05;
-    color: var(--blanco);
-    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
-  }
-  .hero-title em { font-style: italic; color: var(--dorado-light); }
-  .hero-sub {
-    margin-top: 1.5rem;
-    font-size: 1rem; font-weight: 300; line-height: 1.7;
-    color: rgba(245,239,228,0.75); max-width: 460px;
-    opacity: 0; animation: fadeUp 0.9s 0.75s forwards;
-  }
-  .hero-actions {
-    margin-top: 2.5rem; display: flex; gap: 1rem; align-items: center;
-    opacity: 0; animation: fadeUp 0.9s 1s forwards;
-  }
-  .btn-primary {
-    background: var(--dorado); color: var(--negro);
-    padding: 0.9rem 2.2rem;
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
-    text-decoration: none; transition: background 0.2s;
-  }
-  .btn-primary:hover { background: var(--dorado-light); }
-  .btn-ghost {
-    color: var(--arena); font-size: 0.75rem; letter-spacing: 0.12em;
-    text-transform: uppercase; text-decoration: none; opacity: 0.6;
-    display: flex; align-items: center; gap: 0.5rem;
-    transition: opacity 0.2s;
-  }
-  .btn-ghost:hover { opacity: 1; }
-  .btn-ghost::after { content: '→'; }
+/* ── PORTAL ── */
+.section-portal { padding: 7rem 3rem; background: var(--carbon); text-align: center; }
+.portal-mockup { margin: 3.5rem auto 0; background: var(--negro); border: 1px solid rgba(196,151,58,0.15); max-width: 860px; padding: 2.5rem; position: relative; transition: border-color 0.4s, transform 0.4s var(--ease-out); }
+.portal-mockup:hover { border-color: rgba(196,151,58,0.3); transform: translateY(-4px); }
+.portal-mockup::before { content: ''; position: absolute; top: -1px; left: 10%; right: 10%; height: 2px; background: var(--dorado); transition: left 0.4s var(--ease-out), right 0.4s var(--ease-out); }
+.portal-mockup:hover::before { left: 5%; right: 5%; }
+.mockup-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+.mockup-url { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 0.3rem 0.8rem; font-size: 0.7rem; color: var(--muted); text-align: center; }
+.itinerario-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.itinerario-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--blanco); text-align: left; }
+.itinerario-badge { background: rgba(196,151,58,0.15); color: var(--dorado); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.9rem; border: 1px solid rgba(196,151,58,0.3); }
+.dias-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 2rem; }
+.dia-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 1.2rem; text-align: left; cursor: pointer; transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease-out); }
+.dia-card:hover { transform: translateY(-2px); }
+.dia-card.active { border-color: rgba(196,151,58,0.5); background: rgba(196,151,58,0.05); }
+.dia-num { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; }
+.dia-lugar { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blanco); }
+.dia-desc { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+.docs-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.doc-pill { display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 0.6rem 1rem; font-size: 0.72rem; color: var(--muted); cursor: pointer; transition: border-color 0.3s, color 0.3s, transform 0.3s var(--ease-out); }
+.doc-pill:hover { border-color: rgba(196,151,58,0.4); color: var(--arena); transform: translateY(-2px); }
 
-  .hero-scroll {
-    position: absolute; bottom: 2rem; right: 3rem; z-index: 2;
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0; animation: fadeIn 1s 1.5s forwards;
-  }
-  .hero-scroll::after {
-    content: ''; display: block;
-    width: 1px; height: 50px; background: var(--dorado); opacity: 0.5;
-    animation: scrollLine 2s 1.8s ease-in-out infinite;
-  }
+/* ── TESTIMONIOS ── */
+.section-testimonios { padding: 7rem 3rem; background: var(--negro); }
+.testimonios-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3.5rem; }
+.testimonio { padding: 2rem; border: 1px solid rgba(255,255,255,0.06); position: relative; transition: border-color 0.4s, transform 0.4s var(--ease-out); }
+.testimonio:hover { border-color: rgba(196,151,58,0.3); transform: translateY(-4px); }
+.testimonio::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: var(--dorado); opacity: 0.25; position: absolute; top: -0.5rem; left: 1.5rem; line-height: 1; transition: opacity 0.4s; }
+.testimonio:hover::before { opacity: 0.45; }
+.testimonio-texto { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: rgba(245,239,228,0.8); margin-bottom: 1.5rem; padding-top: 1rem; }
+.testimonio-autor { display: flex; align-items: center; gap: 0.8rem; }
+.autor-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(196,151,58,0.3); transition: border-color 0.3s; }
+.testimonio:hover .autor-avatar { border-color: rgba(196,151,58,0.6); }
+.autor-nombre { font-size: 0.8rem; font-weight: 500; color: var(--blanco); }
+.autor-viaje { font-size: 0.7rem; color: var(--muted); }
 
-  /* ── DESTINOS ── */
-  .section-destinos {
-    padding: 7rem 3rem;
-    background: var(--carbon);
-  }
-  .section-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 3.5rem;
-  }
-  .section-label {
-    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--dorado); margin-bottom: 0.6rem;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300;
-    line-height: 1.1; color: var(--blanco);
-  }
-  .section-title em { font-style: italic; color: var(--dorado-light); }
-  .section-link {
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    border-bottom: 1px solid var(--muted); padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-    white-space: nowrap; align-self: flex-end; margin-bottom: 4px;
-  }
-  .section-link:hover { color: var(--dorado); border-color: var(--dorado); }
+/* ── CONTACTO ── */
+.section-contacto { padding: 7rem 3rem; background: var(--carbon); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contacto-info p { font-size: 1rem; font-weight: 300; line-height: 1.8; color: var(--muted); margin: 1.5rem 0 2.5rem; }
+.contacto-datos { display: flex; flex-direction: column; gap: 1rem; }
+.contacto-dato { display: flex; gap: 1rem; align-items: center; padding: 0.8rem; border: 1px solid transparent; transition: border-color 0.3s, transform 0.3s var(--ease-out); }
+.contacto-dato:hover { border-color: rgba(196,151,58,0.2); transform: translateX(4px); }
+.dato-icon { width: 36px; height: 36px; border: 1px solid rgba(196,151,58,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; transition: background 0.3s, border-color 0.3s; }
+.contacto-dato:hover .dato-icon { background: rgba(196,151,58,0.1); border-color: rgba(196,151,58,0.5); }
+.dato-text { font-size: 0.85rem; color: var(--arena); font-weight: 300; }
+.dato-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.contacto-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--arena); padding: 0.75rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; transition: border-color 0.3s, background 0.3s; outline: none; resize: none; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
+.form-group select { appearance: none; cursor: pointer; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(196,151,58,0.5); background: rgba(255,255,255,0.05); }
+.form-submit { background: var(--dorado); color: var(--negro); border: none; cursor: pointer; padding: 1rem 2.5rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: background 0.3s, transform 0.3s var(--ease-out); width: 100%; position: relative; overflow: hidden; }
+.form-submit::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15); transform: translateX(-100%) skewX(-15deg); transition: transform 0.5s var(--ease-out); }
+.form-submit:hover { background: var(--dorado-light); transform: translateY(-1px); }
+.form-submit:hover::after { transform: translateX(200%) skewX(-15deg); }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.form-nota { font-size: 0.72rem; color: var(--muted); text-align: center; line-height: 1.5; }
+.req { color: var(--dorado); font-size: 0.8em; }
+.field-error { display: none; font-size: 0.7rem; color: #E05252; margin-top: 0.25rem; }
+.form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea { border-color: rgba(224,82,82,0.6); }
+.form-group.has-error .field-error { display: block; }
+.form-group.is-ok input, .form-group.is-ok select, .form-group.is-ok textarea { border-color: rgba(29,158,117,0.45); }
+.input-prefix-wrap { position: relative; }
+.input-prefix { position: absolute; left: 0; top: 0; bottom: 0; display: flex; align-items: center; padding: 0 0.75rem; font-size: 0.85rem; color: var(--muted); font-weight: 300; border-right: 1px solid rgba(255,255,255,0.08); pointer-events: none; }
+.form-check { margin-top: 0.2rem; }
+.check-label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; }
+.check-label input[type="checkbox"] { display: none; }
+.check-custom { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
+.check-label input:checked + .check-custom { background: var(--dorado); border-color: var(--dorado); }
+.check-label input:checked + .check-custom::after { content: ''; display: block; width: 9px; height: 5px; border-left: 2px solid var(--negro); border-bottom: 2px solid var(--negro); transform: rotate(-45deg) translateY(-1px); }
+.check-text { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+.check-link { color: var(--dorado); text-decoration: none; }
+.form-check.has-error .check-custom { border-color: rgba(224,82,82,0.6); }
+.form-check.has-error .field-error { display: block; }
+.form-success { display: none; text-align: center; padding: 3rem 2rem; border: 1px solid rgba(196,151,58,0.3); background: rgba(196,151,58,0.05); }
+.form-success h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--blanco); font-weight: 400; margin-bottom: 0.6rem; }
+.form-success p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
-  .destinos-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    grid-template-rows: 340px 240px;
-    gap: 1rem;
-  }
-  .destino-card {
-    position: relative; overflow: hidden; cursor: pointer;
-  }
-  .destino-card:first-child { grid-row: 1 / 3; }
-  .destino-card img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-  .destino-card:hover img { transform: scale(1.04); }
-  .destino-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(15,14,12,0.85) 0%, rgba(15,14,12,0.1) 60%);
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 1.8rem;
-    transition: background 0.3s;
-  }
-  .destino-card:hover .destino-overlay {
-    background: linear-gradient(to top, rgba(15,14,12,0.9) 0%, rgba(15,14,12,0.25) 60%);
-  }
-  .destino-region {
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--dorado); margin-bottom: 0.3rem;
-  }
-  .destino-nombre {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem; font-weight: 400; color: var(--blanco);
-  }
-  .destino-card:first-child .destino-nombre { font-size: 2.2rem; }
-  .destino-precio {
-    font-size: 0.7rem; letter-spacing: 0.1em;
-    color: rgba(245,239,228,0.6); margin-top: 0.3rem;
-  }
-  .destino-tag {
-    position: absolute; top: 1.2rem; left: 1.2rem;
-    background: var(--dorado); color: var(--negro);
-    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
-    padding: 0.3rem 0.7rem;
-  }
+/* ── MODAL ── */
+.modal-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(10,9,8,0); overflow-y: auto; padding: 2rem 1rem; transition: background 0.4s var(--ease-out); }
+.modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; background: rgba(10,9,8,0.9); }
+.modal { background: var(--carbon); width: 100%; max-width: 860px; position: relative; margin: auto; opacity: 0; transform: translateY(40px) scale(0.97); transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out); }
+.modal-overlay.open .modal { opacity: 1; transform: translateY(0) scale(1); }
+.modal-close { position: absolute; top: 1rem; right: 1rem; z-index: 10; width: 40px; height: 40px; background: rgba(15,14,12,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--arena); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, transform 0.3s var(--ease-out); }
+.modal-close:hover { background: rgba(196,151,58,0.2); transform: rotate(90deg); }
+.modal-hero { position: relative; height: 300px; overflow: hidden; }
+.modal-hero img { width: 100%; height: 100%; object-fit: cover; transition: transform 8s var(--ease-in-out); }
+.modal-overlay.open .modal-hero img { transform: scale(1.04); }
+.modal-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,26,22,1) 0%, rgba(28,26,22,0.05) 60%); }
+.modal-hero-info { position: absolute; bottom: 1.5rem; left: 2rem; right: 2rem; display: flex; justify-content: space-between; align-items: flex-end; }
+.modal-region { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; }
+.modal-titulo { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--blanco); line-height: 1; }
+.modal-precio-badge { background: var(--dorado); color: var(--negro); padding: 0.5rem 1.2rem; text-align: right; flex-shrink: 0; }
+.modal-precio-desde { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; }
+.modal-precio-num { font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
+.modal-precio-dias { font-size: 0.65rem; }
+.modal-fotos { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem; padding: 0 2rem; }
+.modal-foto { height: 100px; overflow: hidden; }
+.modal-foto img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s var(--ease-out); }
+.modal-foto:hover img { transform: scale(1.08); }
+.modal-body { padding: 1.8rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.modal-section-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.8rem; }
+.modal-desc { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: rgba(245,239,228,0.8); }
+.modal-itinerario { display: flex; flex-direction: column; gap: 0.5rem; }
+.modal-dia { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.6rem 0.8rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.25s, background 0.25s, transform 0.25s var(--ease-out); }
+.modal-dia:hover { border-color: rgba(196,151,58,0.3); background: rgba(196,151,58,0.04); transform: translateX(3px); }
+.modal-dia-num { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--dorado); font-weight: 300; flex-shrink: 0; width: 1.6rem; text-align: center; }
+.modal-dia-lugar { font-size: 0.82rem; font-weight: 500; color: var(--blanco); }
+.modal-dia-desc { font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
+.modal-incluidos { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
+.modal-lista { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.modal-lista li { font-size: 0.82rem; font-weight: 300; color: rgba(245,239,228,0.8); display: flex; gap: 0.6rem; align-items: flex-start; line-height: 1.5; transition: color 0.25s, transform 0.25s var(--ease-out); }
+.modal-lista li:hover { color: var(--arena); transform: translateX(3px); }
+.modal-lista li::before { content: '✓'; color: var(--dorado); flex-shrink: 0; font-size: 0.75rem; }
+.modal-lista.no li::before { content: '✗'; color: #E05252; }
+.modal-footer { padding: 1.4rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 1rem; align-items: center; justify-content: space-between; background: rgba(15,14,12,0.5); }
+.modal-footer p { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
 
-  /* ── PROPUESTA DE VALOR ── */
-  .section-valor {
-    padding: 7rem 3rem;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-    background: var(--negro);
-  }
-  .valor-visual {
-    position: relative; height: 520px;
-  }
-  .valor-img-main {
-    position: absolute; top: 0; left: 0;
-    width: 78%; height: 420px; object-fit: cover;
-  }
-  .valor-img-secondary {
-    position: absolute; bottom: 0; right: 0;
-    width: 55%; height: 260px; object-fit: cover;
-    border: 4px solid var(--negro);
-  }
-  .valor-badge {
-    position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%);
-    width: 110px; height: 110px; border-radius: 50%;
-    background: var(--dorado); color: var(--negro);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif; text-align: center;
-    z-index: 10;
-  }
-  .valor-badge strong { font-size: 2rem; font-weight: 600; line-height: 1; }
-  .valor-badge span { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; }
-  .valor-content {}
-  .valor-items { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-  .valor-item { display: flex; gap: 1.2rem; align-items: flex-start; }
-  .valor-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem; font-weight: 300; color: var(--dorado);
-    line-height: 1; flex-shrink: 0; width: 2rem; text-align: right;
-  }
-  .valor-text h4 {
-    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--blanco); font-weight: 500; margin-bottom: 0.3rem;
-  }
-  .valor-text p { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+/* ── WHATSAPP ── */
+.whatsapp-fab { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.35s var(--ease-out), box-shadow 0.35s; opacity: 0; animation: fadeIn 1s 2.5s forwards; box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
+.whatsapp-fab:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+.whatsapp-fab svg { width: 28px; height: 28px; fill: white; }
+.whatsapp-tooltip { position: absolute; right: 68px; top: 50%; transform: translateY(-50%); background: var(--carbon); color: var(--arena); font-size: 0.72rem; white-space: nowrap; padding: 0.4rem 0.8rem; pointer-events: none; opacity: 0; transition: opacity 0.25s; border: 1px solid rgba(255,255,255,0.08); }
+.whatsapp-fab:hover .whatsapp-tooltip { opacity: 1; }
 
-  /* ── PORTAL VIAJERO (DEMO) ── */
-  .section-portal {
-    padding: 7rem 3rem;
-    background: var(--carbon);
-    text-align: center;
-  }
-  .portal-mockup {
-    margin-top: 3.5rem;
-    background: var(--negro);
-    border: 1px solid rgba(196,151,58,0.2);
-    max-width: 860px; margin-left: auto; margin-right: auto;
-    padding: 2.5rem;
-    position: relative;
-  }
-  .portal-mockup::before {
-    content: '';
-    position: absolute; top: -1px; left: 10%; right: 10%;
-    height: 2px; background: var(--dorado);
-  }
-  .mockup-bar {
-    display: flex; align-items: center; gap: 0.5rem;
-    margin-bottom: 2rem; padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .mockup-url {
-    flex: 1; background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.06); border-radius: 4px;
-    padding: 0.3rem 0.8rem; font-size: 0.7rem; color: var(--muted);
-    text-align: center;
-  }
-  .itinerario-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 2rem;
-  }
-  .itinerario-titulo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem; font-weight: 400; color: var(--blanco); text-align: left;
-  }
-  .itinerario-badge {
-    background: rgba(196,151,58,0.15); color: var(--dorado);
-    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.4rem 0.9rem; border: 1px solid rgba(196,151,58,0.3);
-  }
-  .dias-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-  .dia-card {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-    padding: 1.2rem; text-align: left; cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .dia-card:hover, .dia-card.active {
-    border-color: rgba(196,151,58,0.5); background: rgba(196,151,58,0.05);
-  }
-  .dia-num { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dorado); margin-bottom: 0.3rem; }
-  .dia-lugar { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blanco); }
-  .dia-desc { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
-  .docs-row {
-    display: flex; gap: 0.8rem;
-  }
-  .doc-pill {
-    display: flex; align-items: center; gap: 0.5rem;
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-    padding: 0.6rem 1rem; font-size: 0.72rem; color: var(--muted);
-    cursor: pointer; transition: border-color 0.2s;
-  }
-  .doc-pill:hover { border-color: rgba(196,151,58,0.4); color: var(--arena); }
-  .doc-icon { font-size: 0.85rem; }
+/* ── FOOTER ── */
+footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; background: var(--negro); }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.08em; color: var(--blanco); }
+.footer-logo span { color: var(--dorado); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+.footer-links a:hover { color: var(--arena); }
+.footer-copy { font-size: 0.7rem; color: var(--muted); }
 
-  /* ── TESTIMONIOS ── */
-  .section-testimonios {
-    padding: 7rem 3rem;
-    background: var(--negro);
-  }
-  .testimonios-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-    margin-top: 3.5rem;
-  }
-  .testimonio {
-    padding: 2rem; border: 1px solid rgba(255,255,255,0.06);
-    position: relative;
-    transition: border-color 0.3s;
-  }
-  .testimonio:hover { border-color: rgba(196,151,58,0.3); }
-  .testimonio::before {
-    content: '"';
-    font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300;
-    color: var(--dorado); opacity: 0.3;
-    position: absolute; top: -0.5rem; left: 1.5rem; line-height: 1;
-  }
-  .testimonio-texto {
-    font-size: 0.9rem; font-weight: 300; line-height: 1.8;
-    color: rgba(245,239,228,0.8); margin-bottom: 1.5rem; padding-top: 1rem;
-  }
-  .testimonio-autor { display: flex; align-items: center; gap: 0.8rem; }
-  .autor-avatar {
-    width: 38px; height: 38px; border-radius: 50%; object-fit: cover;
-    border: 1px solid rgba(196,151,58,0.3);
-  }
-  .autor-nombre { font-size: 0.8rem; font-weight: 500; color: var(--blanco); }
-  .autor-viaje { font-size: 0.7rem; color: var(--muted); }
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.reveal-scale { opacity: 0; transform: scale(0.95); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
 
-  /* ── CONTACTO ── */
-  .section-contacto {
-    padding: 7rem 3rem;
-    background: var(--carbon);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
-  }
-  .contacto-info {}
-  .contacto-info p {
-    font-size: 1rem; font-weight: 300; line-height: 1.8;
-    color: var(--muted); margin: 1.5rem 0 2.5rem;
-  }
-  .contacto-datos { display: flex; flex-direction: column; gap: 1rem; }
-  .contacto-dato { display: flex; gap: 1rem; align-items: center; }
-  .dato-icon {
-    width: 36px; height: 36px; border: 1px solid rgba(196,151,58,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.9rem; flex-shrink: 0;
-  }
-  .dato-text { font-size: 0.85rem; color: var(--arena); font-weight: 300; }
-  .dato-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+/* ── KEYFRAMES ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes heroZoom { from{transform:scale(1.06)} to{transform:scale(1)} }
+@keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:0.9;transform:scaleY(1.3)} }
 
-  /* Formulario */
-  .contacto-form { display: flex; flex-direction: column; gap: 1.2rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group label {
-    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted);
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: var(--arena);
-    padding: 0.75rem 1rem;
-    font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300;
-    transition: border-color 0.2s;
-    outline: none;
-    resize: none;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: var(--muted); }
-  .form-group select { appearance: none; cursor: pointer; }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: rgba(196,151,58,0.5); }
-  .form-submit {
-    background: var(--dorado); color: var(--negro);
-    border: none; cursor: pointer;
-    padding: 1rem 2.5rem;
-    font-family: 'Jost', sans-serif; font-size: 0.75rem;
-    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
-    transition: background 0.2s; width: 100%;
-  }
-  .form-submit:hover { background: var(--dorado-light); }
-  .form-nota { font-size: 0.72rem; color: var(--muted); text-align: center; line-height: 1.5; }
-
-  .req { color: var(--dorado); font-size: 0.8em; }
-  .field-error {
-    display: none; font-size: 0.7rem; color: #E05252;
-    margin-top: 0.25rem; letter-spacing: 0.02em;
-  }
-  .form-group.has-error input,
-  .form-group.has-error select,
-  .form-group.has-error textarea { border-color: rgba(224,82,82,0.6); }
-  .form-group.has-error .field-error { display: block; }
-  .form-group.is-ok input,
-  .form-group.is-ok select,
-  .form-group.is-ok textarea { border-color: rgba(29,158,117,0.45); }
-  .input-prefix-wrap { position: relative; }
-  .input-prefix {
-    position: absolute; left: 0; top: 0; bottom: 0;
-    display: flex; align-items: center; padding: 0 0.75rem;
-    font-size: 0.85rem; color: var(--muted); font-weight: 300;
-    border-right: 1px solid rgba(255,255,255,0.08); pointer-events: none;
-  }
-  .form-check { margin-top: 0.2rem; }
-  .check-label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; }
-  .check-label input[type="checkbox"] { display: none; }
-  .check-custom {
-    flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px;
-    border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.03);
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .check-label input:checked + .check-custom { background: var(--dorado); border-color: var(--dorado); }
-  .check-label input:checked + .check-custom::after {
-    content: ''; display: block; width: 9px; height: 5px;
-    border-left: 2px solid var(--negro); border-bottom: 2px solid var(--negro);
-    transform: rotate(-45deg) translateY(-1px);
-  }
-  .check-text { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
-  .check-link { color: var(--dorado); text-decoration: none; }
-  .check-link:hover { text-decoration: underline; }
-  .form-check.has-error .check-custom { border-color: rgba(224,82,82,0.6); }
-  .form-check.has-error .field-error { display: block; }
-  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-
-  /* WhatsApp flotante */
-  .whatsapp-fab {
-    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
-    width: 56px; height: 56px; border-radius: 50%;
-    background: #25D366; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: fadeIn 1s 2s both;
-  }
-  .whatsapp-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
-  .whatsapp-fab svg { width: 28px; height: 28px; fill: white; }
-  .whatsapp-tooltip {
-    position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
-    background: var(--carbon); color: var(--arena);
-    font-size: 0.72rem; white-space: nowrap; padding: 0.4rem 0.8rem;
-    pointer-events: none; opacity: 0; transition: opacity 0.2s;
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-  .whatsapp-fab:hover .whatsapp-tooltip { opacity: 1; }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 3rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex; justify-content: space-between; align-items: center;
-    background: var(--negro);
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; font-weight: 600; letter-spacing: 0.08em; color: var(--blanco);
-  }
-  .footer-logo span { color: var(--dorado); }
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--arena); }
-  .footer-copy { font-size: 0.7rem; color: var(--muted); }
-
-  /* ── NOTIFICACIÓN FORM ── */
-  .form-success {
-    display: none; text-align: center; padding: 2rem;
-    border: 1px solid rgba(196,151,58,0.3); background: rgba(196,151,58,0.05);
-  }
-  .form-success h4 {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--blanco);
-    font-weight: 400; margin-bottom: 0.5rem;
-  }
-  .form-success p { font-size: 0.85rem; color: var(--muted); }
-
-  /* ── ANIMACIONES ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; } to { opacity: 1; }
-  }
-  @keyframes scrollLine {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 0.8; transform: scaleY(1.2); }
-  }
-
-  .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* Mobile básico */
-  @media (max-width: 768px) {
-    nav { padding: 1.2rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 0 1.5rem 4rem; }
-    .section-destinos, .section-valor, .section-portal,
-    .section-testimonios, .section-contacto { padding: 4rem 1.5rem; }
-    .destinos-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .destino-card:first-child { grid-row: auto; height: 300px; }
-    .destino-card { height: 220px; }
-    .section-valor { grid-template-columns: 1fr; }
-    .valor-visual { height: 300px; }
-    .testimonios-grid { grid-template-columns: 1fr; }
-    .section-contacto { grid-template-columns: 1fr; gap: 3rem; }
-    .form-row { grid-template-columns: 1fr; }
-    .dias-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-    .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-  }
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav{padding:1.2rem 1.5rem} .nav-links{display:none}
+  .hero{padding:0 1.5rem 4rem} .hero-stats{display:none}
+  .section-destinos,.section-valor,.section-portal,.section-testimonios,.section-contacto{padding:4rem 1.5rem}
+  .destinos-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .destino-card:first-child{grid-row:auto;height:300px} .destino-card{height:220px}
+  .section-valor{grid-template-columns:1fr} .valor-visual{height:300px}
+  .testimonios-grid{grid-template-columns:1fr}
+  .section-contacto{grid-template-columns:1fr;gap:3rem}
+  .form-row{grid-template-columns:1fr} .dias-grid{grid-template-columns:1fr}
+  .modal-body{grid-template-columns:1fr} .modal-incluidos{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1.5rem;text-align:center}
+  .section-header{flex-direction:column;align-items:flex-start;gap:0.5rem}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<nav id="nav">
   <a href="#" class="nav-logo">Velada<span>.</span>Viajes</a>
   <ul class="nav-links">
     <li><a href="#destinos">Destinos</a></li>
@@ -542,135 +373,100 @@
   <a href="#contacto" class="nav-cta">Consulta gratuita</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Agencia de viajes premium · Desde 2009</p>
-    <h1 class="hero-title">
-      El viaje que<br>siempre <em>imaginaste</em>
-    </h1>
+    <h1 class="hero-title">El viaje que<br>siempre <em>imaginaste</em></h1>
     <p class="hero-sub">Diseñamos experiencias de viaje a medida. Cada detalle, cada destino, pensado únicamente para ti.</p>
     <div class="hero-actions">
       <a href="#contacto" class="btn-primary">Planifica tu viaje</a>
       <a href="#destinos" class="btn-ghost">Ver destinos</a>
     </div>
   </div>
-  <div class="hero-scroll">scroll</div>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">+1.200</div><div class="hero-stat-label">Viajeros felices</div></div>
+    <div><div class="hero-stat-num">48</div><div class="hero-stat-label">Destinos activos</div></div>
+    <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Años de experiencia</div></div>
+  </div>
+  <div class="hero-scroll"><span>scroll</span><div class="hero-scroll-line"></div></div>
 </section>
 
-<!-- DESTINOS -->
 <section class="section-destinos" id="destinos">
   <div class="section-header reveal">
-    <div>
-      <p class="section-label">Destinos destacados</p>
-      <h2 class="section-title">El mundo <em>te espera</em></h2>
-    </div>
+    <div><p class="section-label">Destinos destacados</p><h2 class="section-title">El mundo <em>te espera</em></h2></div>
     <a href="#contacto" class="section-link">Ver todos los destinos</a>
   </div>
-
   <div class="destinos-grid reveal">
-    <div class="destino-card">
-      <img src="https://picsum.photos/seed/japan/800/600" alt="Japón" crossorigin="anonymous">
+    <div class="destino-card" onclick="abrirModal('japon')">
+      <img src="https://picsum.photos/seed/japan/800/600" alt="Japón">
       <div class="destino-overlay">
-        <p class="destino-region">Asia Oriental</p>
-        <h3 class="destino-nombre">Japón</h3>
-        <p class="destino-precio">Desde 2.890 € / persona · 12 días</p>
+        <p class="destino-region">Asia Oriental</p><h3 class="destino-nombre">Japón</h3>
+        <p class="destino-precio">Desde 2.890 € / persona · 12 días</p><p class="destino-cta">Descubrir</p>
       </div>
       <span class="destino-tag">Más solicitado</span>
     </div>
-    <div class="destino-card">
-      <img src="https://picsum.photos/seed/marrakech/600/400" alt="Marrakech" crossorigin="anonymous">
+    <div class="destino-card" onclick="abrirModal('marrakech')">
+      <img src="https://picsum.photos/seed/marrakech/600/400" alt="Marrakech">
       <div class="destino-overlay">
-        <p class="destino-region">Norte de África</p>
-        <h3 class="destino-nombre">Marrakech</h3>
-        <p class="destino-precio">Desde 890 € · 7 días</p>
+        <p class="destino-region">Norte de África</p><h3 class="destino-nombre">Marrakech</h3>
+        <p class="destino-precio">Desde 890 € · 7 días</p><p class="destino-cta">Descubrir</p>
       </div>
     </div>
-    <div class="destino-card">
-      <img src="https://picsum.photos/seed/maldives/600/400" alt="Maldivas" crossorigin="anonymous">
+    <div class="destino-card" onclick="abrirModal('maldivas')">
+      <img src="https://picsum.photos/seed/maldives/600/400" alt="Maldivas">
       <div class="destino-overlay">
-        <p class="destino-region">Océano Índico</p>
-        <h3 class="destino-nombre">Maldivas</h3>
-        <p class="destino-precio">Desde 3.200 € · 10 días</p>
+        <p class="destino-region">Océano Índico</p><h3 class="destino-nombre">Maldivas</h3>
+        <p class="destino-precio">Desde 3.200 € · 10 días</p><p class="destino-cta">Descubrir</p>
       </div>
     </div>
-    <div class="destino-card">
-      <img src="https://picsum.photos/seed/iceland/600/400" alt="Islandia" crossorigin="anonymous">
+    <div class="destino-card" onclick="abrirModal('islandia')">
+      <img src="https://picsum.photos/seed/iceland/600/400" alt="Islandia">
       <div class="destino-overlay">
-        <p class="destino-region">Europa del Norte</p>
-        <h3 class="destino-nombre">Islandia</h3>
-        <p class="destino-precio">Desde 1.650 € · 8 días</p>
+        <p class="destino-region">Europa del Norte</p><h3 class="destino-nombre">Islandia</h3>
+        <p class="destino-precio">Desde 1.650 € · 8 días</p><p class="destino-cta">Descubrir</p>
       </div>
     </div>
-    <div class="destino-card">
-      <img src="https://picsum.photos/seed/patagonia/600/400" alt="Patagonia" crossorigin="anonymous">
+    <div class="destino-card" onclick="abrirModal('patagonia')">
+      <img src="https://picsum.photos/seed/patagonia/600/400" alt="Patagonia">
       <div class="destino-overlay">
-        <p class="destino-region">Sudamérica</p>
-        <h3 class="destino-nombre">Patagonia</h3>
-        <p class="destino-precio">Desde 4.100 € · 15 días</p>
+        <p class="destino-region">Sudamérica</p><h3 class="destino-nombre">Patagonia</h3>
+        <p class="destino-precio">Desde 4.100 € · 15 días</p><p class="destino-cta">Descubrir</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROPUESTA DE VALOR -->
 <section class="section-valor" id="nosotros">
-  <div class="valor-visual reveal">
-    <img class="valor-img-main" src="https://picsum.photos/seed/beach-luxury/700/500" alt="Playa paradisiaca" crossorigin="anonymous">
-    <img class="valor-img-secondary" src="https://picsum.photos/seed/planning/500/350" alt="Planificando viaje" crossorigin="anonymous">
-    <div class="valor-badge">
-      <strong>15+</strong>
-      <span>años de<br>experiencia</span>
-    </div>
+  <div class="valor-visual reveal-left">
+    <img class="valor-img-main" src="https://picsum.photos/seed/beach-luxury/700/500" alt="Playa paradisiaca">
+    <img class="valor-img-secondary" src="https://picsum.photos/seed/planning/500/350" alt="Planificando viaje">
+    <div class="valor-badge"><strong>15+</strong><span>años de<br>experiencia</span></div>
   </div>
-  <div class="valor-content reveal">
+  <div class="valor-content reveal-right">
     <p class="section-label">Por qué elegirnos</p>
     <h2 class="section-title">Viajes <em>diseñados</em><br>con alma</h2>
     <div class="valor-items">
-      <div class="valor-item">
-        <span class="valor-num">01</span>
-        <div class="valor-text">
-          <h4>A medida, sin plantillas</h4>
-          <p>Cada itinerario es único. Escuchamos tus deseos y construimos el viaje desde cero, sin paquetes prefabricados.</p>
-        </div>
-      </div>
-      <div class="valor-item">
-        <span class="valor-num">02</span>
-        <div class="valor-text">
-          <h4>Tu agente, siempre disponible</h4>
-          <p>Antes, durante y después del viaje. Estamos contigo en cada etapa, incluso si surgen imprevistos a las 3 de la mañana.</p>
-        </div>
-      </div>
-      <div class="valor-item">
-        <span class="valor-num">03</span>
-        <div class="valor-text">
-          <h4>Portal del viajero exclusivo</h4>
-          <p>Todos tus documentos, itinerario y contactos en un portal privado. Accede desde el móvil en cualquier destino.</p>
-        </div>
-      </div>
+      <div class="valor-item"><span class="valor-num">01</span><div class="valor-text"><h4>A medida, sin plantillas</h4><p>Cada itinerario es único. Escuchamos tus deseos y construimos el viaje desde cero, sin paquetes prefabricados.</p></div></div>
+      <div class="valor-item"><span class="valor-num">02</span><div class="valor-text"><h4>Tu agente, siempre disponible</h4><p>Antes, durante y después del viaje. Estamos contigo en cada etapa, incluso si surgen imprevistos a las 3 de la mañana.</p></div></div>
+      <div class="valor-item"><span class="valor-num">03</span><div class="valor-text"><h4>Portal del viajero exclusivo</h4><p>Todos tus documentos, itinerario y contactos en un portal privado. Accede desde el móvil en cualquier destino.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- PORTAL VIAJERO DEMO -->
 <section class="section-portal" id="portal">
   <div class="reveal">
     <p class="section-label">Tecnología al servicio del viaje</p>
     <h2 class="section-title">Tu viaje, en <em>tu bolsillo</em></h2>
-    <p style="font-size:0.95rem;font-weight:300;color:var(--muted);max-width:500px;margin:1rem auto 0;line-height:1.7;">
-      Cada cliente recibe acceso a su portal privado con el itinerario completo, documentos descargables y contacto directo con su agente.
-    </p>
+    <p style="font-size:0.95rem;font-weight:300;color:var(--muted);max-width:500px;margin:1rem auto 0;line-height:1.7;">Cada cliente recibe acceso a su portal privado con itinerario completo, documentos descargables y contacto directo con su agente.</p>
   </div>
-
-  <div class="portal-mockup reveal">
+  <div class="portal-mockup reveal-scale">
     <div class="mockup-bar">
       <div class="mockup-dot" style="background:#FF5F57"></div>
       <div class="mockup-dot" style="background:#FFBD2E"></div>
       <div class="mockup-dot" style="background:#28C840"></div>
-      <div class="mockup-url">velada.viajes/mi-viaje/japon-2025</div>
+      <div class="mockup-url">velada.viajes/mi-viaje/japon-2026</div>
     </div>
-
     <div class="itinerario-header">
       <div>
         <p style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dorado);margin-bottom:0.3rem;">Tu próximo viaje</p>
@@ -679,371 +475,230 @@
       </div>
       <div class="itinerario-badge">Confirmado ✓</div>
     </div>
-
     <div class="dias-grid">
-      <div class="dia-card active">
-        <p class="dia-num">Día 1 · 15 Mar</p>
-        <p class="dia-lugar">Tokio</p>
-        <p class="dia-desc">Llegada · Hotel Shinjuku</p>
-      </div>
-      <div class="dia-card">
-        <p class="dia-num">Día 3 · 17 Mar</p>
-        <p class="dia-lugar">Kyoto</p>
-        <p class="dia-desc">Tren bala · Arashiyama</p>
-      </div>
-      <div class="dia-card">
-        <p class="dia-num">Día 8 · 22 Mar</p>
-        <p class="dia-lugar">Osaka</p>
-        <p class="dia-desc">Dotonbori · Namba</p>
-      </div>
+      <div class="dia-card active"><p class="dia-num">Día 1 · 15 Mar</p><p class="dia-lugar">Tokio</p><p class="dia-desc">Llegada · Hotel Shinjuku</p></div>
+      <div class="dia-card"><p class="dia-num">Día 3 · 17 Mar</p><p class="dia-lugar">Kyoto</p><p class="dia-desc">Tren bala · Arashiyama</p></div>
+      <div class="dia-card"><p class="dia-num">Día 8 · 22 Mar</p><p class="dia-lugar">Osaka</p><p class="dia-desc">Dotonbori · Namba</p></div>
     </div>
-
     <div class="docs-row">
-      <div class="doc-pill"><span class="doc-icon">✈</span> Vuelos PDF</div>
-      <div class="doc-pill"><span class="doc-icon">🏨</span> Hoteles</div>
-      <div class="doc-pill"><span class="doc-icon">🗺</span> Mapa interactivo</div>
-      <div class="doc-pill"><span class="doc-icon">💬</span> Chat con agente</div>
+      <div class="doc-pill">✈ Vuelos PDF</div>
+      <div class="doc-pill">🏨 Hoteles</div>
+      <div class="doc-pill">🗺 Mapa interactivo</div>
+      <div class="doc-pill">💬 Chat con agente</div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIOS -->
 <section class="section-testimonios">
   <div class="section-header reveal">
-    <div>
-      <p class="section-label">Viajeros que confían en nosotros</p>
-      <h2 class="section-title">Lo que <em>dicen</em></h2>
-    </div>
+    <div><p class="section-label">Viajeros que confían en nosotros</p><h2 class="section-title">Lo que <em>dicen</em></h2></div>
   </div>
   <div class="testimonios-grid">
     <div class="testimonio reveal">
       <p class="testimonio-texto">Llevábamos años queriendo ir a Japón y no sabíamos ni por dónde empezar. Velada lo organizó todo al detalle. Fue el viaje de nuestra vida.</p>
-      <div class="testimonio-autor">
-        <img class="autor-avatar" src="https://picsum.photos/seed/woman-ana/80/80" alt="Ana M." crossorigin="anonymous">
-        <div>
-          <p class="autor-nombre">Ana Martínez</p>
-          <p class="autor-viaje">Japón · 12 días</p>
-        </div>
-      </div>
+      <div class="testimonio-autor"><img class="autor-avatar" src="https://picsum.photos/seed/woman-ana/80/80" alt="Ana M."><div><p class="autor-nombre">Ana Martínez</p><p class="autor-viaje">Japón · 12 días</p></div></div>
     </div>
-    <div class="testimonio reveal" style="transition-delay: 0.15s">
-      <p class="testimonio-texto">El portal del viajero es una pasada. Tenía todo en el móvil: vuelos, hoteles, actividades. Y cuando tuve un problema con el hotel, me respondieron en minutos.</p>
-      <div class="testimonio-autor">
-        <img class="autor-avatar" src="https://picsum.photos/seed/man-carlos/80/80" alt="Carlos R." crossorigin="anonymous">
-        <div>
-          <p class="autor-nombre">Carlos Rubio</p>
-          <p class="autor-viaje">Maldivas · 10 días</p>
-        </div>
-      </div>
+    <div class="testimonio reveal" style="transition-delay:0.15s">
+      <p class="testimonio-texto">El portal del viajero es una pasada. Tenía todo en el móvil: vuelos, hoteles, actividades. Y cuando tuve un problema, me respondieron en minutos.</p>
+      <div class="testimonio-autor"><img class="autor-avatar" src="https://picsum.photos/seed/man-carlos/80/80" alt="Carlos R."><div><p class="autor-nombre">Carlos Rubio</p><p class="autor-viaje">Maldivas · 10 días</p></div></div>
     </div>
-    <div class="testimonio reveal" style="transition-delay: 0.3s">
+    <div class="testimonio reveal" style="transition-delay:0.3s">
       <p class="testimonio-texto">Nunca había contratado una agencia y fue la mejor decisión. Nos ahorraron semanas de planificación y el viaje salió perfecto. Repetiremos seguro.</p>
-      <div class="testimonio-autor">
-        <img class="autor-avatar" src="https://picsum.photos/seed/woman-laura/80/80" alt="Laura S." crossorigin="anonymous">
-        <div>
-          <p class="autor-nombre">Laura Sánchez</p>
-          <p class="autor-viaje">Patagonia · 15 días</p>
-        </div>
-      </div>
+      <div class="testimonio-autor"><img class="autor-avatar" src="https://picsum.photos/seed/woman-laura/80/80" alt="Laura S."><div><p class="autor-nombre">Laura Sánchez</p><p class="autor-viaje">Patagonia · 15 días</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACTO -->
 <section class="section-contacto" id="contacto">
-  <div class="contacto-info reveal">
+  <div class="contacto-info reveal-left">
     <p class="section-label">Hablemos</p>
     <h2 class="section-title">Empieza a<br><em>planificar</em></h2>
     <p>Cuéntanos tu destino soñado y te preparamos una propuesta personalizada sin compromiso. Respondemos en menos de 24 horas.</p>
     <div class="contacto-datos">
-      <div class="contacto-dato">
-        <div class="dato-icon">📞</div>
-        <div>
-          <p class="dato-label">Teléfono</p>
-          <p class="dato-text">+34 91 234 56 78</p>
-        </div>
-      </div>
-      <div class="contacto-dato">
-        <div class="dato-icon">✉️</div>
-        <div>
-          <p class="dato-label">Email</p>
-          <p class="dato-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="026a6d6e634274676e636663746b636867712c616d6f">[email&#160;protected]</a></p>
-        </div>
-      </div>
-      <div class="contacto-dato">
-        <div class="dato-icon">💬</div>
-        <div>
-          <p class="dato-label">WhatsApp</p>
-          <p class="dato-text">+34 666 123 456 · Respuesta inmediata</p>
-        </div>
-      </div>
+      <div class="contacto-dato"><div class="dato-icon">📞</div><div><p class="dato-label">Teléfono</p><p class="dato-text">+34 91 234 56 78</p></div></div>
+      <div class="contacto-dato"><div class="dato-icon">✉️</div><div><p class="dato-label">Email</p><p class="dato-text">hola@veladaviajes.com</p></div></div>
+      <div class="contacto-dato"><div class="dato-icon">💬</div><div><p class="dato-label">WhatsApp</p><p class="dato-text">+34 666 123 456 · Respuesta inmediata</p></div></div>
     </div>
   </div>
-
-  <div class="reveal" style="transition-delay: 0.2s">
+  <div class="reveal-right" style="transition-delay:0.2s">
     <div class="contacto-form" id="contactoForm">
-
-      <!-- Fila 1: Nombre + Email -->
       <div class="form-row">
-        <div class="form-group" id="fg-nombre">
-          <label for="f-nombre">Nombre <span class="req">*</span></label>
-          <input type="text" id="f-nombre" placeholder="Tu nombre completo" autocomplete="name">
-          <span class="field-error" id="err-nombre">Indica tu nombre</span>
-        </div>
-        <div class="form-group" id="fg-email">
-          <label for="f-email">Email <span class="req">*</span></label>
-          <input type="email" id="f-email" placeholder="tu@email.com" autocomplete="email">
-          <span class="field-error" id="err-email">Email no válido</span>
-        </div>
+        <div class="form-group" id="fg-nombre"><label for="f-nombre">Nombre <span class="req">*</span></label><input type="text" id="f-nombre" placeholder="Tu nombre completo"><span class="field-error" id="err-nombre">Indica tu nombre</span></div>
+        <div class="form-group" id="fg-email"><label for="f-email">Email <span class="req">*</span></label><input type="email" id="f-email" placeholder="tu@email.com"><span class="field-error" id="err-email">Email no válido</span></div>
       </div>
-
-      <!-- Fila 2: Teléfono + Viajeros -->
       <div class="form-row">
         <div class="form-group" id="fg-telefono">
           <label for="f-telefono">Teléfono <span class="req">*</span></label>
-          <div class="input-prefix-wrap">
-            <span class="input-prefix">+34</span>
-            <input type="tel" id="f-telefono" placeholder="612 345 678" autocomplete="tel" style="padding-left:3.2rem">
-          </div>
+          <div class="input-prefix-wrap"><span class="input-prefix">+34</span><input type="tel" id="f-telefono" placeholder="612 345 678" style="padding-left:3.2rem"></div>
           <span class="field-error" id="err-telefono">Indica un teléfono válido</span>
         </div>
         <div class="form-group" id="fg-viajeros">
-          <label for="f-viajeros">Número de viajeros <span class="req">*</span></label>
-          <select id="f-viajeros">
-            <option value="">¿Cuántos viajáis?</option>
-            <option value="1">1 — Solo/a</option>
-            <option value="2">2 — Pareja</option>
-            <option value="3-4">3 o 4 — Familia o amigos</option>
-            <option value="5+">5 o más — Grupo</option>
-          </select>
-          <span class="field-error" id="err-viajeros">Selecciona el número de viajeros</span>
+          <label for="f-viajeros">Viajeros <span class="req">*</span></label>
+          <select id="f-viajeros"><option value="">¿Cuántos viajáis?</option><option value="1">1 — Solo/a</option><option value="2">2 — Pareja</option><option value="3-4">3 o 4</option><option value="5+">5 o más</option></select>
+          <span class="field-error" id="err-viajeros">Selecciona el número</span>
         </div>
       </div>
-
-      <!-- Fila 3: Destino + Presupuesto -->
       <div class="form-row">
-        <div class="form-group" id="fg-destino">
-          <label for="f-destino">Destino soñado <span class="req">*</span></label>
-          <input type="text" id="f-destino" placeholder="Japón, Maldivas, Patagonia…">
-          <span class="field-error" id="err-destino">Indica el destino</span>
-        </div>
-        <div class="form-group" id="fg-presupuesto">
-          <label for="f-presupuesto">Presupuesto por persona</label>
-          <select id="f-presupuesto">
-            <option value="">Selecciona rango</option>
-            <option value="<1000">Hasta 1.000 €</option>
-            <option value="1000-3000">1.000 – 3.000 €</option>
-            <option value="3000-6000">3.000 – 6.000 €</option>
-            <option value=">6000">Más de 6.000 €</option>
-          </select>
-        </div>
+        <div class="form-group" id="fg-destino"><label for="f-destino">Destino <span class="req">*</span></label><input type="text" id="f-destino" placeholder="Japón, Maldivas…"><span class="field-error" id="err-destino">Indica el destino</span></div>
+        <div class="form-group"><label for="f-presupuesto">Presupuesto por persona</label><select id="f-presupuesto"><option value="">Selecciona rango</option><option value="<1000">Hasta 1.000 €</option><option value="1000-3000">1.000 – 3.000 €</option><option value="3000-6000">3.000 – 6.000 €</option><option value=">6000">Más de 6.000 €</option></select></div>
       </div>
-
-      <!-- Fila 4: Mes de salida + Duración -->
       <div class="form-row">
         <div class="form-group" id="fg-fecha">
-          <label for="f-fecha">¿Cuándo quieres viajar? <span class="req">*</span></label>
-          <select id="f-fecha">
-            <option value="">Selecciona mes y año</option>
-            <option value="2026-05">Mayo 2026</option>
-            <option value="2026-06">Junio 2026</option>
-            <option value="2026-07">Julio 2026</option>
-            <option value="2026-08">Agosto 2026</option>
-            <option value="2026-09">Septiembre 2026</option>
-            <option value="2026-10">Octubre 2026</option>
-            <option value="2026-11">Noviembre 2026</option>
-            <option value="2026-12">Diciembre 2026</option>
-            <option value="2027-01">Enero 2027</option>
-            <option value="2027-02">Febrero 2027</option>
-            <option value="2027-03">Marzo 2027</option>
-            <option value="2027-04">Abril 2027</option>
-            <option value="flexible">Fechas flexibles</option>
-          </select>
+          <label for="f-fecha">¿Cuándo viajas? <span class="req">*</span></label>
+          <select id="f-fecha"><option value="">Mes y año</option><option value="2026-05">Mayo 2026</option><option value="2026-06">Junio 2026</option><option value="2026-07">Julio 2026</option><option value="2026-08">Agosto 2026</option><option value="2026-09">Septiembre 2026</option><option value="2026-10">Octubre 2026</option><option value="2026-11">Noviembre 2026</option><option value="2026-12">Diciembre 2026</option><option value="2027-01">Enero 2027</option><option value="2027-02">Febrero 2027</option><option value="2027-03">Marzo 2027</option><option value="2027-04">Abril 2027</option><option value="flexible">Fechas flexibles</option></select>
           <span class="field-error" id="err-fecha">Indica cuándo quieres viajar</span>
         </div>
-        <div class="form-group">
-          <label for="f-duracion">Duración aproximada</label>
-          <select id="f-duracion">
-            <option value="">¿Cuántos días?</option>
-            <option value="3-5">3 – 5 días (escapada)</option>
-            <option value="7-10">7 – 10 días</option>
-            <option value="11-15">11 – 15 días</option>
-            <option value="15+">Más de 15 días</option>
-          </select>
-        </div>
+        <div class="form-group"><label for="f-duracion">Duración</label><select id="f-duracion"><option value="">¿Cuántos días?</option><option value="3-5">3–5 días</option><option value="7-10">7–10 días</option><option value="11-15">11–15 días</option><option value="15+">Más de 15 días</option></select></div>
       </div>
-
-      <!-- Mensaje libre -->
-      <div class="form-group" id="fg-mensaje">
-        <label for="f-mensaje">Cuéntanos más sobre tu viaje ideal</label>
-        <textarea id="f-mensaje" rows="4" placeholder="Tipo de viaje (aventura, relax, cultural…), alojamiento preferido, actividades que no quieres perderte, cualquier detalle que nos ayude a diseñar algo único para ti."></textarea>
-      </div>
-
-      <!-- Consentimiento -->
+      <div class="form-group"><label for="f-mensaje">Cuéntanos más</label><textarea id="f-mensaje" rows="4" placeholder="Tipo de viaje, alojamiento, actividades…"></textarea></div>
       <div class="form-check" id="fg-rgpd">
-        <label class="check-label">
-          <input type="checkbox" id="f-rgpd">
-          <span class="check-custom"></span>
-          <span class="check-text">He leído y acepto la <a href="#" class="check-link">política de privacidad</a>. Consiento que Velada Viajes me contacte para enviarme la propuesta solicitada. <span class="req">*</span></span>
-        </label>
+        <label class="check-label"><input type="checkbox" id="f-rgpd"><span class="check-custom"></span><span class="check-text">Acepto la <a href="#" class="check-link">política de privacidad</a>. <span class="req">*</span></span></label>
         <span class="field-error" id="err-rgpd">Debes aceptar la política de privacidad</span>
       </div>
-
       <button class="form-submit" id="btnSubmit" onclick="submitForm()">
         <span id="btnText">Solicitar propuesta gratuita</span>
         <span id="btnLoader" style="display:none">Enviando…</span>
       </button>
       <p class="form-nota">Sin compromiso · Respuesta en menos de 24 h · Tu información es confidencial</p>
     </div>
-
     <div class="form-success" id="formSuccess">
       <h4>¡Recibido con mucho gusto!</h4>
-      <p>Te contactaremos en menos de 24 horas para empezar a diseñar tu viaje.<br>
-      Revisa también tu bandeja de entrada — te hemos enviado un email de confirmación.</p>
+      <p>Te contactaremos en menos de 24 horas.<br>Revisa tu bandeja de entrada — te hemos enviado confirmación.</p>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Velada<span>.</span>Viajes</div>
-  <div class="footer-links">
-    <a href="#">Destinos</a>
-    <a href="#">Portal del viajero</a>
-    <a href="#">Política de privacidad</a>
-    <a href="#">Aviso legal</a>
-  </div>
+  <div class="footer-links"><a href="#">Destinos</a><a href="#">Portal del viajero</a><a href="#">Privacidad</a><a href="#">Aviso legal</a></div>
   <p class="footer-copy">© 2026 Velada Viajes · Todos los derechos reservados</p>
 </footer>
 
-<!-- WhatsApp FAB -->
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="cerrarModalBtn()">✕</button>
+    <div class="modal-hero"><img id="modal-img" src="" alt=""><div class="modal-hero-overlay"></div>
+      <div class="modal-hero-info">
+        <div><p class="modal-region" id="modal-region"></p><h2 class="modal-titulo" id="modal-titulo"></h2></div>
+        <div class="modal-precio-badge"><span class="modal-precio-desde">desde</span><span class="modal-precio-num" id="modal-precio"></span><span class="modal-precio-dias" id="modal-dias"></span></div>
+      </div>
+    </div>
+    <div class="modal-fotos" id="modal-fotos"></div>
+    <div class="modal-body">
+      <div><p class="modal-section-title">Sobre el destino</p><p class="modal-desc" id="modal-desc"></p></div>
+      <div><p class="modal-section-title">Itinerario</p><div class="modal-itinerario" id="modal-itinerario"></div></div>
+      <div class="modal-incluidos">
+        <div><p class="modal-section-title">Incluido</p><ul class="modal-lista" id="modal-incluido"></ul></div>
+        <div><p class="modal-section-title">No incluido</p><ul class="modal-lista no" id="modal-no-incluido"></ul></div>
+      </div>
+    </div>
+    <div class="modal-footer"><p id="modal-nota"></p><a id="modal-cta" href="#contacto" class="btn-primary">Solicitar este viaje</a></div>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
 <a href="https://wa.me/34666123456?text=Hola,%20me%20interesa%20planificar%20un%20viaje" class="whatsapp-fab" target="_blank">
   <span class="whatsapp-tooltip">Escríbenos ahora</span>
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  reveals.forEach(r => observer.observe(r));
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
 
-  // Tarjetas de días interactivas
-  document.querySelectorAll('.dia-card').forEach(card => {
-    card.addEventListener('click', () => {
-      document.querySelectorAll('.dia-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-    });
+// SCROLL REVEAL
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => obs.observe(el));
+
+// DIAS
+document.querySelectorAll('.dia-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.dia-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
   });
+});
 
-  // ── VALIDACIÓN FORMULARIO ──
-  const groupMap = {
-    'f-nombre':   'fg-nombre',
-    'f-email':    'fg-email',
-    'f-telefono': 'fg-telefono',
-    'f-viajeros': 'fg-viajeros',
-    'f-destino':  'fg-destino',
-    'f-fecha':    'fg-fecha'
+// DATOS DESTINOS
+const destinos = {
+  japon:{region:'Asia Oriental',titulo:'Japón',precio:'2.890 €',dias:'12 días',img:'https://picsum.photos/seed/japan/860/400',fotos:['https://picsum.photos/seed/japan2/400/200','https://picsum.photos/seed/japan3/400/200','https://picsum.photos/seed/japan4/400/200'],desc:'Japón es un viaje a otro mundo. Templos milenarios junto a rascacielos de neón, gastronomía excepcional y una cultura única que te dejará sin palabras. Diseñamos cada día para que vivas lo auténtico: mercados locales, onsen privados y los cerezos en flor.',itinerario:[{dia:'1-2',lugar:'Tokio',desc:'Llegada, Shinjuku, Akihabara'},{dia:'3-4',lugar:'Nikko',desc:'Santuarios y naturaleza'},{dia:'5-6',lugar:'Kyoto',desc:'Fushimi Inari, Arashiyama'},{dia:'7-8',lugar:'Nara',desc:'Ciervos sagrados, Todai-ji'},{dia:'9-10',lugar:'Osaka',desc:'Dotonbori, gastronomía'},{dia:'11-12',lugar:'Tokio',desc:'Día libre · Vuelo regreso'}],incluido:['Vuelos internacionales','Hoteles 4★ céntricos','Tren bala (JR Pass)','Traslados aeropuerto','Guía español días 1-3','Seguro de viaje'],noIncluido:['Comidas (salvo desayunos)','Actividades opcionales','Gastos personales'],nota:'Precio por persona en hab. doble · Salidas garantizadas todo el año'},
+  marrakech:{region:'Norte de África',titulo:'Marrakech',precio:'890 €',dias:'7 días',img:'https://picsum.photos/seed/marrakech/860/400',fotos:['https://picsum.photos/seed/marrakech2/400/200','https://picsum.photos/seed/marrakech3/400/200','https://picsum.photos/seed/marrakech4/400/200'],desc:'La ciudad roja te envuelve con sus colores, aromas y sonidos desde el primer momento. Nos sumergimos en la medina histórica, los zocos laberínticos y los jardines secretos. Un destino que estimula todos los sentidos y está a solo 3 horas de España.',itinerario:[{dia:'1',lugar:'Llegada',desc:'Riad en la medina, té de bienvenida'},{dia:'2',lugar:'Medina',desc:'Djemaa el-Fna, zocos, tintorería'},{dia:'3',lugar:'Jardines',desc:'Majorelle, Menara, palacio Bahía'},{dia:'4',lugar:'Atlas',desc:'Excursión valles bereberes'},{dia:'5',lugar:'Esauira',desc:'Ciudad costera, día libre'},{dia:'6-7',lugar:'Marrakech',desc:'Hammam, compras · Vuelo regreso'}],incluido:['Vuelos desde España','Riad 4★ en medina','Desayunos incluidos','Traslados aeropuerto','Excursión Atlas','Seguro de viaje'],noIncluido:['Comidas y cenas','Propinas','Actividades opcionales','Gastos personales'],nota:'Precio por persona en hab. doble · Salida todos los viernes'},
+  maldivas:{region:'Océano Índico',titulo:'Maldivas',precio:'3.200 €',dias:'10 días',img:'https://picsum.photos/seed/maldives/860/400',fotos:['https://picsum.photos/seed/maldives2/400/200','https://picsum.photos/seed/maldives3/400/200','https://picsum.photos/seed/maldives4/400/200'],desc:'Las Maldivas son el paraíso en estado puro: agua turquesa cristalina, bungalós sobre el agua y arrecifes de coral que quitan el aliento. Seleccionamos los resorts más exclusivos con la mejor relación calidad-precio para que vivas una experiencia de lujo auténtico.',itinerario:[{dia:'1-2',lugar:'Vuelo + llegada',desc:'Transfer en hidroavión al resort'},{dia:'3-4',lugar:'Resort',desc:'Snorkel, kayak, descanso'},{dia:'5',lugar:'Excursión',desc:'Isla local, pesca tradicional'},{dia:'6-7',lugar:'Resort',desc:'Buceo opcional, spa, sunset'},{dia:'8-9',lugar:'Resort',desc:'Días libres en el paraíso'},{dia:'10',lugar:'Regreso',desc:'Transfer · Vuelo a España'}],incluido:['Vuelos internacionales','Transfer en hidroavión','Resort 5★ todo incluido','Snorkel y kayak','Excursión isla local','Seguro de viaje'],noIncluido:['Buceo (curso opcional)','Tratamientos de spa','Bebidas premium','Gastos personales'],nota:'Precio por persona en bungaló sobre el agua · Mínimo 2 personas'},
+  islandia:{region:'Europa del Norte',titulo:'Islandia',precio:'1.650 €',dias:'8 días',img:'https://picsum.photos/seed/iceland/860/400',fotos:['https://picsum.photos/seed/iceland2/400/200','https://picsum.photos/seed/iceland3/400/200','https://picsum.photos/seed/iceland4/400/200'],desc:'La isla del fuego y el hielo es un paisaje de otro planeta. Geiseres, cascadas, glaciares y auroras boreales en invierno. Conducimos en coche de alquiler por la famosa Ruta 1 a tu ritmo, con alojamientos seleccionados en plena naturaleza.',itinerario:[{dia:'1',lugar:'Reikiavik',desc:'Llegada, centro histórico'},{dia:'2',lugar:'Círculo Dorado',desc:'Geisir, Gullfoss, Þingvellir'},{dia:'3',lugar:'Costa Sur',desc:'Skógafoss, playa negra'},{dia:'4',lugar:'Jökulsárlón',desc:'Laguna glaciar, Diamond Beach'},{dia:'5-6',lugar:'Fiordos Este',desc:'Paisajes salvajes, fauna'},{dia:'7-8',lugar:'Norte',desc:'Mývatn, aurora boreal · Regreso'}],incluido:['Vuelos desde España','Coche de alquiler 4x4','Alojamientos seleccionados','Desayunos','GPS y mapas offline','Seguro de viaje'],noIncluido:['Comidas y cenas','Gasolina','Actividades opcionales','Gastos personales'],nota:'Precio por persona · Mejor época: junio–agosto y dic–feb (auroras)'},
+  patagonia:{region:'Sudamérica',titulo:'Patagonia',precio:'4.100 €',dias:'15 días',img:'https://picsum.photos/seed/patagonia/860/400',fotos:['https://picsum.photos/seed/patagonia2/400/200','https://picsum.photos/seed/patagonia3/400/200','https://picsum.photos/seed/patagonia4/400/200'],desc:'El fin del mundo te llama. La Patagonia es el último gran territorio salvaje del planeta: el Fitz Roy, las Torres del Paine, los glaciares Perito Moreno y Grey. Un viaje para aventureros que quieren enfrentarse a la naturaleza en su estado más puro.',itinerario:[{dia:'1-2',lugar:'Buenos Aires',desc:'Vuelo, llegada, aclimatación'},{dia:'3-4',lugar:'El Calafate',desc:'Glaciar Perito Moreno'},{dia:'5-7',lugar:'El Chaltén',desc:'Trekking Fitz Roy y Cerro Torre'},{dia:'8-10',lugar:'Pto. Natales',desc:'Torres del Paine W trek'},{dia:'11-12',lugar:'Punta Arenas',desc:'Glaciar Grey, fauna'},{dia:'13-15',lugar:'Ushuaia',desc:'Fin del mundo · Vuelo regreso'}],incluido:['Vuelos internacionales','Alojamientos eco-lodge','Traslados entre destinos','Entradas parques nacionales','Guía de montaña 3 días','Seguro de viaje'],noIncluido:['Comidas','Equipo de trekking','Vuelos internos opcionales','Gastos personales'],nota:'Precio por persona · Mejor época: noviembre–marzo · Nivel físico medio'},
+};
+
+// MODAL
+function abrirModal(id) {
+  const d = destinos[id]; if(!d) return;
+  const overlay = document.getElementById('modalOverlay');
+  document.getElementById('modal-img').src = d.img;
+  document.getElementById('modal-img').alt = d.titulo;
+  document.getElementById('modal-region').textContent = d.region;
+  document.getElementById('modal-titulo').textContent = d.titulo;
+  document.getElementById('modal-precio').textContent = d.precio;
+  document.getElementById('modal-dias').textContent = d.dias;
+  document.getElementById('modal-desc').textContent = d.desc;
+  document.getElementById('modal-nota').textContent = d.nota;
+  document.getElementById('modal-fotos').innerHTML = d.fotos.map(f=>`<div class="modal-foto"><img src="${f}" alt="${d.titulo}" loading="lazy"></div>`).join('');
+  document.getElementById('modal-itinerario').innerHTML = d.itinerario.map(i=>`<div class="modal-dia"><div class="modal-dia-num">${i.dia}</div><div><div class="modal-dia-lugar">${i.lugar}</div><div class="modal-dia-desc">${i.desc}</div></div></div>`).join('');
+  document.getElementById('modal-incluido').innerHTML = d.incluido.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('modal-no-incluido').innerHTML = d.noIncluido.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('modal-cta').onclick = () => {
+    const el = document.getElementById('f-destino'); if(el) el.value = d.titulo;
+    cerrarModalBtn();
+    setTimeout(()=>document.getElementById('contacto').scrollIntoView({behavior:'smooth'}),350);
   };
+  overlay.style.display = 'flex';
+  requestAnimationFrame(()=>overlay.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+}
+function cerrarModalBtn() {
+  const o = document.getElementById('modalOverlay');
+  o.classList.remove('open');
+  setTimeout(()=>{o.style.display='none';},450);
+  document.body.style.overflow='';
+}
+function cerrarModal(e) { if(e.target===document.getElementById('modalOverlay')) cerrarModalBtn(); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarModalBtn(); });
 
-  function setError(gId) {
-    const g = document.getElementById(gId);
-    if (g) { g.classList.add('has-error'); g.classList.remove('is-ok'); }
-  }
-  function setOk(gId) {
-    const g = document.getElementById(gId);
-    if (g) { g.classList.remove('has-error'); g.classList.add('is-ok'); }
-  }
+// VALIDACIÓN
+const groupMap={'f-nombre':'fg-nombre','f-email':'fg-email','f-telefono':'fg-telefono','f-viajeros':'fg-viajeros','f-destino':'fg-destino','f-fecha':'fg-fecha'};
+function setError(g){const el=document.getElementById(g);if(el){el.classList.add('has-error');el.classList.remove('is-ok');}}
+function setOk(g){const el=document.getElementById(g);if(el){el.classList.remove('has-error');el.classList.add('is-ok');}}
+function validateField(id){
+  const el=document.getElementById(id);if(!el)return true;
+  const val=el.value.trim(),gId=groupMap[id];if(!gId)return true;
+  if(id==='f-email'){const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);ok?setOk(gId):setError(gId);return ok;}
+  if(id==='f-telefono'){const ok=/^[0-9\s\-]{7,}$/.test(val);ok?setOk(gId):setError(gId);return ok;}
+  if(val){setOk(gId);return true;}setError(gId);return false;
+}
+Object.keys(groupMap).forEach(id=>{
+  const el=document.getElementById(id);if(!el)return;
+  el.addEventListener('blur',()=>validateField(id));
+  el.addEventListener('input',()=>{if(document.getElementById(groupMap[id]).classList.contains('has-error'))validateField(id);});
+});
+document.getElementById('f-rgpd').addEventListener('change',function(){if(this.checked)document.getElementById('fg-rgpd').classList.remove('has-error');});
 
-  function validateField(id) {
-    const el = document.getElementById(id);
-    if (!el) return true;
-    const val = el.value.trim();
-    const gId = groupMap[id];
-    if (!gId) return true;
-    if (id === 'f-email') {
-      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-      ok ? setOk(gId) : setError(gId);
-      return ok;
-    }
-    if (id === 'f-telefono') {
-      const ok = /^[0-9\s\-]{7,}$/.test(val);
-      ok ? setOk(gId) : setError(gId);
-      return ok;
-    }
-    if (val) { setOk(gId); return true; }
-    setError(gId);
-    return false;
-  }
-
-  // Validación en tiempo real al salir del campo
-  Object.keys(groupMap).forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('blur', () => validateField(id));
-    el.addEventListener('input', () => {
-      if (document.getElementById(groupMap[id]).classList.contains('has-error')) {
-        validateField(id);
-      }
-    });
-  });
-
-  // Checkbox RGPD — limpiar error al marcar
-  document.getElementById('f-rgpd').addEventListener('change', function() {
-    if (this.checked) document.getElementById('fg-rgpd').classList.remove('has-error');
-  });
-
-  function submitForm() {
-    const required = ['f-nombre','f-email','f-telefono','f-viajeros','f-destino','f-fecha'];
-    let valid = true;
-    required.forEach(id => { if (!validateField(id)) valid = false; });
-
-    const rgpd = document.getElementById('f-rgpd');
-    const rgpdGroup = document.getElementById('fg-rgpd');
-    if (!rgpd.checked) { rgpdGroup.classList.add('has-error'); valid = false; }
-    else { rgpdGroup.classList.remove('has-error'); }
-
-    if (!valid) {
-      const firstErr = document.querySelector('.has-error input, .has-error select, .has-error .check-custom');
-      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    const btn = document.getElementById('btnSubmit');
-    btn.disabled = true;
-    document.getElementById('btnText').style.display = 'none';
-    document.getElementById('btnLoader').style.display = 'inline';
-
-    const payload = {
-      nombre:      document.getElementById('f-nombre').value.trim(),
-      email:       document.getElementById('f-email').value.trim(),
-      telefono:    '+34 ' + document.getElementById('f-telefono').value.trim(),
-      viajeros:    document.getElementById('f-viajeros').value,
-      destino:     document.getElementById('f-destino').value.trim(),
-      presupuesto: document.getElementById('f-presupuesto').value,
-      fecha:       document.getElementById('f-fecha').value,
-      duracion:    document.getElementById('f-duracion').value,
-      mensaje:     document.getElementById('f-mensaje').value.trim(),
-    };
-
-    fetch('/api/leads', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(r => r.ok ? r.json() : Promise.reject(r))
-    .then(() => showSuccess())
-    .catch(() => showSuccess()); // demo fallback sin backend
-
-    function showSuccess() {
-      document.getElementById('contactoForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    }
-  }
+function submitForm(){
+  const req=['f-nombre','f-email','f-telefono','f-viajeros','f-destino','f-fecha'];
+  let valid=true;req.forEach(id=>{if(!validateField(id))valid=false;});
+  const rgpd=document.getElementById('f-rgpd');
+  if(!rgpd.checked){document.getElementById('fg-rgpd').classList.add('has-error');valid=false;}
+  else{document.getElementById('fg-rgpd').classList.remove('has-error');}
+  if(!valid){const f=document.querySelector('.has-error input,.has-error select,.has-error .check-custom');if(f)f.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const btn=document.getElementById('btnSubmit');btn.disabled=true;
+  document.getElementById('btnText').style.display='none';
+  document.getElementById('btnLoader').style.display='inline';
+  const payload={nombre:document.getElementById('f-nombre').value.trim(),email:document.getElementById('f-email').value.trim(),telefono:'+34 '+document.getElementById('f-telefono').value.trim(),viajeros:document.getElementById('f-viajeros').value,destino:document.getElementById('f-destino').value.trim(),presupuesto:document.getElementById('f-presupuesto').value,fecha:document.getElementById('f-fecha').value,duracion:document.getElementById('f-duracion').value,mensaje:document.getElementById('f-mensaje').value.trim()};
+  fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+  .then(r=>r.ok?r.json():Promise.reject(r)).then(()=>ok()).catch(()=>ok());
+  function ok(){document.getElementById('contactoForm').style.display='none';document.getElementById('formSuccess').style.display='block';}
+}
 </script>
 </body>
 </html>
