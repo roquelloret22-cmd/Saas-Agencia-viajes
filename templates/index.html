@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velada Viajes — Experiencias que perduran</title>
-<meta name="description" content="Agencia de viajes premium. Diseñamos experiencias únicas a medida. Japón, Maldivas, Patagonia y mucho más.">
+<title>White Coast Travel — Experiencias que perduran</title>
+<meta name="description" content="White Coast Travel — Agencia de viajes premium en la Costa Blanca. Japón, Maldivas, Patagonia y mucho más.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -343,6 +343,43 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
 @keyframes heroZoom { from{transform:scale(1.06)} to{transform:scale(1)} }
 @keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:0.9;transform:scaleY(1.3)} }
 
+
+/* ── VIDEO PARALLAX ── */
+.section-video {
+  position: relative; height: 70vh; min-height: 500px;
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.video-container {
+  position: absolute; inset: -20%;
+  will-change: transform;
+}
+.video-container video {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.video-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,9,8,0.55);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 2rem; z-index: 2;
+}
+.video-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 300; line-height: 1.2; color: var(--blanco);
+  max-width: 800px;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+.video-quote.visible { opacity: 1; transform: translateY(0); }
+.video-quote em { font-style: italic; color: var(--dorado-light); }
+.video-quote-sub {
+  font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(245,239,228,0.6); margin-top: 1.5rem;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 1s 0.3s var(--ease-out), transform 1s 0.3s var(--ease-out);
+}
+.video-quote-sub.visible { opacity: 1; transform: translateY(0); }
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
   nav{padding:1.2rem 1.5rem} .nav-links{display:none}
@@ -363,7 +400,7 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
 <body>
 
 <nav id="nav">
-  <a href="#" class="nav-logo">Velada<span>.</span>Viajes</a>
+  <a href="#" class="nav-logo">White Coast<span>.</span>Travel</a>
   <ul class="nav-links">
     <li><a href="#destinos">Destinos</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
@@ -376,7 +413,7 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Agencia de viajes premium · Desde 2009</p>
+    <p class="hero-eyebrow">Agencia de viajes premium · Costa Blanca</p>
     <h1 class="hero-title">El viaje que<br>siempre <em>imaginaste</em></h1>
     <p class="hero-sub">Diseñamos experiencias de viaje a medida. Cada detalle, cada destino, pensado únicamente para ti.</p>
     <div class="hero-actions">
@@ -437,6 +474,22 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
   </div>
 </section>
 
+
+<!-- VIDEO PARALLAX -->
+<section class="section-video" id="video-section">
+  <div class="video-container" id="videoParallax">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay">
+    <p class="video-quote" id="videoQuote">
+      Cada viaje es una historia <em>única</em><br>esperando ser vivida
+    </p>
+    <p class="video-quote-sub" id="videoQuoteSub">White Coast Travel · Costa Blanca, España</p>
+  </div>
+</section>
+
 <section class="section-valor" id="nosotros">
   <div class="valor-visual reveal-left">
     <img class="valor-img-main" src="https://picsum.photos/seed/beach-luxury/700/500" alt="Playa paradisiaca">
@@ -465,7 +518,7 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
       <div class="mockup-dot" style="background:#FF5F57"></div>
       <div class="mockup-dot" style="background:#FFBD2E"></div>
       <div class="mockup-dot" style="background:#28C840"></div>
-      <div class="mockup-url">velada.viajes/mi-viaje/japon-2026</div>
+      <div class="mockup-url">whitecoasttravel.com/mi-viaje/japon-2026</div>
     </div>
     <div class="itinerario-header">
       <div>
@@ -516,7 +569,7 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
     <p>Cuéntanos tu destino soñado y te preparamos una propuesta personalizada sin compromiso. Respondemos en menos de 24 horas.</p>
     <div class="contacto-datos">
       <div class="contacto-dato"><div class="dato-icon">📞</div><div><p class="dato-label">Teléfono</p><p class="dato-text">+34 91 234 56 78</p></div></div>
-      <div class="contacto-dato"><div class="dato-icon">✉️</div><div><p class="dato-label">Email</p><p class="dato-text">hola@veladaviajes.com</p></div></div>
+      <div class="contacto-dato"><div class="dato-icon">✉️</div><div><p class="dato-label">Email</p><p class="dato-text">hola@whitecoasttravel.com</p></div></div>
       <div class="contacto-dato"><div class="dato-icon">💬</div><div><p class="dato-label">WhatsApp</p><p class="dato-text">+34 666 123 456 · Respuesta inmediata</p></div></div>
     </div>
   </div>
@@ -569,9 +622,9 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
 </section>
 
 <footer>
-  <div class="footer-logo">Velada<span>.</span>Viajes</div>
+  <div class="footer-logo">White Coast<span>.</span>Travel</div>
   <div class="footer-links"><a href="#">Destinos</a><a href="#">Portal del viajero</a><a href="#">Privacidad</a><a href="#">Aviso legal</a></div>
-  <p class="footer-copy">© 2026 Velada Viajes · Todos los derechos reservados</p>
+  <p class="footer-copy">© 2026 White Coast Travel · Todos los derechos reservados</p>
 </footer>
 
 <!-- MODAL -->
@@ -604,6 +657,36 @@ footer { padding: 3rem; border-top: 1px solid rgba(255,255,255,0.06); display: f
 </a>
 
 <script>
+
+// ── VIDEO PARALLAX ──────────────────────────────────────────────────────────
+const videoParallax = document.getElementById('videoParallax');
+const videoSection = document.getElementById('video-section');
+const videoQuote = document.getElementById('videoQuote');
+const videoQuoteSub = document.getElementById('videoQuoteSub');
+
+if (videoParallax && videoSection) {
+  const handleParallax = () => {
+    const rect = videoSection.getBoundingClientRect();
+    const windowH = window.innerHeight;
+
+    // Parallax del vídeo
+    if (rect.bottom > 0 && rect.top < windowH) {
+      const progress = (windowH - rect.top) / (windowH + rect.height);
+      const offset = (progress - 0.5) * 25;
+      videoParallax.style.transform = `translateY(${offset}%)`;
+    }
+
+    // Reveal del texto
+    if (rect.top < windowH * 0.75) {
+      videoQuote.classList.add('visible');
+      videoQuoteSub.classList.add('visible');
+    }
+  };
+
+  window.addEventListener('scroll', handleParallax, { passive: true });
+  handleParallax();
+}
+
 // NAV SCROLL
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
