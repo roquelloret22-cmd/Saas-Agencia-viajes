@@ -312,7 +312,100 @@ footer{background:var(--dark);padding:5rem 3.5rem 2.5rem}
 .soc{width:34px;height:34px;border:1px solid rgba(255,255,255,.1);border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.35);text-decoration:none;transition:all .25s}
 .soc:hover{border-color:var(--red);color:var(--white);background:var(--red)}
 
-/* WA */
+/* MEDIA LOGOS */
+.s-media{padding:2.5rem 3.5rem;background:var(--off);border-top:1px solid var(--gray2);border-bottom:1px solid var(--gray2)}
+.media-inner{display:flex;align-items:center;gap:3rem;justify-content:center;flex-wrap:wrap}
+.media-lbl{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted2);flex-shrink:0}
+.media-logos{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;justify-content:center}
+.mlogo{font-size:.78rem;font-weight:800;color:var(--gray3);letter-spacing:-.02em;transition:color .3s;white-space:nowrap}
+.mlogo em{font-style:normal;font-weight:300}
+.mlogo:hover{color:var(--muted)}
+
+/* PROCESO */
+.s-proceso{padding:8rem 3.5rem;background:var(--white)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3.5rem;position:relative}
+.proc-grid::before{content:'';position:absolute;top:28px;left:calc(12.5% + 1rem);right:calc(12.5% + 1rem);height:1px;background:linear-gradient(to right,transparent,var(--gray2) 20%,var(--gray2) 80%,transparent);z-index:0}
+.pstep{text-align:center;position:relative;z-index:1}
+.pnum{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--gray2);background:var(--white);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--red);transition:all .4s var(--ease)}
+.pstep:hover .pnum{background:var(--red);color:var(--white);border-color:var(--red);transform:scale(1.1);box-shadow:0 6px 20px rgba(224,32,32,.25)}
+.pstep h4{font-size:.88rem;font-weight:600;color:var(--dark);margin-bottom:.5rem}
+.pstep p{font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.7}
+.picon{display:block;font-size:1.3rem;margin-bottom:.5rem}
+
+/* 4TH TESTIMONIAL + FEATURED */
+.tfeatured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:.5rem}
+.tcard-big{padding:2.5rem;background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:12px;position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .3s}
+.tcard-big:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(17,17,16,.25)}
+.tcard-big::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);border-radius:12px 12px 0 0}
+.tcard-big .tstars{color:var(--red);font-size:.85rem;margin-bottom:1.2rem}
+.tcard-big .ttxt{font-size:.95rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,.75);margin-bottom:1.8rem;font-style:italic}
+.tcard-big .tauthor{display:flex;align-items:center;gap:.8rem}
+.tcard-big .tname{font-size:.85rem;font-weight:600;color:var(--white)}
+.tcard-big .ttrip{font-size:.7rem;color:var(--red2);margin-top:.1rem;font-weight:500}
+.tcard-big .tavatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.15);transition:border-color .3s}
+.tcard-big:hover .tavatar{border-color:var(--red)}
+
+/* AI CHAT WIDGET */
+#ai-bubble{position:fixed;bottom:6rem;right:2rem;z-index:450;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.ai-btn{width:52px;height:52px;border-radius:50%;background:var(--dark);border:none;cursor:none;display:grid;place-items:center;box-shadow:0 4px 20px rgba(17,17,16,.22);transition:transform .3s var(--ease),box-shadow .3s;position:relative}
+.ai-btn:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 10px 32px rgba(17,17,16,.35)}
+.ai-btn svg{width:22px;height:22px;fill:var(--white)}
+.ai-ping{position:absolute;top:-2px;right:-2px;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid var(--white);animation:pulse 2s infinite}
+.ai-tip{background:var(--dark);color:var(--white);font-size:.7rem;white-space:nowrap;padding:.4rem .85rem;border-radius:6px;pointer-events:none;opacity:0;transition:opacity .2s;position:absolute;right:62px;top:50%;transform:translateY(-50%)}
+.ai-btn:hover .ai-tip{opacity:1}
+#ai-panel{width:340px;background:var(--white);border:1px solid var(--gray2);border-radius:16px;box-shadow:0 20px 60px rgba(17,17,16,.18);display:none;flex-direction:column;overflow:hidden;transform:translateY(12px) scale(.97);opacity:0;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+#ai-panel.open{display:flex;opacity:1;transform:translateY(0) scale(1)}
+.ai-head{background:var(--dark);padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;flex-shrink:0}
+.ai-ava{width:32px;height:32px;border-radius:50%;background:var(--red);display:grid;place-items:center;flex-shrink:0}
+.ai-ava svg{width:16px;height:16px;fill:white}
+.ai-head-info{flex:1;min-width:0}
+.ai-head-name{font-size:.82rem;font-weight:600;color:var(--white);line-height:1}
+.ai-head-status{font-size:.62rem;color:rgba(255,255,255,.4);margin-top:.15rem;display:flex;align-items:center;gap:.3rem}
+.ai-online{width:5px;height:5px;border-radius:50%;background:#22c55e}
+.ai-close{background:none;border:none;cursor:none;color:rgba(255,255,255,.4);font-size:1rem;padding:.2rem;line-height:1;transition:color .2s}
+.ai-close:hover{color:var(--white)}
+.ai-msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;min-height:220px;max-height:300px;scroll-behavior:smooth}
+.ai-msgs::-webkit-scrollbar{width:3px}
+.ai-msgs::-webkit-scrollbar-track{background:transparent}
+.ai-msgs::-webkit-scrollbar-thumb{background:var(--gray2);border-radius:2px}
+.msg{display:flex;gap:.5rem;align-items:flex-end}
+.msg.user{flex-direction:row-reverse}
+.msg-av{width:26px;height:26px;border-radius:50%;background:var(--gray1);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0}
+.msg.bot .msg-av{background:var(--red)}
+.msg-av svg{width:12px;height:12px;fill:var(--dark)}
+.msg.bot .msg-av svg{fill:white}
+.msg-bub{max-width:78%;padding:.55rem .85rem;border-radius:14px;font-size:.8rem;line-height:1.65;font-weight:400}
+.msg.bot .msg-bub{background:var(--off);color:var(--dark);border:1px solid var(--gray2);border-bottom-left-radius:4px}
+.msg.user .msg-bub{background:var(--dark);color:var(--white);border-bottom-right-radius:4px}
+.msg-time{font-size:.58rem;color:var(--muted2);flex-shrink:0;margin-bottom:2px}
+.typing-dots{display:flex;gap:3px;align-items:center;padding:.55rem .85rem;background:var(--off);border:1px solid var(--gray2);border-radius:14px;border-bottom-left-radius:4px;width:fit-content}
+.typing-dots span{width:5px;height:5px;border-radius:50%;background:var(--muted2);animation:tdot 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes tdot{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.ai-qr{padding:.5rem 1rem;display:flex;gap:.4rem;flex-wrap:wrap;border-top:1px solid var(--gray2)}
+.qr-btn{font-size:.65rem;background:var(--off);border:1px solid var(--gray2);color:var(--dark);padding:.3rem .7rem;border-radius:100px;cursor:none;transition:all .2s;white-space:nowrap;font-family:'Inter',sans-serif}
+.qr-btn:hover{border-color:var(--red);color:var(--red)}
+.ai-inp{padding:.75rem 1rem;border-top:1px solid var(--gray2);display:flex;gap:.5rem;flex-shrink:0}
+.ai-input{flex:1;background:var(--gray1);border:1.5px solid var(--gray2);border-radius:8px;padding:.55rem .8rem;font-size:.8rem;font-family:'Inter',sans-serif;color:var(--dark);outline:none;transition:border-color .2s}
+.ai-input:focus{border-color:var(--red);background:var(--white)}
+.ai-send{width:34px;height:34px;background:var(--red);border:none;border-radius:8px;cursor:none;display:grid;place-items:center;flex-shrink:0;transition:background .2s,transform .2s var(--ease)}
+.ai-send:hover{background:var(--red4);transform:scale(1.05)}
+.ai-send svg{width:14px;height:14px;fill:white}
+.ai-send:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* NAV ACTIVE */
+.nav-links a.active{color:var(--dark)}
+.nav-links a.active::after{width:100%;background:var(--red)}
+
+@media(max-width:900px){
+  .proc-grid{grid-template-columns:1fr 1fr}.proc-grid::before{display:none}
+  .tfeatured{grid-template-columns:1fr}
+  .s-proceso{padding:5rem 1.5rem}
+  .s-media{padding:2rem 1.5rem}.media-logos{gap:1.8rem}
+  #ai-panel{width:calc(100vw - 3rem)}
+  #ai-bubble{bottom:5.5rem;right:1.5rem}
+}
 .wa{position:fixed;bottom:2rem;right:2rem;z-index:400;width:54px;height:54px;border-radius:50%;background:#25D366;display:grid;place-items:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.28);transition:transform .3s var(--ease),box-shadow .3s;opacity:0;animation:fI 1s 3.5s forwards}
 .wa:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,.45)}
 .wa svg{width:28px;height:28px;fill:#fff}
@@ -373,8 +466,8 @@ footer{background:var(--dark);padding:5rem 3.5rem 2.5rem}
   <a href="#" class="nav-logo">White Coast<span>.</span>Travel</a>
   <ul class="nav-links">
     <li><a href="#destinos">Destinos</a></li>
+    <li><a href="#proceso">Cómo funciona</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#japon">Japón</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="#contacto" class="nav-cta">Planifica tu viaje</a>
@@ -432,7 +525,18 @@ footer{background:var(--dark);padding:5rem 3.5rem 2.5rem}
   <span class="mqi">Japón<span class="mqd"></span></span><span class="mqi">Maldivas<span class="mqd"></span></span><span class="mqi">Islandia<span class="mqd"></span></span><span class="mqi">Patagonia<span class="mqd"></span></span><span class="mqi">Marrakech<span class="mqd"></span></span><span class="mqi">Tailandia<span class="mqd"></span></span><span class="mqi">Nueva Zelanda<span class="mqd"></span></span><span class="mqi">Costa Rica<span class="mqd"></span></span>
 </div></div>
 
-<section class="s-dest" id="destinos">
+<section class="s-media rv">
+  <div class="media-inner">
+    <span class="media-lbl">Presencia en</span>
+    <div class="media-logos">
+      <span class="mlogo">CONDÉ NAST<em> Traveler</em></span>
+      <span class="mlogo">Lonely<em>Planet</em></span>
+      <span class="mlogo">NATIONAL<em> Geographic</em></span>
+      <span class="mlogo">EL PAÍS<em> Viajes</em></span>
+      <span class="mlogo">TRAVELER<em>.es</em></span>
+    </div>
+  </div>
+</section>
   <div class="s-hdr rv">
     <div><p class="s-eyebrow">Destinos destacados</p><h2 class="s-title">El mundo <em>te espera</em></h2></div>
     <a href="#contacto" class="link-all">Ver todos</a>
@@ -485,6 +589,37 @@ footer{background:var(--dark);padding:5rem 3.5rem 2.5rem}
   <div class="jscrl"><div class="jscrl-ln"></div></div>
 </section>
 
+<section class="s-proceso" id="proceso">
+  <div class="s-hdr rv">
+    <div>
+      <p class="s-eyebrow">Así trabajamos</p>
+      <h2 class="s-title">Tu viaje en <em>4 pasos</em></h2>
+    </div>
+  </div>
+  <div class="proc-grid">
+    <div class="pstep rv">
+      <div class="pnum"><span class="picon">💬</span></div>
+      <h4>Nos lo cuentas</h4>
+      <p>Rellena el formulario o escríbenos por WhatsApp. Nos dices fechas, destinos soñados y presupuesto.</p>
+    </div>
+    <div class="pstep rv" style="transition-delay:.1s">
+      <div class="pnum"><span class="picon">✏️</span></div>
+      <h4>Diseñamos tu ruta</h4>
+      <p>En menos de 24h te enviamos una propuesta personalizada. Sin costes, sin compromiso.</p>
+    </div>
+    <div class="pstep rv" style="transition-delay:.2s">
+      <div class="pnum"><span class="picon">✅</span></div>
+      <h4>Lo confirmamos</h4>
+      <p>Ajustamos cada detalle hasta que sea perfecto. Reservamos vuelos, hoteles y experiencias.</p>
+    </div>
+    <div class="pstep rv" style="transition-delay:.3s">
+      <div class="pnum"><span class="picon">🌍</span></div>
+      <h4>Tú solo disfrutas</h4>
+      <p>Recibes tu portal privado con toda la documentación. Nosotros disponibles 24/7 durante el viaje.</p>
+    </div>
+  </div>
+</section>
+
 <section class="s-about" id="nosotros">
   <div class="about-vis rl">
     <img class="av-img1" src="https://picsum.photos/seed/luxury-coast-wct/700/550" alt="Viaje de lujo">
@@ -518,9 +653,13 @@ footer{background:var(--dark);padding:5rem 3.5rem 2.5rem}
 <section class="s-test">
   <div class="rv"><p class="s-eyebrow">Testimonios</p><h2 class="s-title">Lo que dicen<br>nuestros <em>viajeros</em></h2></div>
   <div class="tgrid">
-    <div class="tcard rv"><div class="tstars">★★★★★</div><p class="ttxt">"Llevábamos años queriendo ir a Japón. White Coast organizó todo al detalle. Fue el viaje de nuestra vida."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/woman-ana/80/80" alt="Ana"><div><p class="tname">Ana Martínez</p><p class="ttrip">Japón · 12 días</p></div></div></div>
-    <div class="tcard rv" style="transition-delay:.12s"><div class="tstars">★★★★★</div><p class="ttxt">"El portal del viajero es increíble. Todo en el móvil. Cuando surgió un problema me respondieron en minutos."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/man-carlos/80/80" alt="Carlos"><div><p class="tname">Carlos Rubio</p><p class="ttrip">Maldivas · 10 días</p></div></div></div>
-    <div class="tcard rv" style="transition-delay:.24s"><div class="tstars">★★★★★</div><p class="ttxt">"Primera vez con agencia y fue la mejor decisión. Ahorramos semanas de planificación. 100% repetiremos."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/woman-laura/80/80" alt="Laura"><div><p class="tname">Laura Sánchez</p><p class="ttrip">Patagonia · 15 días</p></div></div></div>
+    <div class="tfeatured">
+      <div class="tcard-big rv"><div class="tstars">★★★★★</div><p class="ttxt">"Llevábamos años queriendo ir a Japón. White Coast organizó todo al detalle, desde el Shinkansen hasta el ryokan en Kyoto. Fue, sin ninguna duda, el viaje de nuestra vida. Volveremos."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/woman-ana/80/80" alt="Ana"><div><p class="tname">Ana Martínez</p><p class="ttrip">Japón · 12 días · Familia</p></div></div></div>
+      <div class="tcard-big rv" style="transition-delay:.1s"><div class="tstars">★★★★★</div><p class="ttxt">"El portal del viajero es increíble: documentos, alertas, chat con el agente. Todo en el móvil. Cuando surgió un problema de vuelo me respondieron en minutos y lo solucionaron sin que yo hiciera nada."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/man-carlos/80/80" alt="Carlos"><div><p class="tname">Carlos Rubio</p><p class="ttrip">Maldivas · 10 días · Pareja</p></div></div></div>
+    </div>
+    <div class="tcard rv" style="transition-delay:.15s"><div class="tstars">★★★★★</div><p class="ttxt">"Primera vez con agencia y fue la mejor decisión. Ahorramos semanas de planificación. 100% repetiremos."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/woman-laura/80/80" alt="Laura"><div><p class="tname">Laura Sánchez</p><p class="ttrip">Patagonia · 15 días</p></div></div></div>
+    <div class="tcard rv" style="transition-delay:.25s"><div class="tstars">★★★★★</div><p class="ttxt">"La propuesta de Islandia llegó en menos de 3 horas. Detallada, con precios reales. Cerramos en el día. Una pasada de agencia."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/man-miguel/80/80" alt="Miguel"><div><p class="tname">Miguel Torres</p><p class="ttrip">Islandia · 8 días</p></div></div></div>
+    <div class="tcard rv" style="transition-delay:.35s"><div class="tstars">★★★★★</div><p class="ttxt">"Marrakech fue mágico. El riad que eligieron era espectacular. Cada día tenía su ritmo y sus sorpresas. Nunca me había sentido tan bien atendida en un viaje."</p><div class="tauthor"><img class="tavatar" src="https://picsum.photos/seed/woman-sofia/80/80" alt="Sofía"><div><p class="tname">Sofía Blanco</p><p class="ttrip">Marrakech · 7 días</p></div></div></div>
   </div>
 </section>
 
@@ -592,6 +731,39 @@ footer{background:var(--dark);padding:5rem 3.5rem 2.5rem}
   </div>
 </div>
 
+<!-- AI CHAT WIDGET -->
+<div id="ai-bubble">
+  <div id="ai-panel">
+    <div class="ai-head">
+      <div class="ai-ava">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+      </div>
+      <div class="ai-head-info">
+        <div class="ai-head-name">Asistente White Coast</div>
+        <div class="ai-head-status"><span class="ai-online"></span>En línea · respuesta inmediata</div>
+      </div>
+      <button class="ai-close" onclick="toggleAI()">✕</button>
+    </div>
+    <div class="ai-msgs" id="ai-msgs"></div>
+    <div class="ai-qr" id="ai-qr">
+      <button class="qr-btn" onclick="sendQR('¿Cuál es el destino más popular?')">¿El más popular?</button>
+      <button class="qr-btn" onclick="sendQR('¿Qué incluye el paquete de Japón?')">Japón</button>
+      <button class="qr-btn" onclick="sendQR('¿Tenéis viajes de luna de miel?')">Luna de miel 💍</button>
+    </div>
+    <div class="ai-inp">
+      <input class="ai-input" id="ai-input" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="ai-send" id="ai-send" onclick="sendMsg()">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+  <button class="ai-btn" onclick="toggleAI()">
+    <span class="ai-tip">¿Necesitas ayuda? 💬</span>
+    <span class="ai-ping"></span>
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+  </button>
+</div>
+
 <a href="https://wa.me/34666123456?text=Hola,%20quiero%20planificar%20un%20viaje" class="wa" target="_blank">
   <span class="wa-tip">Escríbenos ahora</span>
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -603,8 +775,17 @@ const cd=document.getElementById('cdot'),cr=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
 (function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(a);})();
-document.querySelectorAll('a,button,.dc,.tcard,.citem').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('cex'));el.addEventListener('mouseleave',()=>document.body.classList.remove('cex'));});
-window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('compact',window.scrollY>60);},{passive:true});
+document.querySelectorAll('a,button,.dc,.tcard,.tcard-big,.citem,.pstep,.qr-btn').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('cex'));el.addEventListener('mouseleave',()=>document.body.classList.remove('cex'));});
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('compact',window.scrollY>60);updateActiveNav();},{passive:true});
+
+// Active nav highlight
+function updateActiveNav(){
+  const secs=['destinos','proceso','nosotros','contacto'];
+  let current='';
+  secs.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<120)current=id;});
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current);});
+}
+
 const slides=document.querySelectorAll('.hslide'),dotsC=document.getElementById('hdots');
 let cur=0,tmr;
 slides.forEach((_,i)=>{const d=document.createElement('div');d.className='hdot'+(i===0?' on':'');d.onclick=()=>go(i);dotsC.appendChild(d);});
@@ -645,7 +826,7 @@ function abrirModal(id){
 }
 function cerrarModalBtn(){const o=document.getElementById('moverlay');o.classList.remove('on');setTimeout(()=>{o.style.display='none';},420);document.body.style.overflow='';}
 function cerrarModal(e){if(e.target===document.getElementById('moverlay'))cerrarModalBtn();}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarModalBtn();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){cerrarModalBtn();if(aiOpen)toggleAI();}});
 const gm={'f-nombre':'fg-nombre','f-email':'fg-email','f-telefono':'fg-telefono','f-viajeros':'fg-viajeros','f-destino':'fg-destino','f-fecha':'fg-fecha'};
 function se(g){const e=document.getElementById(g);if(e){e.classList.add('err');e.classList.remove('ok');}}
 function sok(g){const e=document.getElementById(g);if(e){e.classList.remove('err');e.classList.add('ok');}}
@@ -664,6 +845,87 @@ function submitForm(){
   const p={nombre:document.getElementById('f-nombre').value.trim(),email:document.getElementById('f-email').value.trim(),telefono:'+34 '+document.getElementById('f-telefono').value.trim(),viajeros:document.getElementById('f-viajeros').value,destino:document.getElementById('f-destino').value.trim(),presupuesto:document.getElementById('f-presupuesto').value,fecha:document.getElementById('f-fecha').value,duracion:document.getElementById('f-duracion').value,mensaje:document.getElementById('f-mensaje').value.trim()};
   fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}).then(r=>r.ok?r.json():Promise.reject()).then(done).catch(done);
   function done(){document.getElementById('contactoForm').style.display='none';document.getElementById('formSuccess').style.display='block';}
+}
+
+// ── AI CHAT ─────────────────────────────────────────────────────────────────
+const AI_SYSTEM=`Eres el asistente virtual de White Coast Travel, una agencia de viajes premium ubicada en Villajoyosa, Costa Blanca, España. Fundada en 2009. Especialistas en viajes a medida de alta gama.
+
+Destinos estrella: Japón (2.890€ / 12 días), Maldivas (3.200€ / 10 días), Islandia (1.650€ / 8 días), Marrakech (890€ / 7 días), Patagonia (4.100€ / 15 días).
+
+Contacto: Tel +34 96 589 12 34 · WhatsApp +34 666 123 456 · hola@whitecoasttravel.com · Villajoyosa, Alicante.
+
+Comportamiento:
+- Responde SIEMPRE en español, tono cálido y sofisticado.
+- Máximo 3 frases por respuesta. Directo y útil.
+- Si preguntan por precios, da el precio del paquete estándar e invita a pedir propuesta personalizada.
+- Si preguntan por disponibilidad o fechas concretas, pide que contacten por WhatsApp o formulario.
+- Nunca inventes información.`;
+
+let aiOpen=false,aiHistory=[],aiLoading=false;
+const aiPanel=document.getElementById('ai-panel'),aiMsgs=document.getElementById('ai-msgs'),aiQr=document.getElementById('ai-qr');
+
+function toggleAI(){
+  aiOpen=!aiOpen;
+  if(aiOpen){
+    aiPanel.style.display='flex';
+    requestAnimationFrame(()=>aiPanel.classList.add('open'));
+    if(aiHistory.length===0)appendMsg('bot','👋 Hola, soy el asistente de White Coast Travel. ¿A qué destino sueñas con viajar?');
+    document.getElementById('ai-input').focus();
+  } else {
+    aiPanel.classList.remove('open');
+    setTimeout(()=>{aiPanel.style.display='none';},320);
+  }
+}
+
+function appendMsg(role,text){
+  const now=new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+  const isBot=role==='bot';
+  const div=document.createElement('div');
+  div.className='msg '+(isBot?'bot':'user');
+  div.innerHTML=`<div class="msg-av"><svg viewBox="0 0 24 24"><path d="${isBot?'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z':'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'}"/></svg></div>
+  <div><div class="msg-bub">${text}</div><div class="msg-time">${now}</div></div>`;
+  aiMsgs.appendChild(div);
+  aiMsgs.scrollTop=aiMsgs.scrollHeight;
+  if(aiHistory.length>0&&aiQr)aiQr.style.display='none';
+}
+
+function showTyping(){
+  const d=document.createElement('div');d.className='msg bot';d.id='typing-ind';
+  d.innerHTML=`<div class="msg-av"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg></div>
+  <div class="typing-dots"><span></span><span></span><span></span></div>`;
+  aiMsgs.appendChild(d);aiMsgs.scrollTop=aiMsgs.scrollHeight;
+}
+
+async function sendMsg(){
+  if(aiLoading)return;
+  const inp=document.getElementById('ai-input');
+  const text=inp.value.trim();if(!text)return;
+  inp.value='';
+  appendMsg('user',text);
+  aiHistory.push({role:'user',content:text});
+  aiLoading=true;document.getElementById('ai-send').disabled=true;
+  showTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:AI_SYSTEM,messages:aiHistory})
+    });
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'Lo siento, hubo un problema. Llámanos al +34 96 589 12 34.';
+    document.getElementById('typing-ind')?.remove();
+    appendMsg('bot',reply);
+    aiHistory.push({role:'assistant',content:reply});
+  }catch(e){
+    document.getElementById('typing-ind')?.remove();
+    appendMsg('bot','Disculpa, hubo un error técnico. Puedes contactarnos por WhatsApp: +34 666 123 456.');
+  }
+  aiLoading=false;document.getElementById('ai-send').disabled=false;
+  document.getElementById('ai-input').focus();
+}
+
+function sendQR(text){
+  document.getElementById('ai-input').value=text;
+  sendMsg();
 }
 </script>
 </body>
