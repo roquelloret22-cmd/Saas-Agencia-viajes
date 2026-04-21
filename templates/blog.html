@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Blog de viajes a Japón · Guías, rutas y consejos · Fuji Travel</title>
+<meta name="description" content="Guías de viaje a Japón escritas por expertos. Cuándo ir, cuánto cuesta, qué ver en Tokio y Kioto. Consejos reales de quienes viajan allí cada año.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://saas-agencia-viajes-production.up.railway.app/blog">
+<meta property="og:title" content="Blog de viajes a Japón · Fuji Travel">
+<meta property="og:description" content="Guías, rutas y consejos para viajar a Japón desde España.">
+<meta property="og:image" content="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1200">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,300&family=Noto+Serif+JP:wght@200;300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#B5272B; --red-dim:rgba(181,39,43,.12); --gold:#C8A951;
+  --ink:#060606; --ink2:#0f0f0f; --ink3:#181818;
+  --paper:#F4EFE6; --mist:rgba(244,239,230,.06); --mist2:rgba(244,239,230,.10);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --display:'Fraunces',serif; --jp:'Noto Serif JP',serif; --sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--ink);color:var(--paper);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:700;padding:1.4rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,6,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--mist2)}
+.nb-jp{font-family:var(--jp);font-size:.65rem;color:rgba(244,239,230,.3);letter-spacing:.35em;font-weight:200;display:block}
+.nb-en{font-family:var(--display);font-size:1.4rem;font-weight:900;color:var(--paper);letter-spacing:-.01em;font-optical-sizing:auto}
+.nb-en em{font-style:italic;color:var(--red);font-weight:700}
+.nav-links{list-style:none;display:flex;gap:2.2rem}
+.nav-links a{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,239,230,.42);transition:color .25s}
+.nav-links a:hover,.nav-links a.active{color:var(--paper)}
+.nav-cta{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;padding:.6rem 1.4rem;border-radius:2px;transition:background .3s}
+.nav-cta:hover{background:#8b1a1e}
+@media(max-width:768px){nav{padding:1rem 1.2rem}.nav-links{display:none}}
+
+/* HERO BLOG */
+.blog-hero{padding:10rem 4rem 5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--mist)}
+.blog-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(181,39,43,.06) 0%,transparent 60%);pointer-events:none}
+.blog-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:1.2rem}
+.blog-eyebrow::before,.blog-eyebrow::after{content:'';width:16px;height:1px;background:var(--red)}
+.blog-title{font-family:var(--display);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:900;line-height:.95;color:var(--paper);font-optical-sizing:auto;margin-bottom:1.2rem}
+.blog-title em{font-style:italic;color:var(--gold);font-weight:300}
+.blog-subtitle{font-size:1rem;font-weight:300;color:rgba(244,239,230,.45);line-height:1.85;max-width:520px}
+
+/* GRID ARTICULOS */
+.blog-grid-wrap{padding:5rem 4rem}
+.blog-section-title{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:2.5rem;display:flex;align-items:center;gap:.6rem}
+.blog-section-title::after{content:'';flex:1;height:1px;background:var(--mist2)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+
+/* CARD */
+.article-card{background:var(--ink2);border:1px solid var(--mist);border-radius:4px;overflow:hidden;transition:border-color .3s,transform .4s var(--ease),box-shadow .4s;cursor:pointer}
+.article-card:hover{border-color:rgba(181,39,43,.3);transform:translateY(-5px);box-shadow:0 20px 48px rgba(6,6,6,.5)}
+.article-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr}
+.ac-img{overflow:hidden;height:220px;position:relative}
+.article-card.featured .ac-img{height:100%;min-height:340px}
+.ac-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease),filter .5s}
+.article-card:hover .ac-img img{transform:scale(1.06);filter:brightness(.8)}
+.ac-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,var(--ink2) 100%)}
+.ac-cat{position:absolute;top:1rem;left:1rem;background:var(--red);color:#fff;font-size:.52rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem;border-radius:2px}
+.ac-body{padding:1.8rem}
+.article-card.featured .ac-body{padding:2.8rem;display:flex;flex-direction:column;justify-content:center}
+.ac-meta{font-size:.62rem;letter-spacing:.1em;color:rgba(244,239,230,.28);margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
+.ac-meta span::before{content:'·';margin-right:.6rem}
+.ac-meta span:first-child::before{display:none}
+.ac-title{font-family:var(--display);font-size:1.15rem;font-weight:700;color:var(--paper);line-height:1.25;margin-bottom:.7rem;font-optical-sizing:auto;transition:color .3s}
+.article-card.featured .ac-title{font-size:1.8rem}
+.article-card:hover .ac-title{color:var(--gold)}
+.ac-excerpt{font-size:.8rem;font-weight:300;line-height:1.8;color:rgba(244,239,230,.4);margin-bottom:1.2rem}
+.ac-read{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:.4rem;transition:gap .3s}
+.article-card:hover .ac-read{gap:.8rem}
+.ac-read svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.ac-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1rem}
+.ac-tag{font-size:.58rem;letter-spacing:.06em;background:var(--mist);color:rgba(244,239,230,.35);padding:.2rem .6rem;border-radius:2px}
+
+/* NEWSLETTER MINI */
+.blog-newsletter{margin:4rem 4rem 0;padding:2.5rem 3rem;border:1px solid var(--mist2);border-radius:4px;background:var(--ink2);display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.bn-txt h3{font-family:var(--display);font-size:1.3rem;font-weight:700;color:var(--paper);font-optical-sizing:auto;margin-bottom:.3rem}
+.bn-txt p{font-size:.8rem;color:rgba(244,239,230,.38);font-weight:300}
+.bn-form{display:flex;gap:.5rem;flex-shrink:0}
+.bn-input{background:var(--ink3);border:1.5px solid var(--mist2);color:var(--paper);padding:.65rem 1rem;border-radius:3px;font-family:var(--sans);font-size:.82rem;outline:none;width:240px;transition:border-color .25s}
+.bn-input:focus{border-color:var(--red)}
+.bn-input::placeholder{color:rgba(244,239,230,.2)}
+.bn-btn{background:var(--red);color:#fff;border:none;padding:.65rem 1.4rem;border-radius:3px;font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background .3s}
+.bn-btn:hover{background:#8b1a1e}
+
+/* FOOTER MINI */
+.blog-footer{margin-top:5rem;padding:2rem 4rem;border-top:1px solid var(--mist);display:flex;align-items:center;justify-content:space-between}
+.bf-brand{font-family:var(--display);font-size:1.1rem;font-weight:900;color:var(--paper);font-optical-sizing:auto}
+.bf-brand em{font-style:italic;color:var(--red)}
+.bf-copy{font-size:.65rem;color:rgba(244,239,230,.2)}
+.bf-back{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,239,230,.35);display:flex;align-items:center;gap:.4rem;transition:color .25s}
+.bf-back:hover{color:var(--paper)}
+
+@media(max-width:1024px){.blog-grid{grid-template-columns:1fr 1fr}.article-card.featured{grid-template-columns:1fr}.article-card.featured .ac-img{min-height:260px}.blog-hero,.blog-grid-wrap{padding-left:1.5rem;padding-right:1.5rem}.blog-newsletter{flex-direction:column;padding:2rem 1.5rem;margin:2rem 1.5rem 0}.bn-form{width:100%;flex-direction:column}.bn-input{width:100%}.blog-footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}}
+@media(max-width:600px){.blog-grid{grid-template-columns:1fr}.blog-title{font-size:clamp(2rem,8vw,3rem)}.ac-title{font-size:1rem}.article-card.featured .ac-title{font-size:1.3rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <span class="nb-jp">富士トラベル</span>
+    <span class="nb-en">Fuji<em>.</em>Travel</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/#paquetes">Paquetes</a></li>
+    <li><a href="/blog" class="active">Blog</a></li>
+    <li><a href="/#contacto">Contacto</a></li>
+  </ul>
+  <a href="/#contacto" class="nav-cta">Planifica tu viaje</a>
+</nav>
+
+<div class="blog-hero">
+  <div class="blog-hero-bg"></div>
+  <div class="blog-eyebrow">Fuji Travel · Blog</div>
+  <h1 class="blog-title">Guías de viaje<br><em>a Japón</em></h1>
+  <p class="blog-subtitle">Todo lo que necesitas saber antes de viajar al país del sol naciente. Escritas por quienes van allí cada año.</p>
+</div>
+
+<div class="blog-grid-wrap">
+  <div class="blog-section-title">Artículos destacados</div>
+  <div class="blog-grid">
+
+    <!-- Artículo destacado -->
+    <a href="/blog/mejor-epoca-viajar-japon" class="article-card featured">
+      <div class="ac-img">
+        <img src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=1200" alt="Sakura">
+        <div class="ac-img-overlay"></div>
+        <div class="ac-cat">Guía esencial</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-meta">
+          <span>Abril 2026</span>
+          <span>8 min lectura</span>
+          <span>Planificación</span>
+        </div>
+        <div class="ac-tags">
+          <span class="ac-tag">Sakura</span>
+          <span class="ac-tag">Estaciones</span>
+          <span class="ac-tag">Planificación</span>
+        </div>
+        <h2 class="ac-title">¿Cuál es la mejor época para viajar a Japón? Guía completa por estaciones</h2>
+        <p class="ac-excerpt">Japón es espectacular en todas las estaciones, pero cada una ofrece algo completamente distinto. Desde el sakura de primavera hasta el onsen bajo la nieve, te explicamos cuándo ir según lo que quieres vivir.</p>
+        <div class="ac-read">
+          Leer artículo
+          <svg viewBox="0 0 15 15"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- Artículo 2 -->
+    <a href="/blog/cuanto-cuesta-viaje-japon" class="article-card">
+      <div class="ac-img">
+        <img src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Tokio">
+        <div class="ac-img-overlay"></div>
+        <div class="ac-cat">Presupuesto</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-meta"><span>Marzo 2026</span><span>6 min</span></div>
+        <div class="ac-tags"><span class="ac-tag">Presupuesto</span><span class="ac-tag">Costes</span></div>
+        <h2 class="ac-title">¿Cuánto cuesta un viaje a Japón desde España en 2026?</h2>
+        <p class="ac-excerpt">Vuelos, hoteles, transporte, comida y actividades. Desglose real de lo que cuesta un viaje de 10-15 días a Japón con diferentes niveles de presupuesto.</p>
+        <div class="ac-read">Leer artículo <svg viewBox="0 0 15 15"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </a>
+
+    <!-- Artículo 3 -->
+    <a href="/blog/japon-con-ninos" class="article-card">
+      <div class="ac-img">
+        <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Japón con niños">
+        <div class="ac-img-overlay"></div>
+        <div class="ac-cat">Familias</div>
+      </div>
+      <div class="ac-body">
+        <div class="ac-meta"><span>Febrero 2026</span><span>7 min</span></div>
+        <div class="ac-tags"><span class="ac-tag">Familias</span><span class="ac-tag">Niños</span></div>
+        <h2 class="ac-title">Japón con niños: la guía definitiva para familias</h2>
+        <p class="ac-excerpt">Sí, Japón con niños es una experiencia increíble. Desde el Museo Ghibli hasta el parque de Pokémon, pasando por los templos y los trenes bala. Todo lo que necesitas saber.</p>
+        <div class="ac-read">Leer artículo <svg viewBox="0 0 15 15"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="blog-newsletter">
+  <div class="bn-txt">
+    <h3>Recibe los próximos artículos en tu email</h3>
+    <p>Guías, previsiones de sakura y ofertas exclusivas. Sin spam.</p>
+  </div>
+  <div class="bn-form">
+    <input class="bn-input" type="email" placeholder="tu@email.com">
+    <button class="bn-btn">Suscribirme</button>
+  </div>
+</div>
+
+<footer class="blog-footer">
+  <a href="/" class="bf-brand">Fuji<em>.</em>Travel</a>
+  <p class="bf-copy">© 2026 Fuji Travel · Villajoyosa, Costa Blanca</p>
+  <a href="/" class="bf-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Volver al inicio
+  </a>
+</footer>
+
+</body>
+</html>

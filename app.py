@@ -46,6 +46,22 @@ def sitemap():
 def robots():
     return send_from_directory('templates', 'robots.txt', mimetype='text/plain')
 
+@app.route('/blog')
+def blog():
+    return send_from_directory('templates', 'blog.html')
+
+@app.route('/blog/mejor-epoca-viajar-japon')
+def blog_epoca():
+    return send_from_directory('templates', 'blog-mejor-epoca.html')
+
+@app.route('/blog/cuanto-cuesta-viaje-japon')
+def blog_presupuesto():
+    return send_from_directory('templates', 'blog-presupuesto.html')
+
+@app.route('/blog/japon-con-ninos')
+def blog_ninos():
+    return send_from_directory('templates', 'blog-japon-ninos.html')
+
 @app.errorhandler(404)
 def page_not_found(e):
     return send_from_directory('templates', '404.html'), 404

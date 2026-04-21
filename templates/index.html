@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#060606">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Fuji Travel — El Japón que mereces | Agencia Premium desde España</title>
 <meta name="description" content="Agencia de viajes premium especializada en Japón desde la Costa Blanca. Itinerarios a medida, guía en español, ryokans y onsen. +16 años. Más de 2.500 viajeros satisfechos.">
 <meta name="keywords" content="viajes Japón, agencia viajes Japón España, paquetes Japón 2026, viaje Tokio, viaje Kioto, sakura Japón, anime tour, viaje Japón premium">
@@ -122,7 +125,12 @@ body {
   color: var(--paper);
   overflow-x: hidden;
   cursor: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+/* Tap targets mínimos 44px en móvil */
+a, button { touch-action: manipulation }
 img, video { display: block; max-width: 100% }
 a { color: inherit; text-decoration: none }
 
@@ -186,11 +194,14 @@ body.menu-open .nav-mobile-overlay {
 body.menu-open .nav-mobile-overlay ul li {
   animation: mobileNavIn .5s var(--ease) both;
 }
-body.menu-open .nav-mobile-overlay ul li:nth-child(1) { animation-delay: .08s }
-body.menu-open .nav-mobile-overlay ul li:nth-child(2) { animation-delay: .14s }
-body.menu-open .nav-mobile-overlay ul li:nth-child(3) { animation-delay: .20s }
-body.menu-open .nav-mobile-overlay ul li:nth-child(4) { animation-delay: .26s }
-body.menu-open .nav-mobile-overlay ul li:nth-child(5) { animation-delay: .32s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(1) { animation-delay: .06s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(2) { animation-delay: .11s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(3) { animation-delay: .16s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(4) { animation-delay: .21s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(5) { animation-delay: .26s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(6) { animation-delay: .31s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(7) { animation-delay: .36s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(8) { animation-delay: .41s }
 @keyframes mobileNavIn {
   from { opacity: 0; transform: translateY(18px) }
   to   { opacity: 1; transform: none }
@@ -446,6 +457,11 @@ nav.scrolled {
   position: sticky; top: 0; height: 100vh;
   overflow: hidden; display: flex; align-items: center;
 }
+.story-pin::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 120px; z-index: 4; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--ink));
+}
 .story-bg-layer {
   position: absolute; inset: 0; z-index: 0;
 }
@@ -488,8 +504,33 @@ nav.scrolled {
 /* ═══════════════════════════════════════════════════
    GALLERY – Cinematic grid
 ═══════════════════════════════════════════════════ */
-.s-gallery { padding: 7rem 0; background: var(--ink2); overflow: hidden }
-.s-gallery-hd { padding: 0 4rem; margin-bottom: 3.5rem }
+.s-gallery { padding: 7rem 0; background: var(--ink2); overflow: hidden; border-top: 1px solid var(--mist) }
+.s-gallery-hd { padding: 0 4rem; margin-bottom: 2rem }
+.gal-filters {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  padding: 0 4rem; margin-bottom: 2.5rem;
+}
+.gal-filter {
+  font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+  background: transparent; color: rgba(244,239,230,.38);
+  border: 1px solid var(--mist2); border-radius: 100px;
+  padding: .38rem 1rem; cursor: pointer; font-family: var(--sans);
+  transition: all .3s var(--ease);
+}
+.gal-filter:hover { color: var(--paper); border-color: rgba(244,239,230,.25) }
+.gal-filter.active { background: var(--red-dim); color: var(--paper); border-color: rgba(181,39,43,.5) }
+.gal-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-rows: 280px 220px 220px;
+  gap: .6rem; padding: 0 4rem;
+}
+.gi { position: relative; overflow: hidden; border-radius: 2px; cursor: pointer }
+.gi:nth-child(1) { grid-row: 1 / 3 }
+.gi:nth-child(7) { grid-column: 1 / 3 }
+.gi.gal-hidden { display: none }
+.gi img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease), filter .6s }
+.gi:hover img { transform: scale(1.08); filter: brightness(.75) saturate(.9) }
 .gal-grid {
   display: grid;
   grid-template-columns: 1.55fr 1fr 1fr;
@@ -521,7 +562,7 @@ nav.scrolled {
 /* ═══════════════════════════════════════════════════
    SEASONAL  (Otoño + Invierno showcase)
 ═══════════════════════════════════════════════════ */
-.s-seasons { background: var(--ink) }
+.s-seasons { background: var(--ink); border-top: 1px solid var(--mist) }
 
 .season-block {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -578,7 +619,7 @@ nav.scrolled {
 /* ═══════════════════════════════════════════════════
    PACKAGES
 ═══════════════════════════════════════════════════ */
-.s-packages { padding: 8rem 4rem; background: var(--ink) }
+.s-packages { padding: 8rem 4rem; background: var(--ink); border-top: 1px solid var(--mist) }
 .pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--mist); margin-top: 4.5rem }
 .pkg-card {
   background: var(--ink); position: relative; overflow: hidden;
@@ -783,7 +824,7 @@ nav.scrolled {
 /* ═══════════════════════════════════════════════════
    ANIME EXPERIENCE
 ═══════════════════════════════════════════════════ */
-.s-anime { padding: 8rem 4rem; background: var(--ink3); position: relative; overflow: hidden }
+.s-anime { padding: 8rem 4rem; background: var(--ink3); position: relative; overflow: hidden; border-top: 1px solid var(--mist) }
 .anime-ambiance {
   position: absolute; inset: 0; z-index: 0;
   background:
@@ -844,7 +885,7 @@ nav.scrolled {
 /* ═══════════════════════════════════════════════════
    TESTIMONIALS
 ═══════════════════════════════════════════════════ */
-.s-test { padding: 8rem 4rem; background: var(--ink2) }
+.s-test { padding: 8rem 4rem; background: var(--ink2); border-top: 1px solid var(--mist) }
 .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 4.5rem }
 .tc {
   background: var(--ink3); border: 1px solid var(--mist); border-radius: 3px;
@@ -886,7 +927,7 @@ nav.scrolled {
 /* ═══════════════════════════════════════════════════
    CONTACT
 ═══════════════════════════════════════════════════ */
-.s-contact { padding: 8rem 4rem; background: var(--ink); position: relative; overflow: hidden }
+.s-contact { padding: 8rem 4rem; background: var(--ink); position: relative; overflow: hidden; border-top: 1px solid var(--mist) }
 .s-contact-kanji {
   position: absolute; font-family: var(--jp); font-size: 28rem;
   color: rgba(244,239,230,.012); right: -1rem; top: 50%; transform: translateY(-50%);
@@ -973,6 +1014,158 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   transition: all .25s;
 }
 .soc-btn:hover { border-color: var(--red); color: var(--paper); background: var(--red-dim) }
+
+/* ═══════════════════════════════════════════════════
+   NAV DROPDOWN
+═══════════════════════════════════════════════════ */
+.nav-dropdown { position: relative }
+.nav-drop-trigger {
+  display: flex; align-items: center; gap: .35rem; cursor: pointer;
+}
+.nav-drop-arrow { transition: transform .3s var(--ease); flex-shrink: 0 }
+.nav-dropdown:hover .nav-drop-arrow { transform: rotate(180deg) }
+
+.nav-drop-panel {
+  position: absolute; top: calc(100% + 1.2rem); left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(6,6,6,.95); backdrop-filter: blur(24px) saturate(1.2);
+  border: 1px solid var(--mist2); border-radius: 6px;
+  padding: .5rem; min-width: 240px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+  z-index: 800;
+}
+.nav-dropdown:hover .nav-drop-panel {
+  opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+.nav-drop-panel::before {
+  content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px; background: rgba(6,6,6,.95);
+  border-left: 1px solid var(--mist2); border-top: 1px solid var(--mist2);
+  transform: translateX(-50%) rotate(45deg);
+}
+.ndp-item {
+  display: flex; align-items: center; gap: .85rem;
+  padding: .75rem .9rem; border-radius: 4px;
+  transition: background .2s; color: rgba(244,239,230,.65);
+}
+.ndp-item:hover { background: rgba(244,239,230,.05); color: var(--paper) }
+.ndp-icon { font-size: 1rem; width: 28px; text-align: center; flex-shrink: 0 }
+.ndp-info { display: flex; flex-direction: column; gap: .1rem }
+.ndp-name { font-size: .78rem; font-weight: 500; color: inherit }
+.ndp-desc { font-size: .62rem; color: rgba(244,239,230,.3); font-weight: 300 }
+.ndp-item:hover .ndp-desc { color: rgba(244,239,230,.45) }
+
+/* ═══════════════════════════════════════════════════
+   NEWSLETTER
+═══════════════════════════════════════════════════ */
+.s-newsletter {
+  padding: 5rem 4rem; position: relative; overflow: hidden;
+  background: var(--ink2);
+  border-top: 1px solid var(--mist); border-bottom: 1px solid var(--mist);
+}
+.nl-wrap {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center; position: relative; z-index: 1;
+}
+.nl-left { position: relative }
+.nl-kanji {
+  position: absolute; font-family: var(--jp); font-size: 14rem; font-weight: 200;
+  color: rgba(244,239,230,.025); right: -2rem; top: 50%; transform: translateY(-50%);
+  pointer-events: none; user-select: none; line-height: 1;
+}
+.nl-title {
+  font-family: var(--display); font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700; line-height: 1.1; color: var(--paper);
+  margin-bottom: 1rem; font-optical-sizing: auto;
+}
+.nl-title em { font-style: italic; color: var(--gold); font-weight: 300 }
+.nl-txt {
+  font-size: .88rem; font-weight: 300; line-height: 1.85;
+  color: rgba(244,239,230,.42); margin-bottom: 1.5rem; max-width: 420px;
+}
+.nl-badges { display: flex; flex-wrap: wrap; gap: .4rem }
+.nl-badge {
+  font-size: .62rem; letter-spacing: .06em;
+  background: var(--mist); color: rgba(244,239,230,.4);
+  border: 1px solid var(--mist2); border-radius: 100px;
+  padding: .28rem .8rem; transition: all .3s;
+}
+.nl-badge:hover { background: var(--red-dim); border-color: rgba(181,39,43,.4); color: var(--paper) }
+
+.nl-right {}
+.nl-form-wrap {
+  background: var(--ink3); border: 1px solid var(--mist2);
+  border-radius: 6px; padding: 2.5rem;
+}
+.nl-form-wrap::before {
+  display: none; /* resetear any inherited before */
+}
+.nl-form-title {
+  font-size: .82rem; color: rgba(244,239,230,.4); margin-bottom: 1.4rem;
+  text-align: center; line-height: 1.5;
+}
+.nl-form-title strong { color: var(--paper) }
+.nl-form { display: flex; flex-direction: column; gap: .65rem; margin-bottom: .8rem }
+.nl-input {
+  background: var(--ink2); border: 1.5px solid var(--mist2);
+  color: var(--paper); padding: .78rem 1rem; border-radius: 3px;
+  font-family: var(--sans); font-size: .87rem; outline: none;
+  transition: border-color .25s;
+}
+.nl-input::placeholder { color: rgba(244,239,230,.18) }
+.nl-input:focus { border-color: var(--red) }
+.nl-btn {
+  background: var(--red); color: #fff; border: none; cursor: pointer;
+  padding: .9rem 1.5rem; border-radius: 3px;
+  font-family: var(--sans); font-size: .75rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: .55rem;
+  transition: all .3s var(--ease); position: relative; overflow: hidden;
+}
+.nl-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,.13);
+  transform: translateX(-110%) skewX(-10deg);
+  transition: transform .5s var(--ease);
+}
+.nl-btn:hover::before { transform: translateX(110%) skewX(-10deg) }
+.nl-btn:hover { background: #8b1a1e; transform: translateY(-1px); box-shadow: 0 6px 22px rgba(181,39,43,.35) }
+.nl-note { font-size: .62rem; color: rgba(244,239,230,.2); text-align: center; line-height: 1.6 }
+.nl-ok { text-align: center; padding: 2rem 1rem }
+.nl-ok-icon { font-size: 2.5rem; margin-bottom: .8rem; line-height: 1 }
+.nl-ok-title {
+  font-family: var(--display); font-size: 1.4rem; font-weight: 700;
+  color: var(--paper); margin-bottom: .5rem; font-optical-sizing: auto;
+}
+.nl-ok-txt { font-size: .82rem; font-weight: 300; color: rgba(244,239,230,.42); line-height: 1.7 }
+
+@media (max-width: 1024px) {
+  .nl-wrap { grid-template-columns: 1fr; gap: 2.5rem }
+  .s-newsletter { padding: 4rem 1.5rem }
+  .nl-kanji { display: none }
+}
+
+/* ═══════════════════════════════════════════════════
+   BOTÓN VOLVER ARRIBA
+═══════════════════════════════════════════════════ */
+.back-top {
+  position: fixed; bottom: 9.5rem; right: 2rem; z-index: 500;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(6,6,6,.75); backdrop-filter: blur(12px);
+  border: 1px solid var(--mist2); color: rgba(244,239,230,.5);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: all .35s var(--ease);
+}
+.back-top.show {
+  opacity: 1; pointer-events: auto;
+}
+.back-top:hover {
+  background: var(--red); border-color: var(--red);
+  color: #fff; transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(181,39,43,.35);
+}
 
 /* ═══════════════════════════════════════════════════
    COOKIE BANNER RGPD
@@ -1686,43 +1879,232 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
 
 /* ═══════════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — TABLET (≤1024px)
 ═══════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  nav { padding: 1.2rem 1.5rem } nav.scrolled { padding: .9rem 1.5rem }
+  /* Nav */
+  nav { padding: 1.2rem 1.5rem }
+  nav.scrolled { padding: .9rem 1.5rem }
   .nav-links { display: none }
   .nav-hamburger { display: flex }
   .nav-mobile-overlay { display: flex }
+  .nav-cta { display: none }
+
+  /* Hero */
   .hero-content { padding: 0 1.5rem 5rem }
   .hero-counter { display: none }
   .hero-scroll { display: none }
+
+  /* Story */
   .story-panels { padding: 0 1.5rem }
   .story-panel { width: auto; left: 1.5rem; right: 1.5rem }
   .story-progress { display: none }
+
+  /* Galería */
   .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; padding: 0 1.5rem }
   .gi:first-child { grid-row: auto; grid-column: 1 / -1 }
   .s-gallery-hd { padding: 0 1.5rem }
+
+  /* Estaciones */
   .season-block { grid-template-columns: 1fr; min-height: auto }
   .sb-img { height: 55vw; min-height: 280px }
-  .sb-body { padding: 4rem 2rem }
-  .s-packages, .s-anime, .s-test, .s-contact { padding: 5rem 1.5rem }
+  .sb-body { padding: 3rem 1.5rem }
+
+  /* Paquetes */
+  .s-packages { padding: 4rem 1.5rem }
   .pkg-grid { grid-template-columns: 1fr }
   .pkg-card.featured { grid-template-columns: 1fr }
   .pkg-card.featured .pkg-thumb { min-height: 240px; height: 240px }
+  .pkg-timeline { margin-top: 2rem }
+  .ptl-header, .ptl-routes { padding: 1.2rem 1.5rem }
+  .ptl-tabs { gap: 0 }
+  .ptl-tab { padding: .7rem 1rem; font-size: .65rem }
+
+  /* Gastronomía */
+  .s-gastro { padding: 4rem 1.5rem }
+  .gastro-map-wrap { grid-template-columns: 1fr }
+  .gastro-map-svg-wrap { display: none }
+  .gc-card { grid-template-columns: 1fr }
+  .gc-num { display: none }
+  .gc-img-wrap { height: 200px }
+  .gc-img-overlay { background: linear-gradient(to top, var(--ink2) 0%, transparent 50%) }
+  .gastro-cta-wrap { flex-direction: column; gap: 1.5rem; text-align: center; padding: 1.5rem }
+  .gastro-cta-txt { font-size: 1rem }
+
+  /* Intolerancias */
+  .s-intol { padding: 4rem 1.5rem }
+  .intol-grid { grid-template-columns: 1fr 1fr }
+  .intol-filter { padding: 1.2rem 1.5rem }
+
+  /* Anime */
+  .s-anime { padding: 5rem 1.5rem }
   .anime-grid { grid-template-columns: 1fr; gap: 3rem }
+
+  /* Testimonios */
+  .s-test { padding: 4rem 1.5rem }
   .test-grid { grid-template-columns: 1fr }
+  .test-rating { flex-wrap: wrap; gap: .8rem; padding: 1.2rem 1.5rem }
+
+  /* Por qué nosotros */
+  .s-why { padding: 4rem 1.5rem }
+  .why-grid { grid-template-columns: 1fr 1fr }
+  .why-trust { gap: 1rem 2rem; padding: 1.5rem }
+  .wt-sep { display: none }
+
+  /* FAQ */
+  .s-faq { padding: 4rem 1.5rem }
+  .faq-cols { grid-template-columns: 1fr }
+
+  /* Newsletter */
+  .s-newsletter { padding: 4rem 1.5rem }
+  .nl-wrap { grid-template-columns: 1fr; gap: 2.5rem }
+  .nl-kanji { display: none }
+
+  /* Contacto */
+  .s-contact { padding: 4rem 1.5rem }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem }
+
+  /* Footer */
   footer { padding: 4rem 1.5rem 2rem }
   .ft-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem }
   .ft-bottom { flex-direction: column; gap: 1rem; text-align: center }
-  body { cursor: auto } #cursor-dot, #cursor-ring { display: none }
+
+  /* Chat IA */
+  .ai-chat-panel { width: calc(100vw - 3rem); right: 1.5rem; bottom: 9rem }
+
+  /* Misc */
+  body { cursor: auto }
+  #cursor-dot, #cursor-ring { display: none }
 }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — MÓVIL (≤600px)
+═══════════════════════════════════════════════════ */
 @media (max-width: 600px) {
-  .hero-title { font-size: clamp(3rem, 13vw, 5rem) }
+  /* Tipografía base */
+  html { font-size: 15px }
+
+  /* Hero */
+  .hero-title { font-size: clamp(2.6rem, 12vw, 4.5rem) }
+  .hero-sub { font-size: .9rem }
+  .hero-actions { flex-direction: column; gap: .75rem }
+  .btn-fill, .btn-ghost { width: 100%; justify-content: center; padding: .9rem 1.5rem }
+  .hero-eyebrow { margin-bottom: 1.2rem }
+
+  /* Nav mobile overlay — letras más pequeñas */
+  .nav-mobile-overlay ul a { font-size: clamp(1.6rem, 6vw, 2.2rem) }
+  .nav-mobile-contact { font-size: .6rem }
+
+  /* Marquee */
+  .mq-item { padding: 0 1.2rem }
+
+  /* Story */
+  .story-h2 { font-size: clamp(1.8rem, 6vw, 2.8rem) }
+  .story-p { font-size: .82rem }
+  .story-num { font-size: 3.5rem }
+
+  /* Galería */
+  .gal-grid { grid-template-columns: 1fr; padding: 0 1rem }
+  .gi:first-child { grid-column: auto }
+  .gal-grid .gi { height: 220px }
+
+  /* Estaciones */
   .season-block.reverse { direction: ltr }
+  .sb-title { font-size: clamp(1.8rem, 6vw, 2.6rem) }
+  .sb-body { padding: 2.5rem 1.2rem }
+  .sb-kanji { font-size: 10rem }
+  .sb-chips { gap: .3rem }
+
+  /* Paquetes */
+  .pkg-name { font-size: 1.2rem }
+  .pkg-card.featured .pkg-name { font-size: 1.5rem }
+  .pkg-timeline { border-radius: 0; border-left: none; border-right: none }
+  .ptl-city { font-size: .9rem }
+  .ptl-tabs { overflow-x: auto }
+  .ptl-tab { font-size: .6rem; padding: .65rem .85rem; white-space: nowrap }
+
+  /* Gastronomía */
+  .gc-body { padding: 1.2rem }
+  .gc-title { font-size: 1.1rem }
+  .gc-platos { gap: .25rem }
+  .gastro-bg-kanji { font-size: 20rem }
+
+  /* Intolerancias */
+  .intol-grid { grid-template-columns: 1fr }
+  .intol-card { padding: 1.8rem 1.2rem }
+  .intol-card-title { font-size: 1.1rem }
+
+  /* Anime */
   .anime-cards { grid-template-columns: 1fr }
+  .anime-body { font-size: .85rem }
+  .anime-pills { gap: .3rem }
+  .anime-pill { font-size: .6rem }
+
+  /* Testimonios */
+  .tc { padding: 1.8rem 1.2rem }
+  .tc-text { font-size: .82rem }
+  .test-rating { flex-direction: column; align-items: flex-start; gap: .5rem }
+  .tr-score { font-size: 2.2rem }
+
+  /* Por qué nosotros */
+  .why-grid { grid-template-columns: 1fr }
+  .why-card { padding: 2rem 1.2rem }
+  .why-title { font-size: 1.1rem }
+  .why-trust { flex-direction: row; flex-wrap: wrap; justify-content: space-around; gap: 1.2rem }
+  .wt-n { font-size: 1.5rem }
+
+  /* FAQ */
+  .faq-q { font-size: .82rem; padding: 1rem 1.2rem }
+  .faq-a.open { padding: 0 1.2rem 1rem }
+  .faq-a p { font-size: .78rem }
+
+  /* Newsletter */
+  .nl-form-wrap { padding: 1.8rem 1.2rem }
+  .nl-title { font-size: clamp(1.5rem, 5vw, 2rem) }
+  .nl-badges { gap: .3rem }
+  .nl-badge { font-size: .58rem }
+
+  /* Contacto */
+  .contact-title { font-size: clamp(1.8rem, 6vw, 2.8rem) }
+  .contact-form { padding: 1.8rem 1.2rem }
   .fg-row { grid-template-columns: 1fr }
+  .cf-title { font-size: 1.3rem }
+  .fg-intol-chips { gap: .3rem }
+  .fg-intol-chip { font-size: .62rem; padding: .28rem .7rem }
+
+  /* Footer */
   .ft-grid { grid-template-columns: 1fr }
+  .ft-logo-en { font-size: 1.2rem }
+  .ft-desc { font-size: .75rem }
+
+  /* Pop-up salida */
+  .exit-modal { padding: 2.5rem 1.5rem }
+  .exit-title { font-size: 1.5rem }
+  .exit-txt { font-size: .78rem }
+
+  /* Cookie banner */
+  .cookie-banner { left: .5rem; bottom: .5rem; width: calc(100vw - 1rem); padding: 1.2rem }
+  .cb-actions { flex-direction: column }
+  .cb-btn { width: 100%; text-align: center }
+
+  /* Botones flotantes */
+  .wa { bottom: 1.2rem; right: 1.2rem; width: 46px; height: 46px }
+  .ai-chat-btn { bottom: 4.8rem; right: 1.2rem; width: 46px; height: 46px }
+  .back-top { bottom: 8.5rem; right: 1.2rem; width: 36px; height: 36px }
+  .ai-chat-panel { width: calc(100vw - 1rem); right: .5rem; bottom: 8.5rem; max-height: 70vh }
+
+  /* Sección títulos generales */
+  .s-title { font-size: clamp(1.8rem, 6vw, 2.8rem) }
+
+  /* Lightbox */
+  .lb-prev { left: .5rem }
+  .lb-next { right: .5rem }
+  .lb-prev, .lb-next { width: 40px; height: 40px; font-size: 1.8rem }
+  .lb-img { max-width: 100vw }
+  .lb-caption { font-size: .7rem; padding: 0 1rem }
+
+  /* Mapa gastro */
+  .gastro-map-svg-wrap { display: none }
 }
 </style>
 </head>
@@ -1761,11 +2143,48 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <li><a href="#story">Experiencia</a></li>
     <li><a href="#estaciones">Estaciones</a></li>
     <li><a href="#paquetes">Paquetes</a></li>
-    <li><a href="#gastronomia">Gastronomía</a></li>
-    <li><a href="#intolerancias">Intolerancias</a></li>
-    <li><a href="#nosotros">Por qué nosotros</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#anime">Anime</a></li>
+    <!-- DROPDOWN: Japón -->
+    <li class="nav-dropdown">
+      <a href="#gastronomia" class="nav-drop-trigger">
+        Descubrir
+        <svg class="nav-drop-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="nav-drop-panel">
+        <a href="#gastronomia" class="ndp-item">
+          <span class="ndp-icon">🍜</span>
+          <span class="ndp-info"><span class="ndp-name">Gastronomía</span><span class="ndp-desc">Rutas culinarias por ciudad</span></span>
+        </a>
+        <a href="#intolerancias" class="ndp-item">
+          <span class="ndp-icon">🌿</span>
+          <span class="ndp-info"><span class="ndp-name">Intolerancias</span><span class="ndp-desc">Japón para todos los viajeros</span></span>
+        </a>
+        <a href="#anime" class="ndp-item">
+          <span class="ndp-icon">⚡</span>
+          <span class="ndp-info"><span class="ndp-name">Anime Experience</span><span class="ndp-desc">Vive los mundos que te emocionaron</span></span>
+        </a>
+      </div>
+    </li>
+    <!-- DROPDOWN: Nosotros -->
+    <li class="nav-dropdown">
+      <a href="#nosotros" class="nav-drop-trigger">
+        Agencia
+        <svg class="nav-drop-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="nav-drop-panel">
+        <a href="/blog" class="ndp-item">
+          <span class="ndp-icon">📝</span>
+          <span class="ndp-info"><span class="ndp-name">Blog de viajes</span><span class="ndp-desc">Guías, rutas y consejos</span></span>
+        </a>
+        <a href="#nosotros" class="ndp-item">
+          <span class="ndp-icon">🏯</span>
+          <span class="ndp-info"><span class="ndp-name">Por qué nosotros</span><span class="ndp-desc">16 años · 2.500 viajeros · 4.9★</span></span>
+        </a>
+        <a href="#faq" class="ndp-item">
+          <span class="ndp-icon">❓</span>
+          <span class="ndp-info"><span class="ndp-name">Preguntas frecuentes</span><span class="ndp-desc">Visado, precios, ryokans…</span></span>
+        </a>
+      </div>
+    </li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="#contacto" class="nav-cta">Planifica tu viaje</a>
@@ -1866,7 +2285,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 </div></div>
 
 <!-- ══════════════════ SCROLL STORY ══════════════════ -->
-<div id="story" style="height: 200vh"><!-- spacer for pin -->
+<div id="story" style="height: 130vh; background: var(--ink)"><!-- spacer for pin -->
   <div class="story-wrap">
     <div class="story-pin" id="storyPin">
       <!-- Background slides -->
@@ -1921,33 +2340,91 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Fotografía del destino</span></div>
     <h2 class="s-title">Japón a través de<br><em>cada estación</em></h2>
   </div>
-  <div class="gal-grid">
-    <div class="gi rv" data-lb-src="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Monte Fuji al amanecer · Icono nacional">
+
+  <!-- FILTROS -->
+  <div class="gal-filters rv">
+    <button class="gal-filter active" data-cat="all">Todas</button>
+    <button class="gal-filter" data-cat="ciudad">Ciudades</button>
+    <button class="gal-filter" data-cat="naturaleza">Naturaleza</button>
+    <button class="gal-filter" data-cat="cultura">Cultura</button>
+    <button class="gal-filter" data-cat="gastronomia">Gastronomía</button>
+  </div>
+
+  <div class="gal-grid" id="galGrid">
+
+    <div class="gi rv" data-cat="naturaleza" data-lb-src="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Monte Fuji al amanecer · Icono nacional de Japón">
       <img src="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Monte Fuji">
-      <div class="gi-over"><div class="gi-tag">Icono nacional</div><div class="gi-name">Monte Fuji al amanecer</div></div>
+      <div class="gi-over"><div class="gi-tag">Naturaleza</div><div class="gi-name">Monte Fuji al amanecer</div></div>
       <div class="gi-badge">Must See</div>
       <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.08s" data-lb-src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Fushimi Inari · Miles de torii rojos · Kioto">
+
+    <div class="gi rv" style="transition-delay:.06s" data-cat="cultura" data-lb-src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Fushimi Inari · Miles de torii rojos · Kioto">
       <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Fushimi Inari">
-      <div class="gi-over"><div class="gi-tag">Kioto</div><div class="gi-name">Fushimi Inari</div></div>
+      <div class="gi-over"><div class="gi-tag">Cultura · Kioto</div><div class="gi-name">Fushimi Inari</div></div>
       <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.16s" data-lb-src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Shinjuku de noche · La metrópoli que nunca duerme · Tokio">
+
+    <div class="gi rv" style="transition-delay:.12s" data-cat="ciudad" data-lb-src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Shinjuku de noche · La metrópoli que nunca duerme · Tokio">
       <img src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Tokio">
-      <div class="gi-over"><div class="gi-tag">Tokio</div><div class="gi-name">Shinjuku de noche</div></div>
+      <div class="gi-over"><div class="gi-tag">Ciudad · Tokio</div><div class="gi-name">Shinjuku de noche</div></div>
       <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.24s" data-lb-src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Hanami en Tokio · La floración de los cerezos · Primavera">
+
+    <div class="gi rv" style="transition-delay:.18s" data-cat="naturaleza" data-lb-src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Hanami en Tokio · La floración de los cerezos · Primavera">
       <img src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=700" alt="Sakura">
-      <div class="gi-over"><div class="gi-tag">Primavera</div><div class="gi-name">Hanami en Tokio</div></div>
+      <div class="gi-over"><div class="gi-tag">Primavera</div><div class="gi-name">Hanami · Sakura</div></div>
       <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.32s" data-lb-src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Invierno nevado · Hokkaido · El norte salvaje de Japón">
-      <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hokkaido">
-      <div class="gi-over"><div class="gi-tag">Hokkaido</div><div class="gi-name">Invierno nevado</div></div>
+
+    <div class="gi rv" style="transition-delay:.24s" data-cat="naturaleza" data-lb-src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Invierno nevado · Hokkaido · El norte salvaje de Japón">
+      <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hokkaido nevado">
+      <div class="gi-over"><div class="gi-tag">Invierno · Hokkaido</div><div class="gi-name">Paisaje nevado</div></div>
       <div class="gi-zoom">⤢</div>
     </div>
+
+    <div class="gi rv" style="transition-delay:.30s" data-cat="gastronomia" data-lb-src="https://images.pexels.com/photos/884596/pexels-photo-884596.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Ramen · El plato más icónico de Japón">
+      <img src="https://images.pexels.com/photos/884596/pexels-photo-884596.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Ramen">
+      <div class="gi-over"><div class="gi-tag">Gastronomía</div><div class="gi-name">Ramen auténtico</div></div>
+      <div class="gi-zoom">⤢</div>
+    </div>
+
+    <div class="gi rv" style="transition-delay:.36s" data-cat="cultura" data-lb-src="https://images.pexels.com/photos/2070033/pexels-photo-2070033.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Festival de verano · Matsuri · Japón vivo">
+      <img src="https://images.pexels.com/photos/2070033/pexels-photo-2070033.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Festival">
+      <div class="gi-over"><div class="gi-tag">Cultura · Verano</div><div class="gi-name">Matsuri nocturno</div></div>
+      <div class="gi-zoom">⤢</div>
+    </div>
+
+    <div class="gi rv" style="transition-delay:.42s" data-cat="ciudad" data-lb-src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Templo Senso-ji · Asakusa · El Tokio histórico">
+      <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Asakusa">
+      <div class="gi-over"><div class="gi-tag">Historia · Tokio</div><div class="gi-name">Senso-ji · Asakusa</div></div>
+      <div class="gi-zoom">⤢</div>
+    </div>
+
+    <div class="gi rv" style="transition-delay:.48s" data-cat="gastronomia" data-lb-src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Kaiseki · Alta cocina japonesa de temporada · Kioto">
+      <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Kaiseki">
+      <div class="gi-over"><div class="gi-tag">Gastronomía · Kioto</div><div class="gi-name">Kaiseki de temporada</div></div>
+      <div class="gi-zoom">⤢</div>
+    </div>
+
+    <div class="gi rv" style="transition-delay:.54s" data-cat="cultura" data-lb-src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Koyo · Follaje otoñal · Kioto en llamas">
+      <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Otoño Kioto">
+      <div class="gi-over"><div class="gi-tag">Otoño · Kioto</div><div class="gi-name">Koyo · Momiji</div></div>
+      <div class="gi-zoom">⤢</div>
+    </div>
+
+    <div class="gi rv" style="transition-delay:.60s" data-cat="ciudad" data-lb-src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Osaka de noche · Dotonbori · La ciudad más divertida de Japón">
+      <img src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Osaka">
+      <div class="gi-over"><div class="gi-tag">Ciudad · Osaka</div><div class="gi-name">Dotonbori de noche</div></div>
+      <div class="gi-zoom">⤢</div>
+    </div>
+
+    <div class="gi rv" style="transition-delay:.66s" data-cat="gastronomia" data-lb-src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Street food · Takoyaki y okonomiyaki · Osaka">
+      <img src="https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Street food">
+      <div class="gi-over"><div class="gi-tag">Street food · Osaka</div><div class="gi-name">Takoyaki & Okonomiyaki</div></div>
+      <div class="gi-zoom">⤢</div>
+    </div>
+
   </div>
 </section>
 
@@ -2018,7 +2495,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   <!-- OTOÑO -->
   <div class="season-block rv">
     <div class="sb-img">
-      <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Otoño en Kioto">
+      <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Otoño en Kioto">
       <div class="sb-overlay"></div>
     </div>
     <div class="sb-body">
@@ -2143,7 +2620,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <!-- HOKKAIDO -->
     <div class="pkg-card rv" style="transition-delay:.2s" data-intol="gluten vegan lactosa">
       <div class="pkg-thumb">
-        <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hokkaido">
+        <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hokkaido nevado">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-urgency"><span class="urg-dot"></span>Últimas 3 plazas invierno</div>
       </div>
@@ -2162,7 +2639,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <!-- RURAL -->
     <div class="pkg-card rv" style="transition-delay:.3s" data-intol="gluten vegan marisco lactosa halal">
       <div class="pkg-thumb">
-        <img src="https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Rural">
+        <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Rural Japón Profundo">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-urgency pkg-urgency--gold"><span class="urg-dot urg-dot--gold"></span>Nuevo para 2026</div>
       </div>
@@ -2381,7 +2858,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" style="transition-delay:.3s" data-city="fukuoka">
         <div class="gc-num">04</div>
         <div class="gc-img-wrap">
-          <img src="https://images.pexels.com/photos/884596/pexels-photo-884596.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ramen Fukuoka">
+          <img src="https://images.pexels.com/photos/1907642/pexels-photo-1907642.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ramen Fukuoka">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">福岡 · Kyushu</div>
         </div>
@@ -2413,6 +2890,48 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 
 </section>
 
+<!-- ══════════════════ NEWSLETTER ══════════════════ -->
+<section class="s-newsletter">
+  <div class="nl-wrap rv">
+    <div class="nl-left">
+      <div class="nl-kanji">旅</div>
+      <div class="s-eyebrow" style="margin-bottom:.8rem"><div class="s-ey-line"></div><span class="s-ey-txt">Newsletter Fuji Travel</span></div>
+      <h2 class="nl-title">Japón en tu bandeja.<br><em>Gratis. Cada mes.</em></h2>
+      <p class="nl-txt">Previsiones de sakura, ofertas flash, guías de destino, consejos de viajeros y las mejores rutas gastronómicas. Sin spam, solo Japón.</p>
+      <div class="nl-badges">
+        <span class="nl-badge">🌸 Previsión sakura anual</span>
+        <span class="nl-badge">✈️ Ofertas flash exclusivas</span>
+        <span class="nl-badge">🍜 Guías gastronómicas</span>
+        <span class="nl-badge">🏯 Rutas secretas</span>
+      </div>
+    </div>
+    <div class="nl-right">
+      <div class="nl-form-wrap" id="nlFormWrap">
+        <div class="nl-form-title">Únete a <strong>4.200+</strong> viajeros suscritos</div>
+        <div class="nl-form">
+          <input class="nl-input" type="text" id="nlName" placeholder="Tu nombre">
+          <input class="nl-input" type="email" id="nlEmail" placeholder="tu@email.com">
+          <button class="nl-btn" id="nlSubmit">
+            Suscribirme gratis
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <p class="nl-note">Sin spam · Cancela cuando quieras · RGPD cumplido</p>
+      </div>
+      <div class="nl-ok" id="nlOk" style="display:none">
+        <div class="nl-ok-icon">🌸</div>
+        <h3 class="nl-ok-title">¡Bienvenido/a al club!</h3>
+        <p class="nl-ok-txt">Recibirás nuestro próximo email con la previsión de sakura 2026 y las mejores ofertas de temporada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTÓN VOLVER ARRIBA -->
+<button class="back-top" id="backTop" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 13V5M5 9l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
 <!-- ══════════════════ ANIME ══════════════════ -->
 <section class="s-anime" id="anime">
   <div class="anime-ambiance"></div>
@@ -2437,7 +2956,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     </div>
     <div class="anime-cards rr">
       <div class="anime-card ac-ghibli">
-        <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Ghibli">
+        <img src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=500" alt="Ghibli">
         <div class="anime-card-body"><span class="ac-label">Studio Ghibli</span><span class="ac-title">Bosques & Espíritus</span></div>
       </div>
       <div class="anime-card ac-cyber">
@@ -2445,7 +2964,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
         <div class="anime-card-body"><span class="ac-label">Neo Tokyo</span><span class="ac-title">Luces & Futuro</span></div>
       </div>
       <div class="anime-card ac-demon">
-        <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Demon">
+        <img src="https://images.pexels.com/photos/1108701/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Demon">
         <div class="anime-card-body"><span class="ac-label">Demon Slayer</span><span class="ac-title">Templos & Samuráis</span></div>
       </div>
       <div class="anime-card ac-mecha">
@@ -3320,6 +3839,64 @@ formIntolChips.forEach(chip => {
       chip.classList.add('selected');
     }
     formIntolInput.value = Array.from(selectedIntols).join(', ');
+  });
+});
+
+/* ── NEWSLETTER ──────────────────────────── */
+const nlSubmit = document.getElementById('nlSubmit');
+const nlName   = document.getElementById('nlName');
+const nlEmail  = document.getElementById('nlEmail');
+
+if (nlSubmit) {
+  nlSubmit.addEventListener('click', () => {
+    const name  = nlName.value.trim();
+    const email = nlEmail.value.trim();
+    if (!email || !email.includes('@')) {
+      nlEmail.style.borderColor = 'var(--red2)';
+      nlEmail.addEventListener('input', () => nlEmail.style.borderColor = '', { once: true });
+      return;
+    }
+    fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre: name, email, fuente: 'newsletter', mensaje: 'Suscripción newsletter' })
+    }).catch(() => {});
+    if (window._gtag) window._gtag('event', 'newsletter_signup', { event_category: 'engagement' });
+    document.getElementById('nlFormWrap').style.display = 'none';
+    document.getElementById('nlOk').style.display = 'block';
+  });
+}
+
+/* ── VOLVER ARRIBA ───────────────────────── */
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ── CLOSE DROPDOWNS ON OUTSIDE CLICK ───── */
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-drop-panel').forEach(p => {
+      p.style.opacity = ''; p.style.pointerEvents = '';
+    });
+  }
+});
+
+/* ── GALERÍA FILTROS ─────────────────────── */
+document.querySelectorAll('.gal-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gal-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    document.querySelectorAll('#galGrid .gi').forEach((gi, i) => {
+      const match = cat === 'all' || gi.dataset.cat === cat;
+      gi.classList.toggle('gal-hidden', !match);
+    });
+    // Reobservar los visibles para la animación
+    document.querySelectorAll('#galGrid .gi:not(.gal-hidden)').forEach(el => {
+      if (!el.classList.contains('v')) io.observe(el);
+    });
   });
 });
 
