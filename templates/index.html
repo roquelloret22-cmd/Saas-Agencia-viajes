@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://saas-agencia-viajes-production.up.railway.app/">
 <meta property="og:title" content="Fuji Travel — El Japón que mereces">
 <meta property="og:description" content="Agencia premium especializada en Japón desde España. Diseñamos experiencias únicas: sakura, anime, templos, onsen. Propuesta personalizada en 24 h.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85">
+<meta property="og:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85&auto=format&fit=crop">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_ES">
@@ -26,7 +26,7 @@
 <meta name="twitter:url" content="https://saas-agencia-viajes-production.up.railway.app/">
 <meta name="twitter:title" content="Fuji Travel — El Japón que mereces">
 <meta name="twitter:description" content="Agencia premium especializada en Japón desde España. Sakura, anime, templos, onsen. Propuesta en 24 h.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85&auto=format&fit=crop">
 
 <!-- Schema.org TravelAgency -->
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
   "name": "Fuji Travel",
   "description": "Agencia de viajes premium especializada en Japón desde la Costa Blanca, España.",
   "url": "https://saas-agencia-viajes-production.up.railway.app/",
-  "logo": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=400&q=80",
-  "image": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85",
+  "logo": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=400&q=80&auto=format&fit=crop",
+  "image": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85&auto=format&fit=crop",
   "telephone": "+34654841217",
   "email": "fujitravel@gmail.com",
   "address": {
@@ -301,6 +301,7 @@ nav.scrolled {
 .hero-media {
   position: absolute; inset: -8% -8%;
   z-index: 0; will-change: transform;
+  background: linear-gradient(135deg, #0d0a0f 0%, #1a0a0a 40%, #0a0a14 100%);
 }
 .hero-media video, .hero-media img {
   width: 100%; height: 100%; object-fit: cover; object-position: center;
@@ -953,6 +954,306 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 .soc-btn:hover { border-color: var(--red); color: var(--paper); background: var(--red-dim) }
 
 /* ═══════════════════════════════════════════════════
+   INTOLERANCIAS FILTER (paquetes)
+═══════════════════════════════════════════════════ */
+.intol-filter {
+  margin-top: 2.5rem; margin-bottom: 3rem;
+  padding: 1.4rem 1.8rem;
+  background: var(--ink2); border: 1px solid var(--mist2);
+  border-radius: 4px; display: flex; flex-direction: column; gap: .85rem;
+}
+.intol-label {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(244,239,230,.35); font-weight: 500;
+}
+.intol-chips { display: flex; flex-wrap: wrap; gap: .45rem }
+.intol-chip {
+  font-size: .68rem; letter-spacing: .06em; cursor: pointer;
+  background: var(--mist); color: rgba(244,239,230,.45);
+  border: 1px solid var(--mist2); border-radius: 100px;
+  padding: .38rem 1rem; transition: all .3s var(--ease);
+  font-family: var(--sans); white-space: nowrap;
+}
+.intol-chip:hover { border-color: rgba(244,239,230,.25); color: var(--paper) }
+.intol-chip.active {
+  background: var(--red-dim); color: var(--paper);
+  border-color: rgba(181,39,43,.5);
+}
+.intol-notice {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .72rem; color: var(--gold);
+  padding: .5rem .8rem; background: rgba(200,169,81,.06);
+  border: 1px solid rgba(200,169,81,.2); border-radius: 3px;
+}
+.pkg-card.hidden { display: none }
+
+/* ═══════════════════════════════════════════════════
+   SECCIÓN INTOLERANCIAS
+═══════════════════════════════════════════════════ */
+.s-intol {
+  padding: 8rem 4rem; background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.intol-bg-kanji {
+  position: absolute; font-family: var(--jp); font-size: 40rem; font-weight: 200;
+  color: rgba(244,239,230,.015); left: -4rem; top: 50%; transform: translateY(-50%);
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.intol-hero { max-width: 680px; margin-bottom: 5rem; position: relative; z-index: 1 }
+.intol-hero-txt {
+  font-size: .95rem; font-weight: 300; line-height: 1.9;
+  color: rgba(244,239,230,.42); margin-top: 1.2rem;
+}
+.intol-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--mist); position: relative; z-index: 1;
+}
+.intol-card {
+  background: var(--ink); padding: 2.5rem 2rem;
+  position: relative; overflow: hidden;
+  transition: background .3s, transform .4s var(--ease);
+}
+.intol-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--red), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .5s var(--ease);
+}
+.intol-card:hover { background: var(--ink2) }
+.intol-card:hover::before { transform: scaleX(1) }
+.intol-card--cta {
+  background: var(--ink2);
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: flex-start;
+}
+.intol-icon {
+  font-size: 2rem; margin-bottom: 1.2rem;
+  width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+  background: var(--red-dim); border-radius: 4px;
+  border: 1px solid rgba(181,39,43,.2);
+}
+.intol-card-title {
+  font-family: var(--display); font-size: 1.35rem; font-weight: 700;
+  color: var(--paper); line-height: 1.2; margin-bottom: .85rem;
+  font-optical-sizing: auto;
+}
+.intol-card-title em { font-style: italic; color: var(--gold); font-weight: 300 }
+.intol-card-txt {
+  font-size: .82rem; font-weight: 300; line-height: 1.8;
+  color: rgba(244,239,230,.42); margin-bottom: 1.2rem;
+}
+.intol-tips {
+  list-style: none; display: flex; flex-direction: column; gap: .45rem;
+  margin-bottom: 1.4rem;
+}
+.intol-tips li {
+  font-size: .75rem; color: rgba(244,239,230,.38); line-height: 1.5;
+  padding-left: 1rem; position: relative;
+}
+.intol-tips li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--red); font-size: .65rem; font-weight: 700;
+}
+.intol-compat {
+  font-size: .62rem; letter-spacing: .08em;
+  color: rgba(244,239,230,.2); border-top: 1px solid var(--mist);
+  padding-top: .75rem; margin-top: auto;
+}
+.intol-compat span { color: var(--gold) }
+
+/* Chips del formulario */
+.fg-intol-chips {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem;
+}
+.fg-intol-chip {
+  font-size: .68rem; letter-spacing: .04em; cursor: pointer;
+  background: var(--ink2); color: rgba(244,239,230,.4);
+  border: 1px solid var(--mist2); border-radius: 100px;
+  padding: .35rem .9rem; transition: all .25s;
+  font-family: var(--sans);
+}
+.fg-intol-chip.selected {
+  background: var(--red-dim); color: var(--paper);
+  border-color: rgba(181,39,43,.5);
+}
+
+/* Responsive intol */
+@media (max-width: 1024px) {
+  .intol-grid { grid-template-columns: 1fr 1fr }
+  .s-intol { padding: 5rem 1.5rem }
+  .intol-filter { padding: 1.2rem }
+}
+@media (max-width: 600px) {
+  .intol-grid { grid-template-columns: 1fr }
+}
+
+/* ═══════════════════════════════════════════════════
+   URGENCY BADGES
+═══════════════════════════════════════════════════ */
+.pkg-urgency {
+  position: absolute; bottom: .75rem; left: .75rem; z-index: 3;
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: rgba(6,6,6,.75); backdrop-filter: blur(10px);
+  border: 1px solid rgba(181,39,43,.35); border-radius: 2px;
+  padding: .28rem .75rem;
+  font-size: .58rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(244,239,230,.75);
+}
+.pkg-urgency--gold { border-color: rgba(200,169,81,.35) }
+.urg-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0;
+  animation: urgPulse 1.6s ease-in-out infinite;
+}
+.urg-dot--gold { background: var(--gold) }
+@keyframes urgPulse {
+  0%,100% { opacity: 1; transform: scale(1) }
+  50% { opacity: .4; transform: scale(.7) }
+}
+
+/* ═══════════════════════════════════════════════════
+   CHAT IA
+═══════════════════════════════════════════════════ */
+.ai-chat-btn {
+  position: fixed; bottom: 5.8rem; right: 2rem; z-index: 500;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--red) 0%, #8b1a1e 100%);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 22px rgba(181,39,43,.4);
+  transition: all .3s var(--ease);
+  opacity: 0; animation: fadeIn 1s 3.8s forwards;
+}
+.ai-chat-btn:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 32px rgba(181,39,43,.55) }
+.ai-chat-btn svg { width: 24px; height: 24px; fill: #fff }
+.ai-chat-tip {
+  position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+  background: var(--ink3); color: var(--paper); font-size: .67rem;
+  white-space: nowrap; padding: .35rem .8rem; border-radius: 3px;
+  pointer-events: none; opacity: 0; transition: opacity .2s;
+  border: 1px solid var(--mist2);
+}
+.ai-chat-btn:hover .ai-chat-tip { opacity: 1 }
+.ai-chat-badge {
+  position: absolute; top: -4px; right: -4px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--gold); border: 2px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 700; color: var(--ink);
+}
+
+/* Panel del chat */
+.ai-chat-panel {
+  position: fixed; bottom: 10rem; right: 2rem; z-index: 600;
+  width: 360px; max-height: 520px;
+  background: var(--ink2); border: 1px solid var(--mist2);
+  border-radius: 8px; display: flex; flex-direction: column;
+  box-shadow: 0 24px 64px rgba(6,6,6,.7);
+  transform: scale(.92) translateY(16px);
+  opacity: 0; pointer-events: none;
+  transition: all .35s var(--ease);
+  overflow: hidden;
+}
+.ai-chat-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: auto }
+
+.acp-head {
+  padding: 1rem 1.2rem; border-bottom: 1px solid var(--mist);
+  display: flex; align-items: center; gap: .75rem;
+  background: var(--ink3); flex-shrink: 0;
+}
+.acp-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), #8b1a1e);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; flex-shrink: 0; position: relative;
+}
+.acp-avatar::after {
+  content: ''; position: absolute; bottom: 1px; right: 1px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #22c55e; border: 2px solid var(--ink3);
+}
+.acp-info { flex: 1 }
+.acp-name { font-family: var(--display); font-size: .88rem; font-weight: 700; color: var(--paper); font-optical-sizing: auto }
+.acp-status { font-size: .62rem; color: rgba(244,239,230,.3); letter-spacing: .06em }
+.acp-close { background: none; border: none; cursor: pointer; color: rgba(244,239,230,.3); font-size: 1.2rem; padding: .2rem; transition: color .2s }
+.acp-close:hover { color: var(--paper) }
+
+.acp-msgs {
+  flex: 1; overflow-y: auto; padding: 1rem;
+  display: flex; flex-direction: column; gap: .65rem;
+  scroll-behavior: smooth;
+}
+.acp-msgs::-webkit-scrollbar { width: 3px }
+.acp-msgs::-webkit-scrollbar-track { background: transparent }
+.acp-msgs::-webkit-scrollbar-thumb { background: var(--mist3); border-radius: 2px }
+
+.msg {
+  max-width: 88%; padding: .65rem .9rem; border-radius: 6px;
+  font-size: .82rem; line-height: 1.65; font-weight: 300;
+}
+.msg-ai {
+  background: var(--ink3); border: 1px solid var(--mist);
+  color: rgba(244,239,230,.8); align-self: flex-start; border-radius: 2px 8px 8px 8px;
+}
+.msg-user {
+  background: var(--red); color: #fff;
+  align-self: flex-end; border-radius: 8px 2px 8px 8px;
+}
+.msg-thinking {
+  background: var(--ink3); border: 1px solid var(--mist);
+  align-self: flex-start; padding: .65rem 1rem; border-radius: 2px 8px 8px 8px;
+}
+.msg-thinking span {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(244,239,230,.3); margin: 0 2px;
+  animation: thinkDot 1.4s ease-in-out infinite;
+}
+.msg-thinking span:nth-child(2) { animation-delay: .2s }
+.msg-thinking span:nth-child(3) { animation-delay: .4s }
+@keyframes thinkDot {
+  0%,80%,100% { transform: scale(1); opacity: .3 }
+  40% { transform: scale(1.4); opacity: 1 }
+}
+
+.acp-suggestions {
+  padding: .5rem 1rem .75rem; display: flex; flex-wrap: wrap; gap: .35rem; flex-shrink: 0;
+}
+.acp-sug {
+  font-size: .65rem; letter-spacing: .04em;
+  background: var(--mist); color: rgba(244,239,230,.5);
+  border: 1px solid var(--mist2); border-radius: 100px;
+  padding: .25rem .75rem; cursor: pointer; transition: all .25s;
+  white-space: nowrap;
+}
+.acp-sug:hover { background: var(--red-dim); border-color: rgba(181,39,43,.4); color: var(--paper) }
+
+.acp-input-row {
+  padding: .75rem 1rem; border-top: 1px solid var(--mist);
+  display: flex; gap: .5rem; align-items: center; flex-shrink: 0;
+  background: var(--ink3);
+}
+.acp-input {
+  flex: 1; background: var(--ink2); border: 1px solid var(--mist2);
+  color: var(--paper); padding: .55rem .85rem; border-radius: 100px;
+  font-family: var(--sans); font-size: .8rem; outline: none;
+  transition: border-color .25s;
+}
+.acp-input::placeholder { color: rgba(244,239,230,.2) }
+.acp-input:focus { border-color: var(--red) }
+.acp-send {
+  width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer;
+  background: var(--red); color: #fff; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; transition: all .25s;
+}
+.acp-send:hover { background: #8b1a1e; transform: scale(1.08) }
+.acp-send svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round }
+
+@media (max-width: 600px) {
+  .ai-chat-panel { width: calc(100vw - 2rem); right: 1rem; bottom: 9rem }
+}
+
+/* ═══════════════════════════════════════════════════
    WA + SECTION HEADERS
 ═══════════════════════════════════════════════════ */
 .wa {
@@ -1068,6 +1369,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <li><a href="#estaciones">Estaciones</a></li>
     <li><a href="#paquetes">Paquetes</a></li>
     <li><a href="#gastronomia">Gastronomía</a></li>
+    <li><a href="#intolerancias">Intolerancias</a></li>
     <li><a href="#anime">Anime</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -1084,6 +1386,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <li><a href="#estaciones" class="mobile-link">Estaciones</a></li>
     <li><a href="#paquetes" class="mobile-link">Paquetes</a></li>
     <li><a href="#gastronomia" class="mobile-link">Gastronomía</a></li>
+    <li><a href="#intolerancias" class="mobile-link">Intolerancias</a></li>
     <li><a href="#anime" class="mobile-link">Anime</a></li>
     <li><a href="#contacto" class="mobile-link">Contacto</a></li>
   </ul>
@@ -1099,8 +1402,11 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 <section class="hero" id="home">
   <div class="hero-media" id="heroMedia">
     <img
-      src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1920&q=85"
+      src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1920&q=85&auto=format&fit=crop"
       alt="Monte Fuji al amanecer"
+      loading="eager"
+      fetchpriority="high"
+      onerror="this.style.display='none'"
     >
   </div>
   <div class="hero-vignette"></div>
@@ -1128,10 +1434,10 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   </div>
 
   <div class="hero-counter">
-    <div class="hc-stat"><span class="hc-n">16+</span><span class="hc-l">Años</span></div>
-    <div class="hc-stat"><span class="hc-n">2.500</span><span class="hc-l">Viajeros</span></div>
-    <div class="hc-stat"><span class="hc-n">4.9★</span><span class="hc-l">Valoración</span></div>
-    <div class="hc-stat"><span class="hc-n">48</span><span class="hc-l">Destinos</span></div>
+    <div class="hc-stat"><span class="hc-n" data-target="16" data-suffix="+">0</span><span class="hc-l">Años</span></div>
+    <div class="hc-stat"><span class="hc-n" data-target="2500" data-prefix="" data-format="miles">0</span><span class="hc-l">Viajeros</span></div>
+    <div class="hc-stat"><span class="hc-n" data-target="49" data-decimal="1" data-suffix="★">0</span><span class="hc-l">Valoración</span></div>
+    <div class="hc-stat"><span class="hc-n" data-target="48">0</span><span class="hc-l">Destinos</span></div>
   </div>
 
   <div class="hero-scroll">
@@ -1169,13 +1475,13 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <!-- Background slides -->
       <div class="story-bg-layer">
         <div class="story-slide active" id="sb0">
-          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80" alt="Kioto">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80&auto=format&fit=crop" alt="Kioto">
         </div>
         <div class="story-slide" id="sb1">
-          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1600&q=80" alt="Tokio">
+          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1600&q=80&auto=format&fit=crop" alt="Tokio">
         </div>
         <div class="story-slide" id="sb2">
-          <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1600&q=80" alt="Sakura">
+          <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1600&q=80&auto=format&fit=crop" alt="Sakura">
         </div>
       </div>
       <div class="story-ink"></div>
@@ -1220,24 +1526,24 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   </div>
   <div class="gal-grid">
     <div class="gi rv">
-      <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=900&q=85" alt="Monte Fuji">
+      <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=900&q=85&auto=format&fit=crop" alt="Monte Fuji">
       <div class="gi-over"><div class="gi-tag">Icono nacional</div><div class="gi-name">Monte Fuji al amanecer</div></div>
       <div class="gi-badge">Must See</div>
     </div>
     <div class="gi rv" style="transition-delay:.08s">
-      <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=700&q=80" alt="Fushimi Inari">
+      <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=700&q=80&auto=format&fit=crop" alt="Fushimi Inari">
       <div class="gi-over"><div class="gi-tag">Kioto</div><div class="gi-name">Fushimi Inari</div></div>
     </div>
     <div class="gi rv" style="transition-delay:.16s">
-      <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=700&q=80" alt="Tokio">
+      <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=700&q=80&auto=format&fit=crop" alt="Tokio">
       <div class="gi-over"><div class="gi-tag">Tokio</div><div class="gi-name">Shinjuku de noche</div></div>
     </div>
     <div class="gi rv" style="transition-delay:.24s">
-      <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=700&q=80" alt="Sakura">
+      <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=700&q=80&auto=format&fit=crop" alt="Sakura">
       <div class="gi-over"><div class="gi-tag">Primavera</div><div class="gi-name">Hanami en Tokio</div></div>
     </div>
     <div class="gi rv" style="transition-delay:.32s">
-      <img src="https://images.unsplash.com/photo-1603312590770-bad1aa3e5be1?w=700&q=80" alt="Hokkaido">
+      <img src="https://images.unsplash.com/photo-1603312590770-bad1aa3e5be1?w=700&q=80&auto=format&fit=crop" alt="Hokkaido">
       <div class="gi-over"><div class="gi-tag">Hokkaido</div><div class="gi-name">Invierno nevado</div></div>
     </div>
   </div>
@@ -1249,7 +1555,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   <!-- OTOÑO -->
   <div class="season-block rv">
     <div class="sb-img">
-      <img src="https://images.unsplash.com/photo-1603312590770-bad1aa3e5be1?w=1200&q=85" alt="Otoño en Kioto">
+      <img src="https://images.unsplash.com/photo-1603312590770-bad1aa3e5be1?w=1200&q=85&auto=format&fit=crop" alt="Otoño en Kioto">
       <div class="sb-overlay"></div>
     </div>
     <div class="sb-body">
@@ -1273,7 +1579,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   <!-- INVIERNO -->
   <div class="season-block reverse rv">
     <div class="sb-img">
-      <img src="https://images.unsplash.com/photo-1557413866-5a46929e600b?w=1200&q=85" alt="Shirakawa-go en invierno">
+      <img src="https://images.unsplash.com/photo-1557413866-5a46929e600b?w=1200&q=85&auto=format&fit=crop" alt="Shirakawa-go en invierno">
       <div class="sb-overlay"></div>
     </div>
     <div class="sb-body">
@@ -1302,14 +1608,36 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Nuestros paquetes 2026</span></div>
     <h2 class="s-title">Experiencias <em>diseñadas</em><br>para ti</h2>
   </div>
-  <div class="pkg-grid">
+
+  <!-- FILTRO INTOLERANCIAS -->
+  <div class="intol-filter rv">
+    <div class="intol-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zM2 20c0-4 4.5-7 10-7s10 3 10 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Filtra por intolerancia alimentaria:
+    </div>
+    <div class="intol-chips">
+      <button class="intol-chip active" data-filter="all">Todos los paquetes</button>
+      <button class="intol-chip" data-filter="gluten">🌾 Sin gluten</button>
+      <button class="intol-chip" data-filter="vegan">🌿 Vegetariano / Vegano</button>
+      <button class="intol-chip" data-filter="marisco">🦐 Sin marisco</button>
+      <button class="intol-chip" data-filter="lactosa">🥛 Sin lactosa</button>
+      <button class="intol-chip" data-filter="halal">☪️ Halal</button>
+    </div>
+    <div class="intol-notice" id="intolNotice" style="display:none">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span id="intolNoticeText"></span>
+    </div>
+  </div>
+
+  <div class="pkg-grid" id="pkgGrid">
 
     <!-- FEATURED -->
-    <div class="pkg-card featured rv">
+    <div class="pkg-card featured rv" data-intol="gluten vegan lactosa halal">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1000&q=85" alt="Gran Japón Imperial">
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1000&q=85&auto=format&fit=crop" alt="Gran Japón Imperial">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-badge">Más popular</div>
+        <div class="pkg-urgency"><span class="urg-dot"></span>Solo 4 plazas disponibles</div>
       </div>
       <div class="pkg-body">
         <div class="pkg-region">Ruta completa · 15 días</div>
@@ -1324,17 +1652,18 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
         </div>
         <div class="pkg-foot">
           <div><span class="pkg-price-from">Desde</span><span class="pkg-price-val">3.490 €</span></div>
-          <a href="#contacto" class="pkg-cta">Explorar →</a>
+          <a href="#contacto" class="pkg-cta">Ver itinerario completo →</a>
         </div>
       </div>
     </div>
 
     <!-- SAKURA -->
-    <div class="pkg-card rv" style="transition-delay:.1s">
+    <div class="pkg-card rv" style="transition-delay:.1s" data-intol="gluten vegan marisco lactosa halal">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=700&q=80" alt="Sakura">
+        <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=700&q=80&auto=format&fit=crop" alt="Sakura">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-badge">Temporada sakura</div>
+        <div class="pkg-urgency pkg-urgency--gold"><span class="urg-dot urg-dot--gold"></span>Fechas sakura 2026 confirmadas</div>
       </div>
       <div class="pkg-body">
         <div class="pkg-region">Primavera · 12 días</div>
@@ -1343,16 +1672,17 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
         <div class="pkg-tags"><span class="pkg-tag">Sakura garantizado</span><span class="pkg-tag">Hanami nocturno</span></div>
         <div class="pkg-foot">
           <div><span class="pkg-price-from">Desde</span><span class="pkg-price-val">2.890 €</span></div>
-          <a href="#contacto" class="pkg-cta">Reservar →</a>
+          <a href="#contacto" class="pkg-cta">Ver itinerario completo →</a>
         </div>
       </div>
     </div>
 
     <!-- HOKKAIDO -->
-    <div class="pkg-card rv" style="transition-delay:.2s">
+    <div class="pkg-card rv" style="transition-delay:.2s" data-intol="gluten vegan lactosa">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=700&q=80" alt="Hokkaido">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=700&q=80&auto=format&fit=crop" alt="Hokkaido">
         <div class="pkg-thumb-overlay"></div>
+        <div class="pkg-urgency"><span class="urg-dot"></span>Últimas 3 plazas invierno</div>
       </div>
       <div class="pkg-body">
         <div class="pkg-region">Invierno · 10 días</div>
@@ -1361,16 +1691,17 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
         <div class="pkg-tags"><span class="pkg-tag">Onsen & nieve</span><span class="pkg-tag">Festival Sapporo</span></div>
         <div class="pkg-foot">
           <div><span class="pkg-price-from">Desde</span><span class="pkg-price-val">2.650 €</span></div>
-          <a href="#contacto" class="pkg-cta">Reservar →</a>
+          <a href="#contacto" class="pkg-cta">Ver itinerario completo →</a>
         </div>
       </div>
     </div>
 
     <!-- RURAL -->
-    <div class="pkg-card rv" style="transition-delay:.3s">
+    <div class="pkg-card rv" style="transition-delay:.3s" data-intol="gluten vegan marisco lactosa halal">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=700&q=80" alt="Rural">
+        <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=700&q=80&auto=format&fit=crop" alt="Rural">
         <div class="pkg-thumb-overlay"></div>
+        <div class="pkg-urgency pkg-urgency--gold"><span class="urg-dot urg-dot--gold"></span>Nuevo para 2026</div>
       </div>
       <div class="pkg-body">
         <div class="pkg-region">Rural · 10 días</div>
@@ -1379,7 +1710,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
         <div class="pkg-tags"><span class="pkg-tag">Fuera de rutas</span><span class="pkg-tag">Gastronómico</span></div>
         <div class="pkg-foot">
           <div><span class="pkg-price-from">Desde</span><span class="pkg-price-val">2.400 €</span></div>
-          <a href="#contacto" class="pkg-cta">Reservar →</a>
+          <a href="#contacto" class="pkg-cta">Ver itinerario completo →</a>
         </div>
       </div>
     </div>
@@ -1472,7 +1803,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" data-city="sapporo">
         <div class="gc-num">01</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=600&q=80" alt="Ramen Sapporo">
+          <img src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=600&q=80&auto=format&fit=crop" alt="Ramen Sapporo">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">北海道 · Hokkaido</div>
         </div>
@@ -1493,7 +1824,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" style="transition-delay:.1s" data-city="tokio">
         <div class="gc-num">02</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&q=80" alt="Gastronomia Tokio">
+          <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&q=80&auto=format&fit=crop" alt="Gastronomia Tokio">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">東京 · Tokio</div>
         </div>
@@ -1514,7 +1845,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" style="transition-delay:.2s" data-city="kioto">
         <div class="gc-num">03</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Kaiseki Kioto">
+          <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80&auto=format&fit=crop" alt="Kaiseki Kioto">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">京都 · Kioto</div>
         </div>
@@ -1535,7 +1866,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" style="transition-delay:.3s" data-city="fukuoka">
         <div class="gc-num">04</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80" alt="Ramen Fukuoka">
+          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80&auto=format&fit=crop" alt="Ramen Fukuoka">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">福岡 · Kyushu</div>
         </div>
@@ -1591,19 +1922,19 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     </div>
     <div class="anime-cards rr">
       <div class="anime-card ac-ghibli">
-        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=75" alt="Ghibli">
+        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=75&auto=format&fit=crop" alt="Ghibli">
         <div class="anime-card-body"><span class="ac-label">Studio Ghibli</span><span class="ac-title">Bosques & Espíritus</span></div>
       </div>
       <div class="anime-card ac-cyber">
-        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500&q=75" alt="Cyber">
+        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500&q=75&auto=format&fit=crop" alt="Cyber">
         <div class="anime-card-body"><span class="ac-label">Neo Tokyo</span><span class="ac-title">Luces & Futuro</span></div>
       </div>
       <div class="anime-card ac-demon">
-        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=500&q=75" alt="Demon">
+        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=500&q=75&auto=format&fit=crop" alt="Demon">
         <div class="anime-card-body"><span class="ac-label">Demon Slayer</span><span class="ac-title">Templos & Samuráis</span></div>
       </div>
       <div class="anime-card ac-mecha">
-        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=500&q=75" alt="Akihabara">
+        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=500&q=75&auto=format&fit=crop" alt="Akihabara">
         <div class="anime-card-body"><span class="ac-label">Akihabara</span><span class="ac-title">Manga & Cosplay</span></div>
       </div>
     </div>
@@ -1689,6 +2020,96 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 
 </section>
 
+<!-- ══════════════════ INTOLERANCIAS ══════════════════ -->
+<section class="s-intol" id="intolerancias">
+  <div class="intol-bg-kanji">食</div>
+  <div class="intol-hero rv">
+    <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Viajeros con necesidades alimentarias</span></div>
+    <h2 class="s-title">Japón es para<br><em>todos</em></h2>
+    <p class="intol-hero-txt">La cocina japonesa es una de las más adaptables del mundo. Con la planificación correcta, celíacos, veganos, intolerantes y viajeros halal pueden disfrutar Japón al 100%. Nosotros nos encargamos de todo.</p>
+  </div>
+
+  <div class="intol-grid">
+
+    <div class="intol-card rv">
+      <div class="intol-icon">🌾</div>
+      <h3 class="intol-card-title">Sin gluten<br><em>Celiaquía</em></h3>
+      <p class="intol-card-txt">Japón usa salsa de soja (contiene trigo) en casi todo, pero existe tamari sin gluten. Identificamos cada restaurante con carta libre de gluten y te damos tarjetas en japonés explicando tu alergia.</p>
+      <ul class="intol-tips">
+        <li>Tarjeta de alergia en japonés incluida</li>
+        <li>Restaurantes pre-verificados en ruta</li>
+        <li>Guía con lista de alimentos seguros</li>
+        <li>Alternativas: onigiri de arroz, soba 100% trigo sarraceno, tempura con harina de arroz</li>
+      </ul>
+      <div class="intol-compat">Compatible con: <span>Todos los paquetes</span></div>
+    </div>
+
+    <div class="intol-card rv" style="transition-delay:.1s">
+      <div class="intol-icon">🌿</div>
+      <h3 class="intol-card-title">Vegetariano<br><em>& Vegano</em></h3>
+      <p class="intol-card-txt">El budismo tiene siglos de historia vegana en Japón. La cocina shojin ryori es 100% plant-based y se sirve en templos de Kioto. En Tokio hay más de 400 restaurantes vegetarianos/veganos.</p>
+      <ul class="intol-tips">
+        <li>Ruta por restaurantes shojin ryori en Kioto</li>
+        <li>Mercados veganos en Tokio y Osaka</li>
+        <li>Ryokans con menú vegano disponible</li>
+        <li>App recomendada: HappyCow Japón</li>
+      </ul>
+      <div class="intol-compat">Compatible con: <span>Todos los paquetes</span></div>
+    </div>
+
+    <div class="intol-card rv" style="transition-delay:.2s">
+      <div class="intol-icon">🦐</div>
+      <h3 class="intol-card-title">Alergia<br><em>al marisco</em></h3>
+      <p class="intol-card-txt">El dashi (caldo base japonés) lleva bonito o sardina, y muchos platos tienen trazas de marisco. Planificamos cada comida desde cero para que no haya sorpresas, desde el ramen hasta el desayuno en ryokan.</p>
+      <ul class="intol-tips">
+        <li>Revisión completa del menú del ryokan</li>
+        <li>Alternativas de caldo sin pescado</li>
+        <li>Restaurantes de carne y wagyu en ruta</li>
+        <li>Tarjeta de alergia específica en japonés</li>
+      </ul>
+      <div class="intol-compat">Compatible con: <span>Japón en Flor · Japón Profundo</span></div>
+    </div>
+
+    <div class="intol-card rv" style="transition-delay:.3s">
+      <div class="intol-icon">🥛</div>
+      <h3 class="intol-card-title">Sin lactosa</h3>
+      <p class="intol-card-txt">La cocina japonesa tradicional usa muy pocos lácteos. La intolerancia a la lactosa es una de las más fáciles de gestionar en Japón. El riesgo principal está en los postres occidentalizados y el soft cream de Hokkaido.</p>
+      <ul class="intol-tips">
+        <li>Cocina tradicional japonesa naturalmente sin lácteos</li>
+        <li>Alternativas de soja: tofu, edamame, leche de soja</li>
+        <li>Aviso especial en rutas de gastronomía</li>
+        <li>Compatible con 99% de la oferta gastronómica</li>
+      </ul>
+      <div class="intol-compat">Compatible con: <span>Todos los paquetes</span></div>
+    </div>
+
+    <div class="intol-card rv" style="transition-delay:.4s">
+      <div class="intol-icon">☪️</div>
+      <h3 class="intol-card-title">Halal</h3>
+      <p class="intol-card-txt">Japón ha crecido mucho en oferta halal gracias al turismo del Sudeste Asiático. Tokio, Kioto y Osaka tienen centenares de restaurantes certificados. Diseñamos rutas 100% halal sin renunciar a ninguna experiencia gastronómica.</p>
+      <ul class="intol-tips">
+        <li>Restaurantes certificados halal en cada ciudad</li>
+        <li>Ramen halal, sushi halal, wagyu halal disponibles</li>
+        <li>Mezquitas y salas de rezo en ruta</li>
+        <li>Ryokans con opción de menú halal</li>
+      </ul>
+      <div class="intol-compat">Compatible con: <span>Gran Japón Imperial · Japón en Flor · Japón Profundo</span></div>
+    </div>
+
+    <!-- CTA card -->
+    <div class="intol-card intol-card--cta rv" style="transition-delay:.5s">
+      <div class="intol-icon">✉️</div>
+      <h3 class="intol-card-title">¿Tienes otra<br><em>necesidad?</em></h3>
+      <p class="intol-card-txt">Alergia a frutos secos, diabetes, alimentación kosher, necesidades pediátricas… Cuéntanoslo y diseñamos tu ruta desde cero teniendo en cuenta cada detalle.</p>
+      <a href="#contacto" class="btn-fill" style="margin-top:1.5rem; width:fit-content; font-size:.72rem">
+        Cuéntanos tu caso
+        <svg width="13" height="13" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <!-- ══════════════════ CONTACT ══════════════════ -->
 <section class="s-contact" id="contacto">
   <div class="s-contact-kanji">旅</div>
@@ -1750,6 +2171,18 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
             </div>
           </div>
           <div class="fg"><label>Cuéntanos tu viaje soñado</label><textarea id="fm" rows="3" placeholder="Fechas aproximadas, experiencias que no quieres perderte…"></textarea></div>
+          <!-- INTOLERANCIAS -->
+          <div class="fg">
+            <label>Intolerancias o necesidades alimentarias</label>
+            <div class="fg-intol-chips" id="fIntol">
+              <button type="button" class="fg-intol-chip" data-val="Sin gluten / Celiaquía">🌾 Sin gluten</button>
+              <button type="button" class="fg-intol-chip" data-val="Vegetariano / Vegano">🌿 Vegetariano / Vegano</button>
+              <button type="button" class="fg-intol-chip" data-val="Alergia a marisco">🦐 Sin marisco</button>
+              <button type="button" class="fg-intol-chip" data-val="Sin lactosa">🥛 Sin lactosa</button>
+              <button type="button" class="fg-intol-chip" data-val="Halal">☪️ Halal</button>
+            </div>
+            <input type="hidden" id="fIntolVal">
+          </div>
           <button class="cf-submit" onclick="sendForm()">Solicitar propuesta gratuita ✈</button>
           <p class="cf-note">Sin compromiso · Datos confidenciales · Respuesta en menos de 24 h</p>
         </div>
@@ -1809,6 +2242,39 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   </div>
 </footer>
 
+<!-- CHAT IA -->
+<button class="ai-chat-btn" id="aiChatBtn" aria-label="Chat con IA">
+  <span class="ai-chat-tip">Pregúntame sobre Japón 🇯🇵</span>
+  <div class="ai-chat-badge">IA</div>
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l4.93-1.37A9.953 9.953 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" style="display:none"/><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+</button>
+
+<div class="ai-chat-panel" id="aiChatPanel">
+  <div class="acp-head">
+    <div class="acp-avatar">🌸</div>
+    <div class="acp-info">
+      <div class="acp-name">Yuki · Asistente Fuji Travel</div>
+      <div class="acp-status">Especialista en Japón · En línea</div>
+    </div>
+    <button class="acp-close" id="aiChatClose">✕</button>
+  </div>
+  <div class="acp-msgs" id="aiMsgs">
+    <div class="msg msg-ai">¡Konnichiwa! 👋 Soy Yuki, tu asistente especializada en viajes a Japón. Puedo ayudarte con rutas, épocas de viaje, precios, visa, consejos… ¿Qué quieres saber?</div>
+  </div>
+  <div class="acp-suggestions" id="aiSugs">
+    <button class="acp-sug">¿Cuándo ver el sakura?</button>
+    <button class="acp-sug">¿Necesito visado?</button>
+    <button class="acp-sug">¿Cuánto cuesta un viaje?</button>
+    <button class="acp-sug">Tokio vs Kioto</button>
+  </div>
+  <div class="acp-input-row">
+    <input class="acp-input" id="aiInput" type="text" placeholder="Escribe tu pregunta sobre Japón…" maxlength="300">
+    <button class="acp-send" id="aiSend">
+      <svg viewBox="0 0 15 15"><path d="M2 7.5h11M9 3.5l4 4-4 4" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</div>
+
 <!-- WHATSAPP -->
 <a href="https://wa.me/34654841217?text=Hola%2C+quiero+planificar+un+viaje+a+Jap%C3%B3n" class="wa" target="_blank" rel="noopener">
   <span class="wa-tip">Escríbenos 🇯🇵</span>
@@ -1823,7 +2289,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 
 /* ── LOADER ─────────────────────────────── */
 window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('out'), 2500);
+  setTimeout(() => document.getElementById('loader').classList.add('out'), 800);
 });
 
 /* ── CURSOR ─────────────────────────────── */
@@ -1846,7 +2312,7 @@ document.querySelectorAll('a, button, .pkg-card, .tc, .gi, .anime-card, .ci, .se
 
 /* ── NAV ────────────────────────────────── */
 const nav = document.getElementById('mainNav');
-const sections = ['story','estaciones','paquetes','gastronomia','anime','contacto'];
+const sections = ['story','estaciones','paquetes','gastronomia','intolerancias','anime','contacto'];
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
   // Active link
@@ -2002,10 +2468,199 @@ function sendForm() {
       viajeros: document.getElementById('fv').value,
       destino: document.getElementById('fd').value,
       presupuesto: document.getElementById('fp').value,
+      intolerancias: document.getElementById('fIntolVal').value,
       mensaje: document.getElementById('fm').value
     })
   }).catch(() => {});
 }
+
+/* ── INTOLERANCIAS FILTER ────────────────── */
+const intolChips  = document.querySelectorAll('.intol-chip');
+const pkgCards    = document.querySelectorAll('#pkgGrid .pkg-card');
+const intolNotice = document.getElementById('intolNotice');
+const intolNoticeText = document.getElementById('intolNoticeText');
+
+const intolLabels = {
+  gluten:  'Sin gluten / Celiaquía',
+  vegan:   'Vegetariano / Vegano',
+  marisco: 'Sin marisco',
+  lactosa: 'Sin lactosa',
+  halal:   'Halal'
+};
+
+intolChips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    intolChips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const filter = chip.dataset.filter;
+
+    if (filter === 'all') {
+      pkgCards.forEach(c => c.classList.remove('hidden'));
+      intolNotice.style.display = 'none';
+      return;
+    }
+
+    let visible = 0;
+    pkgCards.forEach(card => {
+      const intols = (card.dataset.intol || '').split(' ');
+      if (intols.includes(filter)) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    intolNotice.style.display = 'flex';
+    intolNoticeText.textContent = visible > 0
+      ? `${visible} paquete${visible > 1 ? 's' : ''} adaptado${visible > 1 ? 's' : ''} para viajeros ${intolLabels[filter].toLowerCase()}`
+      : `Contacta con nosotros para diseñar un paquete personalizado ${intolLabels[filter].toLowerCase()}`;
+  });
+});
+
+/* ── INTOLERANCIAS FORM CHIPS ────────────── */
+const formIntolChips = document.querySelectorAll('.fg-intol-chip');
+const formIntolInput = document.getElementById('fIntolVal');
+const selectedIntols = new Set();
+
+formIntolChips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const val = chip.dataset.val;
+    if (selectedIntols.has(val)) {
+      selectedIntols.delete(val);
+      chip.classList.remove('selected');
+    } else {
+      selectedIntols.add(val);
+      chip.classList.add('selected');
+    }
+    formIntolInput.value = Array.from(selectedIntols).join(', ');
+  });
+});
+
+/* ── COUNTER ANIMATION ───────────────────── */
+function animateCounter(el) {
+  const target   = parseFloat(el.dataset.target);
+  const suffix   = el.dataset.suffix  || '';
+  const isDecimal = el.dataset.decimal === '1';
+  const isMiles  = el.dataset.format  === 'miles';
+  const duration = 1800;
+  const start    = performance.now();
+
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val  = target * ease;
+    let display;
+    if (isDecimal)  display = (val / 10).toFixed(1);
+    else if (isMiles) display = Math.round(val).toLocaleString('es-ES');
+    else            display = Math.round(val);
+    el.textContent = display + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.target.dataset.target) {
+      animateCounter(e.target);
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: .5 });
+document.querySelectorAll('.hc-n[data-target]').forEach(el => counterObserver.observe(el));
+
+/* ── CHAT IA ─────────────────────────────── */
+const chatBtn   = document.getElementById('aiChatBtn');
+const chatPanel = document.getElementById('aiChatPanel');
+const chatClose = document.getElementById('aiChatClose');
+const chatMsgs  = document.getElementById('aiMsgs');
+const chatInput = document.getElementById('aiInput');
+const chatSend  = document.getElementById('aiSend');
+const chatSugs  = document.getElementById('aiSugs');
+
+const SYSTEM_PROMPT = `Eres Yuki, asistente virtual de Fuji Travel, agencia premium especializada en viajes a Japón desde España. Tu personalidad es cálida, experta y apasionada por Japón.
+
+Responde siempre en español. Sé concisa (máximo 3 párrafos). Usa algún emoji japonés ocasionalmente (🌸🍜🏯⛩️🗻).
+
+Contexto de la agencia:
+- Especialistas en Japón desde la Costa Blanca (Villajoyosa), España
+- 16 años de experiencia, +2.500 viajeros, valoración 4.9★
+- Paquetes: Gran Japón Imperial (15d, desde 3.490€), Japón en Flor/sakura (12d, desde 2.890€), Hokkaido Nevado (10d, desde 2.650€), Japón Profundo rural (10d, desde 2.400€)
+- También rutas gastronómicas y experiencias anime
+- Guía en español nativo, shinkansen, ryokans con onsen incluidos
+- Contacto: fujitravel@gmail.com · +34 654 84 12 17 · WhatsApp disponible
+
+Cuando alguien pregunte por precios, visados, época de viaje, sakura, transporte o alojamiento responde con detalle útil. Si quieren reservar o recibir propuesta personalizada, invítales a usar el formulario de contacto o WhatsApp.`;
+
+let chatHistory = [];
+
+function addMsg(text, role) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + (role === 'user' ? 'msg-user' : 'msg-ai');
+  div.textContent = text;
+  chatMsgs.appendChild(div);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  return div;
+}
+
+function addThinking() {
+  const div = document.createElement('div');
+  div.className = 'msg-thinking';
+  div.id = 'thinking';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  chatMsgs.appendChild(div);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+async function sendChat(text) {
+  if (!text.trim()) return;
+  chatSugs.style.display = 'none';
+  chatInput.value = '';
+  chatInput.disabled = true;
+  chatSend.disabled  = true;
+
+  addMsg(text, 'user');
+  chatHistory.push({ role: 'user', content: text });
+  addThinking();
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 600,
+        system: SYSTEM_PROMPT,
+        messages: chatHistory
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Lo siento, no pude procesar tu pregunta. Escríbenos por WhatsApp 🌸';
+    document.getElementById('thinking')?.remove();
+    addMsg(reply, 'ai');
+    chatHistory.push({ role: 'assistant', content: reply });
+    if (chatHistory.length > 14) chatHistory = chatHistory.slice(-14);
+  } catch {
+    document.getElementById('thinking')?.remove();
+    addMsg('Parece que hay un problema de conexión. Puedes escribirnos directamente por WhatsApp o al +34 654 84 12 17 🌸', 'ai');
+  }
+
+  chatInput.disabled = false;
+  chatSend.disabled  = false;
+  chatInput.focus();
+}
+
+chatBtn.addEventListener('click', () => {
+  chatPanel.classList.toggle('open');
+  if (chatPanel.classList.contains('open')) chatInput.focus();
+});
+chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
+chatSend.addEventListener('click', () => sendChat(chatInput.value));
+chatInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) sendChat(chatInput.value); });
+chatSugs.querySelectorAll('.acp-sug').forEach(btn => {
+  btn.addEventListener('click', () => sendChat(btn.textContent));
+});
 
 /* ── HAMBURGER MENU ──────────────────────── */
 const hamburger   = document.getElementById('navHamburger');
