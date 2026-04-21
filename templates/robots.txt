@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Bloquear rutas del panel admin
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /leads/
+
+# Sitemap
+Sitemap: https://saas-agencia-viajes-production.up.railway.app/sitemap.xml
+
+# Crawl delay para no sobrecargar el servidor
+Crawl-delay: 1

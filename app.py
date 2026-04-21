@@ -1,6 +1,6 @@
 import os
 import psycopg2
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_from_directory
 from leads_route import leads_bp, init_leads_table
 from admin_route import admin_bp
 
@@ -37,6 +37,18 @@ try:
         _add_nota_column()
 except Exception as e:
     print(f"Aviso BD: {e}")
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('templates', 'sitemap.xml', mimetype='application/xml')
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory('templates', 'robots.txt', mimetype='text/plain')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return send_from_directory('templates', '404.html'), 404
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5002))

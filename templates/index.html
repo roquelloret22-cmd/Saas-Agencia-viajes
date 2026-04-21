@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://saas-agencia-viajes-production.up.railway.app/">
 <meta property="og:title" content="Fuji Travel — El Japón que mereces">
 <meta property="og:description" content="Agencia premium especializada en Japón desde España. Diseñamos experiencias únicas: sakura, anime, templos, onsen. Propuesta personalizada en 24 h.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85&auto=format&fit=crop">
+<meta property="og:image" content="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1200">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_ES">
@@ -26,7 +26,7 @@
 <meta name="twitter:url" content="https://saas-agencia-viajes-production.up.railway.app/">
 <meta name="twitter:title" content="Fuji Travel — El Japón que mereces">
 <meta name="twitter:description" content="Agencia premium especializada en Japón desde España. Sakura, anime, templos, onsen. Propuesta en 24 h.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85&auto=format&fit=crop">
+<meta name="twitter:image" content="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1200">
 
 <!-- Schema.org TravelAgency -->
 <script type="application/ld+json">
@@ -36,8 +36,8 @@
   "name": "Fuji Travel",
   "description": "Agencia de viajes premium especializada en Japón desde la Costa Blanca, España.",
   "url": "https://saas-agencia-viajes-production.up.railway.app/",
-  "logo": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=400&q=80&auto=format&fit=crop",
-  "image": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85&auto=format&fit=crop",
+  "logo": "https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "image": "https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1200",
   "telephone": "+34654841217",
   "email": "fujitravel@gmail.com",
   "address": {
@@ -58,6 +58,27 @@
     "https://www.facebook.com/fujitravel"
   ]
 }
+</script>
+
+<!-- Google Analytics (se activa solo con consentimiento) -->
+<script>
+  window.GA_ID = 'G-XXXXXXXXXX'; // ← Reemplaza con tu ID real de GA4
+  function loadGA() {
+    if (window._gaLoaded) return;
+    window._gaLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', window.GA_ID, { anonymize_ip: true });
+    window._gtag = gtag;
+  }
+  // Solo cargar si ya hay consentimiento previo
+  if (localStorage.getItem('fuji_cookie_consent') === 'accepted') loadGA();
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -954,6 +975,80 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 .soc-btn:hover { border-color: var(--red); color: var(--paper); background: var(--red-dim) }
 
 /* ═══════════════════════════════════════════════════
+   COOKIE BANNER RGPD
+═══════════════════════════════════════════════════ */
+.cookie-banner {
+  position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 8500;
+  max-width: 520px; width: calc(100vw - 3rem);
+  background: var(--ink2); border: 1px solid var(--mist2);
+  border-radius: 6px; padding: 1.5rem;
+  box-shadow: 0 16px 48px rgba(6,6,6,.7);
+  transform: translateY(120%);
+  transition: transform .5s var(--ease);
+}
+.cookie-banner.show { transform: translateY(0) }
+.cookie-banner::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--red), var(--gold));
+  border-radius: 6px 6px 0 0;
+}
+.cb-content { display: flex; flex-direction: column; gap: 1rem }
+.cb-icon { font-size: 1.6rem; line-height: 1 }
+.cb-text strong {
+  font-family: var(--display); font-size: .95rem; font-weight: 700;
+  color: var(--paper); display: block; margin-bottom: .35rem;
+  font-optical-sizing: auto;
+}
+.cb-text p { font-size: .78rem; font-weight: 300; line-height: 1.7; color: rgba(244,239,230,.45) }
+.cb-link { color: var(--red); transition: color .2s }
+.cb-link:hover { color: var(--gold) }
+.cb-actions { display: flex; gap: .5rem; flex-wrap: wrap }
+.cb-btn {
+  flex: 1; min-width: 110px; padding: .6rem .8rem; border-radius: 3px;
+  font-family: var(--sans); font-size: .68rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; cursor: pointer;
+  border: 1px solid var(--mist2); transition: all .25s;
+}
+.cb-reject { background: transparent; color: rgba(244,239,230,.4) }
+.cb-reject:hover { border-color: rgba(244,239,230,.3); color: var(--paper) }
+.cb-config { background: transparent; color: rgba(244,239,230,.4) }
+.cb-config:hover { border-color: rgba(244,239,230,.3); color: var(--paper) }
+.cb-accept { background: var(--red); color: #fff; border-color: var(--red) }
+.cb-accept:hover { background: #8b1a1e }
+
+/* Config panel */
+.cb-config-panel { border-top: 1px solid var(--mist); padding-top: 1rem; margin-top: .5rem }
+.cb-toggle-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 1rem; padding: .75rem 0; border-bottom: 1px solid var(--mist);
+}
+.cb-toggle-row:last-of-type { border-bottom: none }
+.cb-toggle-info { flex: 1 }
+.cb-toggle-name { font-size: .78rem; font-weight: 500; color: var(--paper); display: block; margin-bottom: .2rem }
+.cb-toggle-desc { font-size: .68rem; font-weight: 300; color: rgba(244,239,230,.35); line-height: 1.5 }
+.cb-toggle--on { color: var(--gold); font-size: .7rem; font-weight: 700; padding: .3rem .6rem; border: 1px solid rgba(200,169,81,.3); border-radius: 3px }
+.cb-toggle--disabled { opacity: .5; cursor: not-allowed }
+.cb-toggle-switch { position: relative; width: 42px; height: 24px; flex-shrink: 0; margin-top: .15rem }
+.cb-toggle-switch input { opacity: 0; width: 0; height: 0 }
+.cb-slider {
+  position: absolute; inset: 0; border-radius: 100px;
+  background: var(--mist3); cursor: pointer; transition: background .3s;
+}
+.cb-slider::before {
+  content: ''; position: absolute; width: 18px; height: 18px;
+  left: 3px; top: 3px; border-radius: 50%; background: rgba(244,239,230,.5);
+  transition: transform .3s, background .3s;
+}
+.cb-toggle-switch input:checked + .cb-slider { background: var(--red) }
+.cb-toggle-switch input:checked + .cb-slider::before { transform: translateX(18px); background: #fff }
+
+@media (max-width: 600px) {
+  .cookie-banner { left: .75rem; bottom: .75rem; width: calc(100vw - 1.5rem) }
+  .cb-actions { flex-direction: column }
+  .cb-btn { min-width: unset }
+}
+
+/* ═══════════════════════════════════════════════════
    INTOLERANCIAS FILTER (paquetes)
 ═══════════════════════════════════════════════════ */
 .intol-filter {
@@ -1087,6 +1182,304 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 @media (max-width: 600px) {
   .intol-grid { grid-template-columns: 1fr }
 }
+
+/* ═══════════════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════════════ */
+.gi-zoom {
+  position: absolute; top: .8rem; right: .8rem; z-index: 3;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(6,6,6,.6); backdrop-filter: blur(8px);
+  border: 1px solid var(--mist2); display: flex; align-items: center;
+  justify-content: center; font-size: .75rem; color: rgba(244,239,230,.5);
+  opacity: 0; transition: opacity .3s, color .2s;
+}
+.gi:hover .gi-zoom { opacity: 1; color: var(--paper) }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 9500;
+  background: rgba(4,4,4,.97);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s var(--ease);
+}
+.lightbox.open { opacity: 1; pointer-events: auto }
+.lb-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: none; border: none; cursor: pointer;
+  color: rgba(244,239,230,.4); font-size: 1.6rem;
+  transition: color .2s; z-index: 2; padding: .5rem;
+}
+.lb-close:hover { color: var(--paper) }
+.lb-prev, .lb-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(244,239,230,.06); border: 1px solid var(--mist2);
+  cursor: pointer; color: rgba(244,239,230,.6); font-size: 2.5rem;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .25s; z-index: 2;
+}
+.lb-prev { left: 1.5rem }
+.lb-next { right: 1.5rem }
+.lb-prev:hover, .lb-next:hover { background: var(--red-dim); border-color: rgba(181,39,43,.4); color: var(--paper) }
+.lb-img-wrap {
+  position: relative; max-width: 88vw; max-height: 78vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.lb-img {
+  max-width: 88vw; max-height: 78vh; object-fit: contain;
+  border-radius: 3px; opacity: 0; transition: opacity .4s var(--ease);
+}
+.lb-img.loaded { opacity: 1 }
+.lb-loader {
+  position: absolute; width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--mist2); border-top-color: var(--red);
+  animation: spin .8s linear infinite;
+}
+.lb-img.loaded + .lb-loader { display: none }
+@keyframes spin { to { transform: rotate(360deg) } }
+.lb-caption {
+  margin-top: 1.2rem; font-size: .8rem; font-weight: 300;
+  color: rgba(244,239,230,.45); letter-spacing: .06em; text-align: center;
+  max-width: 600px; padding: 0 2rem;
+}
+.lb-counter {
+  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(244,239,230,.25);
+}
+
+/* ═══════════════════════════════════════════════════
+   TIMELINE DE RUTAS
+═══════════════════════════════════════════════════ */
+.pkg-timeline {
+  margin-top: 4rem; border: 1px solid var(--mist2); border-radius: 4px;
+  background: var(--ink2); overflow: hidden;
+}
+.ptl-header { padding: 2rem 2.5rem 1.2rem; border-bottom: 1px solid var(--mist) }
+.ptl-sub { font-size: .78rem; color: rgba(244,239,230,.3); margin-top: .3rem }
+.ptl-tabs {
+  display: flex; border-bottom: 1px solid var(--mist); overflow-x: auto;
+}
+.ptl-tabs::-webkit-scrollbar { height: 2px }
+.ptl-tabs::-webkit-scrollbar-thumb { background: var(--red) }
+.ptl-tab {
+  padding: .9rem 1.6rem; background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: .72rem; font-weight: 500;
+  letter-spacing: .06em; color: rgba(244,239,230,.3); white-space: nowrap;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: all .3s var(--ease);
+}
+.ptl-tab:hover { color: rgba(244,239,230,.7) }
+.ptl-tab.active { color: var(--paper); border-bottom-color: var(--red) }
+.ptl-routes { padding: 2rem 2.5rem }
+.ptl-route { display: none; position: relative }
+.ptl-route.active { display: flex; flex-direction: column; gap: 0 }
+.ptl-line {
+  position: absolute; left: 8px; top: 16px; bottom: 16px; width: 1px;
+  background: linear-gradient(to bottom, var(--red), rgba(200,169,81,.3));
+}
+.ptl-stop {
+  display: flex; align-items: flex-start; gap: 1.4rem;
+  padding: .7rem 0; position: relative;
+}
+.ptl-dot {
+  width: 17px; height: 17px; border-radius: 50%; flex-shrink: 0;
+  background: var(--ink2); border: 2px solid rgba(244,239,230,.2);
+  margin-top: .15rem; position: relative; z-index: 1;
+  transition: border-color .3s;
+}
+.ptl-dot--start, .ptl-dot--end { border-color: var(--red); background: var(--red-dim) }
+.ptl-dot--key { border-color: var(--gold); background: rgba(200,169,81,.12) }
+.ptl-info { display: flex; flex-direction: column; gap: .15rem; padding-bottom: .5rem; border-bottom: 1px solid var(--mist) }
+.ptl-stop:last-child .ptl-info { border-bottom: none }
+.ptl-day { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--red) }
+.ptl-city { font-family: var(--display); font-size: 1.05rem; font-weight: 700; color: var(--paper); font-optical-sizing: auto }
+.ptl-note { font-size: .78rem; font-weight: 300; color: rgba(244,239,230,.38); line-height: 1.5 }
+
+@media (max-width: 1024px) {
+  .pkg-timeline { margin-top: 2.5rem }
+  .ptl-header, .ptl-routes { padding: 1.5rem }
+}
+
+/* ═══════════════════════════════════════════════════
+   POR QUÉ NOSOTROS
+═══════════════════════════════════════════════════ */
+.s-why { padding: 8rem 4rem; background: var(--ink2); position: relative; overflow: hidden }
+.why-bg-kanji {
+  position: absolute; font-family: var(--jp); font-size: 40rem; font-weight: 200;
+  color: rgba(244,239,230,.015); right: -3rem; top: 50%; transform: translateY(-50%);
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.why-header { max-width: 560px; margin-bottom: 4.5rem; position: relative; z-index: 1 }
+.why-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--mist); position: relative; z-index: 1;
+}
+.why-card {
+  background: var(--ink2); padding: 2.8rem 2.2rem;
+  position: relative; overflow: hidden;
+  transition: background .35s var(--ease);
+}
+.why-card:hover { background: var(--ink3) }
+.why-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--red), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .5s var(--ease);
+}
+.why-card:hover::after { transform: scaleX(1) }
+.why-num {
+  font-family: var(--display); font-size: 4rem; font-weight: 900;
+  color: rgba(244,239,230,.04); line-height: 1; margin-bottom: -.8rem;
+  font-optical-sizing: auto;
+}
+.why-icon { font-size: 1.8rem; margin-bottom: 1rem }
+.why-title {
+  font-family: var(--display); font-size: 1.25rem; font-weight: 700;
+  color: var(--paper); line-height: 1.25; margin-bottom: .9rem;
+  font-optical-sizing: auto;
+}
+.why-title em { font-style: italic; color: var(--gold); font-weight: 300 }
+.why-txt { font-size: .82rem; font-weight: 300; line-height: 1.85; color: rgba(244,239,230,.42) }
+
+/* Barra de confianza */
+.why-trust {
+  display: flex; align-items: center; justify-content: space-around;
+  margin-top: 3rem; padding: 2rem 3rem;
+  border: 1px solid var(--mist2); border-radius: 3px;
+  background: rgba(181,39,43,.03); flex-wrap: wrap; gap: 1rem;
+  position: relative; z-index: 1;
+}
+.wt-item { text-align: center }
+.wt-n {
+  display: block; font-family: var(--display); font-size: 2rem; font-weight: 900;
+  color: var(--paper); line-height: 1; font-optical-sizing: auto;
+}
+.wt-l { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,239,230,.3) }
+.wt-sep { width: 1px; height: 40px; background: var(--mist2) }
+
+/* ═══════════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════════ */
+.s-faq { padding: 8rem 4rem; background: var(--ink); position: relative; overflow: hidden }
+.faq-bg-kanji {
+  position: absolute; font-family: var(--jp); font-size: 38rem; font-weight: 200;
+  color: rgba(244,239,230,.015); left: -2rem; top: 50%; transform: translateY(-50%);
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.faq-header { max-width: 560px; margin-bottom: 4rem; position: relative; z-index: 1 }
+.faq-cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  position: relative; z-index: 1;
+}
+.faq-col { display: flex; flex-direction: column; gap: .5rem }
+.faq-item { border: 1px solid var(--mist); border-radius: 3px; overflow: hidden; transition: border-color .3s }
+.faq-item:has(.faq-q[aria-expanded="true"]) { border-color: rgba(181,39,43,.3) }
+.faq-q {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.2rem 1.4rem; text-align: left;
+  font-family: var(--sans); font-size: .88rem; font-weight: 500;
+  color: rgba(244,239,230,.75); transition: color .25s, background .25s;
+}
+.faq-q:hover { color: var(--paper); background: rgba(244,239,230,.02) }
+.faq-q[aria-expanded="true"] { color: var(--paper) }
+.faq-arrow {
+  width: 16px; height: 16px; flex-shrink: 0; stroke: currentColor;
+  transition: transform .35s var(--ease);
+}
+.faq-q[aria-expanded="true"] .faq-arrow { transform: rotate(180deg); stroke: var(--red) }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .45s var(--ease), padding .35s var(--ease);
+  padding: 0 1.4rem;
+}
+.faq-a.open { max-height: 400px; padding: 0 1.4rem 1.2rem }
+.faq-a p { font-size: .83rem; font-weight: 300; line-height: 1.85; color: rgba(244,239,230,.42) }
+
+@media (max-width: 1024px) {
+  .faq-cols { grid-template-columns: 1fr }
+  .why-grid { grid-template-columns: 1fr 1fr }
+  .s-why, .s-faq { padding: 5rem 1.5rem }
+  .wt-sep { display: none }
+  .why-trust { gap: 1.5rem 2rem }
+}
+@media (max-width: 600px) {
+  .why-grid { grid-template-columns: 1fr }
+}
+
+/* ═══════════════════════════════════════════════════
+   POP-UP SALIDA
+═══════════════════════════════════════════════════ */
+.exit-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(6,6,6,.82); backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .45s var(--ease);
+}
+.exit-overlay.show { opacity: 1; pointer-events: auto }
+.exit-modal {
+  background: var(--ink2); border: 1px solid var(--mist2);
+  border-radius: 6px; padding: 3.5rem 3rem; max-width: 480px; width: 90%;
+  position: relative; text-align: center;
+  transform: scale(.92) translateY(20px);
+  transition: transform .45s var(--ease);
+}
+.exit-overlay.show .exit-modal { transform: scale(1) translateY(0) }
+.exit-modal::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--red), var(--gold));
+  border-radius: 6px 6px 0 0;
+}
+.exit-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none; cursor: pointer;
+  color: rgba(244,239,230,.25); font-size: 1rem; padding: .3rem;
+  transition: color .2s;
+}
+.exit-close:hover { color: var(--paper) }
+.exit-deco { font-size: 3rem; margin-bottom: 1rem; line-height: 1 }
+.exit-eyebrow {
+  font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: .8rem;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+}
+.exit-eyebrow::before, .exit-eyebrow::after { content: ''; width: 18px; height: 1px; background: var(--red) }
+.exit-title {
+  font-family: var(--display); font-size: 2rem; font-weight: 700;
+  color: var(--paper); line-height: 1.1; margin-bottom: 1rem;
+  font-optical-sizing: auto;
+}
+.exit-title em { font-style: italic; color: var(--gold); font-weight: 300 }
+.exit-txt { font-size: .85rem; font-weight: 300; line-height: 1.8; color: rgba(244,239,230,.45); margin-bottom: 2rem }
+.exit-form { display: flex; flex-direction: column; gap: .65rem; margin-bottom: .8rem }
+.exit-input {
+  background: var(--ink3); border: 1.5px solid var(--mist2);
+  color: var(--paper); padding: .85rem 1.1rem; border-radius: 3px;
+  font-family: var(--sans); font-size: .87rem; outline: none;
+  transition: border-color .25s; text-align: center;
+}
+.exit-input::placeholder { color: rgba(244,239,230,.2) }
+.exit-input:focus { border-color: var(--red) }
+.exit-btn {
+  background: var(--red); color: #fff; border: none; cursor: pointer;
+  padding: .95rem; border-radius: 3px; font-family: var(--sans);
+  font-size: .78rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  transition: all .3s var(--ease); position: relative; overflow: hidden;
+}
+.exit-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,.14);
+  transform: translateX(-110%) skewX(-10deg);
+  transition: transform .5s var(--ease);
+}
+.exit-btn:hover::before { transform: translateX(110%) skewX(-10deg) }
+.exit-btn:hover { background: #8b1a1e }
+.exit-ok { display: none; padding: 1rem; font-size: .88rem; color: rgba(244,239,230,.6); line-height: 1.7 }
+.exit-ok strong { color: var(--paper) }
+.exit-note { font-size: .62rem; color: rgba(244,239,230,.18); line-height: 1.6 }
 
 /* ═══════════════════════════════════════════════════
    URGENCY BADGES
@@ -1370,6 +1763,8 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <li><a href="#paquetes">Paquetes</a></li>
     <li><a href="#gastronomia">Gastronomía</a></li>
     <li><a href="#intolerancias">Intolerancias</a></li>
+    <li><a href="#nosotros">Por qué nosotros</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#anime">Anime</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -1387,6 +1782,8 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <li><a href="#paquetes" class="mobile-link">Paquetes</a></li>
     <li><a href="#gastronomia" class="mobile-link">Gastronomía</a></li>
     <li><a href="#intolerancias" class="mobile-link">Intolerancias</a></li>
+    <li><a href="#nosotros" class="mobile-link">Por qué nosotros</a></li>
+    <li><a href="#faq" class="mobile-link">FAQ</a></li>
     <li><a href="#anime" class="mobile-link">Anime</a></li>
     <li><a href="#contacto" class="mobile-link">Contacto</a></li>
   </ul>
@@ -1402,7 +1799,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 <section class="hero" id="home">
   <div class="hero-media" id="heroMedia">
     <img
-      src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1920&q=85&auto=format&fit=crop"
+      src="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1920"
       alt="Monte Fuji al amanecer"
       loading="eager"
       fetchpriority="high"
@@ -1475,13 +1872,13 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <!-- Background slides -->
       <div class="story-bg-layer">
         <div class="story-slide active" id="sb0">
-          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&q=80&auto=format&fit=crop" alt="Kioto">
+          <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Kioto">
         </div>
         <div class="story-slide" id="sb1">
-          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1600&q=80&auto=format&fit=crop" alt="Tokio">
+          <img src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Tokio">
         </div>
         <div class="story-slide" id="sb2">
-          <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1600&q=80&auto=format&fit=crop" alt="Sakura">
+          <img src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=1600" alt="Sakura">
         </div>
       </div>
       <div class="story-ink"></div>
@@ -1525,37 +1922,103 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <h2 class="s-title">Japón a través de<br><em>cada estación</em></h2>
   </div>
   <div class="gal-grid">
-    <div class="gi rv">
-      <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=900&q=85&auto=format&fit=crop" alt="Monte Fuji">
+    <div class="gi rv" data-lb-src="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Monte Fuji al amanecer · Icono nacional">
+      <img src="https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Monte Fuji">
       <div class="gi-over"><div class="gi-tag">Icono nacional</div><div class="gi-name">Monte Fuji al amanecer</div></div>
       <div class="gi-badge">Must See</div>
+      <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.08s">
-      <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=700&q=80&auto=format&fit=crop" alt="Fushimi Inari">
+    <div class="gi rv" style="transition-delay:.08s" data-lb-src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Fushimi Inari · Miles de torii rojos · Kioto">
+      <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Fushimi Inari">
       <div class="gi-over"><div class="gi-tag">Kioto</div><div class="gi-name">Fushimi Inari</div></div>
+      <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.16s">
-      <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=700&q=80&auto=format&fit=crop" alt="Tokio">
+    <div class="gi rv" style="transition-delay:.16s" data-lb-src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Shinjuku de noche · La metrópoli que nunca duerme · Tokio">
+      <img src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Tokio">
       <div class="gi-over"><div class="gi-tag">Tokio</div><div class="gi-name">Shinjuku de noche</div></div>
+      <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.24s">
-      <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=700&q=80&auto=format&fit=crop" alt="Sakura">
+    <div class="gi rv" style="transition-delay:.24s" data-lb-src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Hanami en Tokio · La floración de los cerezos · Primavera">
+      <img src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=700" alt="Sakura">
       <div class="gi-over"><div class="gi-tag">Primavera</div><div class="gi-name">Hanami en Tokio</div></div>
+      <div class="gi-zoom">⤢</div>
     </div>
-    <div class="gi rv" style="transition-delay:.32s">
-      <img src="https://images.unsplash.com/photo-1603312590770-bad1aa3e5be1?w=700&q=80&auto=format&fit=crop" alt="Hokkaido">
+    <div class="gi rv" style="transition-delay:.32s" data-lb-src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1920" data-lb-cap="Invierno nevado · Hokkaido · El norte salvaje de Japón">
+      <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hokkaido">
       <div class="gi-over"><div class="gi-tag">Hokkaido</div><div class="gi-name">Invierno nevado</div></div>
+      <div class="gi-zoom">⤢</div>
     </div>
   </div>
 </section>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería de imágenes">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <button class="lb-next" id="lbNext" aria-label="Siguiente">›</button>
+  <div class="lb-img-wrap">
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <div class="lb-loader" id="lbLoader"></div>
+  </div>
+  <div class="lb-caption" id="lbCaption"></div>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
 <!-- ══════════════════ SEASONAL ══════════════════ -->
 <section id="estaciones" class="s-seasons">
+
+  <!-- PRIMAVERA -->
+  <div class="season-block rv">
+    <div class="sb-img">
+      <img src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=1200" alt="Sakura en primavera">
+      <div class="sb-overlay"></div>
+    </div>
+    <div class="sb-body">
+      <div class="sb-kanji">春</div>
+      <div class="sb-season">Primavera · Marzo – Mayo</div>
+      <h2 class="sb-title">El sakura:<br><em>dos semanas</em> de magia</h2>
+      <p class="sb-body-txt">El hanami es el ritual más bello de Japón: contemplar los cerezos en flor con familiares y amigos. Una tradición de 1.200 años. Monitorizamos la previsión de floración año a año para garantizar que llegues exactamente en el momento cumbre.</p>
+      <div class="sb-chips">
+        <span class="sb-chip">Sakura garantizado</span>
+        <span class="sb-chip">Hanami nocturno</span>
+        <span class="sb-chip">Ueno Park · Tokio</span>
+        <span class="sb-chip">Maruyama Park · Kioto</span>
+      </div>
+      <a href="#contacto" class="sb-link">
+        Reservar para primavera
+        <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- VERANO -->
+  <div class="season-block reverse rv">
+    <div class="sb-img">
+      <img src="https://images.pexels.com/photos/2070033/pexels-photo-2070033.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Festival de verano en Japón">
+      <div class="sb-overlay"></div>
+    </div>
+    <div class="sb-body">
+      <div class="sb-kanji">夏</div>
+      <div class="sb-season">Verano · Junio – Agosto</div>
+      <h2 class="sb-title">Matsuri:<br><em>la fiesta</em> del Japón vivo</h2>
+      <p class="sb-body-txt">Los festivales de verano japoneses son únicos en el mundo. Kimono, fuegos artificiales sobre el río Sumida, danzas Obon a la luz de las linternas. El calor se compensa con el mar de Okinawa y los bosques frescos de Hokkaido.</p>
+      <div class="sb-chips">
+        <span class="sb-chip">Gion Matsuri · Kioto</span>
+        <span class="sb-chip">Fuegos artificiales Sumida</span>
+        <span class="sb-chip">Festival Obon</span>
+        <span class="sb-chip">Okinawa · playas</span>
+      </div>
+      <a href="#contacto" class="sb-link">
+        Reservar para verano
+        <svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
 
   <!-- OTOÑO -->
   <div class="season-block rv">
     <div class="sb-img">
-      <img src="https://images.unsplash.com/photo-1603312590770-bad1aa3e5be1?w=1200&q=85&auto=format&fit=crop" alt="Otoño en Kioto">
+      <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Otoño en Kioto">
       <div class="sb-overlay"></div>
     </div>
     <div class="sb-body">
@@ -1579,7 +2042,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   <!-- INVIERNO -->
   <div class="season-block reverse rv">
     <div class="sb-img">
-      <img src="https://images.unsplash.com/photo-1557413866-5a46929e600b?w=1200&q=85&auto=format&fit=crop" alt="Shirakawa-go en invierno">
+      <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Shirakawa-go en invierno">
       <div class="sb-overlay"></div>
     </div>
     <div class="sb-body">
@@ -1634,7 +2097,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <!-- FEATURED -->
     <div class="pkg-card featured rv" data-intol="gluten vegan lactosa halal">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1000&q=85&auto=format&fit=crop" alt="Gran Japón Imperial">
+        <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Gran Japón Imperial">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-badge">Más popular</div>
         <div class="pkg-urgency"><span class="urg-dot"></span>Solo 4 plazas disponibles</div>
@@ -1660,7 +2123,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <!-- SAKURA -->
     <div class="pkg-card rv" style="transition-delay:.1s" data-intol="gluten vegan marisco lactosa halal">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=700&q=80&auto=format&fit=crop" alt="Sakura">
+        <img src="https://images.pexels.com/photos/5765/flowers-spring-pink-sakura.jpg?auto=compress&cs=tinysrgb&w=700" alt="Sakura">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-badge">Temporada sakura</div>
         <div class="pkg-urgency pkg-urgency--gold"><span class="urg-dot urg-dot--gold"></span>Fechas sakura 2026 confirmadas</div>
@@ -1680,7 +2143,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <!-- HOKKAIDO -->
     <div class="pkg-card rv" style="transition-delay:.2s" data-intol="gluten vegan lactosa">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=700&q=80&auto=format&fit=crop" alt="Hokkaido">
+        <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Hokkaido">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-urgency"><span class="urg-dot"></span>Últimas 3 plazas invierno</div>
       </div>
@@ -1699,7 +2162,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <!-- RURAL -->
     <div class="pkg-card rv" style="transition-delay:.3s" data-intol="gluten vegan marisco lactosa halal">
       <div class="pkg-thumb">
-        <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=700&q=80&auto=format&fit=crop" alt="Rural">
+        <img src="https://images.pexels.com/photos/402028/pexels-photo-402028.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Rural">
         <div class="pkg-thumb-overlay"></div>
         <div class="pkg-urgency pkg-urgency--gold"><span class="urg-dot urg-dot--gold"></span>Nuevo para 2026</div>
       </div>
@@ -1716,9 +2179,61 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     </div>
 
   </div>
-</section>
 
-<!-- ══════════════════ GASTRONOMÍA ══════════════════ -->
+  <!-- TIMELINE DE RUTAS -->
+  <div class="pkg-timeline rv">
+    <div class="ptl-header">
+      <div class="s-eyebrow" style="margin-bottom:.6rem"><div class="s-ey-line"></div><span class="s-ey-txt">Recorrido incluido</span></div>
+      <p class="ptl-sub">Selecciona un paquete para ver su ruta exacta</p>
+    </div>
+    <div class="ptl-tabs">
+      <button class="ptl-tab active" data-pkg="imperial">Gran Japón Imperial</button>
+      <button class="ptl-tab" data-pkg="sakura">Japón en Flor</button>
+      <button class="ptl-tab" data-pkg="hokkaido">Hokkaido Nevado</button>
+      <button class="ptl-tab" data-pkg="profundo">Japón Profundo</button>
+    </div>
+    <div class="ptl-routes">
+
+      <div class="ptl-route active" data-route="imperial">
+        <div class="ptl-line"></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--start"></div><div class="ptl-info"><span class="ptl-day">Días 1–3</span><span class="ptl-city">Tokio</span><span class="ptl-note">Llegada · Shibuya · Harajuku · Shinjuku · Akihabara</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot"></div><div class="ptl-info"><span class="ptl-day">Día 4</span><span class="ptl-city">Nikko</span><span class="ptl-note">Santuario Toshogu · Cataratas Kegon</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot"></div><div class="ptl-info"><span class="ptl-day">Día 5</span><span class="ptl-city">Hakone</span><span class="ptl-note">Ryokan con vistas al Fuji · Onsen · Lago Ashi</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--key"></div><div class="ptl-info"><span class="ptl-day">Días 6–8</span><span class="ptl-city">Kioto</span><span class="ptl-note">Gion · Fushimi Inari · Kinkaku-ji · Arashiyama · Kaiseki</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot"></div><div class="ptl-info"><span class="ptl-day">Día 9</span><span class="ptl-city">Nara</span><span class="ptl-note">Ciervos sagrados · Todai-ji · Kasuga Taisha</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot"></div><div class="ptl-info"><span class="ptl-day">Días 10–11</span><span class="ptl-city">Hiroshima · Miyajima</span><span class="ptl-note">Memorial de la Paz · Torii flotante de Itsukushima</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--end"></div><div class="ptl-info"><span class="ptl-day">Días 12–15</span><span class="ptl-city">Osaka</span><span class="ptl-note">Dotonbori · Castillo · Gastronomía · Vuelo de regreso</span></div></div>
+      </div>
+
+      <div class="ptl-route" data-route="sakura">
+        <div class="ptl-line"></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--start"></div><div class="ptl-info"><span class="ptl-day">Días 1–4</span><span class="ptl-city">Tokio</span><span class="ptl-note">Hanami en Ueno · Shinjuku Gyoen · Meguro River</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--key"></div><div class="ptl-info"><span class="ptl-day">Días 5–7</span><span class="ptl-city">Kioto</span><span class="ptl-note">Maruyama Park · Kiyomizudera · Hanami nocturno</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot"></div><div class="ptl-info"><span class="ptl-day">Días 8–9</span><span class="ptl-city">Hakone</span><span class="ptl-note">Ryokan · Onsen · Fuji nevado al fondo</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--end"></div><div class="ptl-info"><span class="ptl-day">Días 10–12</span><span class="ptl-city">Osaka</span><span class="ptl-note">Sakura en el castillo · Gastronomía · Vuelo de regreso</span></div></div>
+      </div>
+
+      <div class="ptl-route" data-route="hokkaido">
+        <div class="ptl-line"></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--start"></div><div class="ptl-info"><span class="ptl-day">Días 1–2</span><span class="ptl-city">Sapporo</span><span class="ptl-note">Festival de nieve · Ramen de miso · Mercado Nijo</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--key"></div><div class="ptl-info"><span class="ptl-day">Días 3–5</span><span class="ptl-city">Niseko</span><span class="ptl-note">Esquí world-class · Onsen al aire libre con nieve</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot"></div><div class="ptl-info"><span class="ptl-day">Días 6–7</span><span class="ptl-city">Noboribetsu</span><span class="ptl-note">Onsen volcánico · Jigokudani Hell Valley</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--end"></div><div class="ptl-info"><span class="ptl-day">Días 8–10</span><span class="ptl-city">Hakodate</span><span class="ptl-note">Mercado de marisco · Vista nocturna · Vuelo de regreso</span></div></div>
+      </div>
+
+      <div class="ptl-route" data-route="profundo">
+        <div class="ptl-line"></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--start"></div><div class="ptl-info"><span class="ptl-day">Días 1–2</span><span class="ptl-city">Tokio</span><span class="ptl-note">Llegada · Barrios históricos · Shinkansen a Nagoya</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--key"></div><div class="ptl-info"><span class="ptl-day">Días 3–4</span><span class="ptl-city">Takayama</span><span class="ptl-note">Ciudad del período Edo · Sake local · Mercado matinal</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--key"></div><div class="ptl-info"><span class="ptl-day">Día 5</span><span class="ptl-city">Shirakawa-go</span><span class="ptl-note">Casas gasshō-zukuri · Patrimonio UNESCO</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot"></div><div class="ptl-info"><span class="ptl-day">Días 6–7</span><span class="ptl-city">Kanazawa</span><span class="ptl-note">Jardín Kenroku-en · Barrio samurái · Mercado Omicho</span></div></div>
+        <div class="ptl-stop"><div class="ptl-dot ptl-dot--end"></div><div class="ptl-info"><span class="ptl-day">Días 8–10</span><span class="ptl-city">Kioto</span><span class="ptl-note">Templos tranquilos · Gastronomía local · Vuelo de regreso</span></div></div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
 <section class="s-gastro" id="gastronomia">
   <div class="gastro-bg-kanji">食</div>
 
@@ -1803,7 +2318,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" data-city="sapporo">
         <div class="gc-num">01</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=600&q=80&auto=format&fit=crop" alt="Ramen Sapporo">
+          <img src="https://images.pexels.com/photos/884596/pexels-photo-884596.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ramen Sapporo">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">北海道 · Hokkaido</div>
         </div>
@@ -1824,7 +2339,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" style="transition-delay:.1s" data-city="tokio">
         <div class="gc-num">02</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&q=80&auto=format&fit=crop" alt="Gastronomia Tokio">
+          <img src="https://images.pexels.com/photos/2098085/pexels-photo-2098085.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gastronomia Tokio">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">東京 · Tokio</div>
         </div>
@@ -1845,7 +2360,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" style="transition-delay:.2s" data-city="kioto">
         <div class="gc-num">03</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80&auto=format&fit=crop" alt="Kaiseki Kioto">
+          <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Kaiseki Kioto">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">京都 · Kioto</div>
         </div>
@@ -1866,7 +2381,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
       <div class="gc-card rv" style="transition-delay:.3s" data-city="fukuoka">
         <div class="gc-num">04</div>
         <div class="gc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80&auto=format&fit=crop" alt="Ramen Fukuoka">
+          <img src="https://images.pexels.com/photos/884596/pexels-photo-884596.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ramen Fukuoka">
           <div class="gc-img-overlay"></div>
           <div class="gc-city-badge">福岡 · Kyushu</div>
         </div>
@@ -1922,19 +2437,19 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     </div>
     <div class="anime-cards rr">
       <div class="anime-card ac-ghibli">
-        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=75&auto=format&fit=crop" alt="Ghibli">
+        <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Ghibli">
         <div class="anime-card-body"><span class="ac-label">Studio Ghibli</span><span class="ac-title">Bosques & Espíritus</span></div>
       </div>
       <div class="anime-card ac-cyber">
-        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500&q=75&auto=format&fit=crop" alt="Cyber">
+        <img src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Cyber">
         <div class="anime-card-body"><span class="ac-label">Neo Tokyo</span><span class="ac-title">Luces & Futuro</span></div>
       </div>
       <div class="anime-card ac-demon">
-        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=500&q=75&auto=format&fit=crop" alt="Demon">
+        <img src="https://images.pexels.com/photos/1440476/pexels-photo-1440476.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Demon">
         <div class="anime-card-body"><span class="ac-label">Demon Slayer</span><span class="ac-title">Templos & Samuráis</span></div>
       </div>
       <div class="anime-card ac-mecha">
-        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=500&q=75&auto=format&fit=crop" alt="Akihabara">
+        <img src="https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Akihabara">
         <div class="anime-card-body"><span class="ac-label">Akihabara</span><span class="ac-title">Manga & Cosplay</span></div>
       </div>
     </div>
@@ -2110,6 +2625,171 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   </div>
 </section>
 
+<!-- ══════════════════ POR QUÉ NOSOTROS ══════════════════ -->
+<section class="s-why" id="nosotros">
+  <div class="why-bg-kanji">信</div>
+  <div class="why-header rv">
+    <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Por qué elegirnos</span></div>
+    <h2 class="s-title">No somos una agencia<br><em>más</em></h2>
+  </div>
+  <div class="why-grid">
+
+    <div class="why-card rv">
+      <div class="why-num">01</div>
+      <div class="why-icon">🗺️</div>
+      <h3 class="why-title">Especialistas<br><em>exclusivos en Japón</em></h3>
+      <p class="why-txt">No vendemos 50 destinos. Solo Japón. Eso significa que conocemos cada rincón, cada temporada, cada restaurante y cada tren. Cuando nos llamas, hablas con alguien que ha estado allí.</p>
+    </div>
+
+    <div class="why-card rv" style="transition-delay:.08s">
+      <div class="why-num">02</div>
+      <div class="why-icon">🇯🇵</div>
+      <h3 class="why-title">Guía en español<br><em>nativo en destino</em></h3>
+      <p class="why-txt">Tu guía habla español como lengua materna y japonés fluido. No un guía local que chapurrea español. Una persona de confianza que resuelve cualquier situación en tiempo real.</p>
+    </div>
+
+    <div class="why-card rv" style="transition-delay:.16s">
+      <div class="why-num">03</div>
+      <div class="why-icon">⏱️</div>
+      <h3 class="why-title">Propuesta en<br><em>menos de 24 horas</em></h3>
+      <p class="why-txt">Sin formularios interminables ni semanas de espera. Cuéntanos tu viaje soñado hoy y mañana tienes un itinerario detallado con precios cerrados en tu bandeja de entrada.</p>
+    </div>
+
+    <div class="why-card rv" style="transition-delay:.24s">
+      <div class="why-num">04</div>
+      <div class="why-icon">🏯</div>
+      <h3 class="why-title">Acceso a experiencias<br><em>exclusivas</em></h3>
+      <p class="why-txt">Ceremonia de té privada en Kioto, cena omakase con chef Michelin, visita al monte Fuji antes del amanecer. Experiencias que no están en ninguna web de reservas.</p>
+    </div>
+
+    <div class="why-card rv" style="transition-delay:.32s">
+      <div class="why-num">05</div>
+      <div class="why-icon">🛡️</div>
+      <h3 class="why-title">Seguro y asistencia<br><em>24h en destino</em></h3>
+      <p class="why-txt">Seguro de viaje premium incluido en todos los paquetes. Línea directa de emergencias 24h durante todo el viaje. Si algo sale mal, estamos ahí. Siempre.</p>
+    </div>
+
+    <div class="why-card rv" style="transition-delay:.4s">
+      <div class="why-num">06</div>
+      <div class="why-icon">💰</div>
+      <h3 class="why-title">Sin costes ocultos.<br><em>Precio cerrado</em></h3>
+      <p class="why-txt">El precio que te damos es el precio final. Sin suplementos de último minuto, sin sorpresas en destino. Vuelos, hoteles, traslados y actividades incluidos desde el primer presupuesto.</p>
+    </div>
+
+  </div>
+
+  <!-- Barra de confianza -->
+  <div class="why-trust rv">
+    <div class="wt-item"><span class="wt-n">16</span><span class="wt-l">años operando</span></div>
+    <div class="wt-sep"></div>
+    <div class="wt-item"><span class="wt-n">2.500+</span><span class="wt-l">viajeros satisfechos</span></div>
+    <div class="wt-sep"></div>
+    <div class="wt-item"><span class="wt-n">4.9★</span><span class="wt-l">valoración media</span></div>
+    <div class="wt-sep"></div>
+    <div class="wt-item"><span class="wt-n">0</span><span class="wt-l">reclamaciones en 2025</span></div>
+    <div class="wt-sep"></div>
+    <div class="wt-item"><span class="wt-n">100%</span><span class="wt-l">repiten o recomiendan</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<section class="s-faq" id="faq">
+  <div class="faq-bg-kanji">問</div>
+  <div class="faq-header rv">
+    <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Preguntas frecuentes</span></div>
+    <h2 class="s-title">Todo lo que necesitas<br><em>saber</em></h2>
+  </div>
+
+  <div class="faq-cols">
+    <div class="faq-col">
+
+      <div class="faq-item rv">
+        <button class="faq-q" aria-expanded="false">
+          ¿Necesito visado para viajar a Japón desde España?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>No. Los ciudadanos españoles pueden entrar a Japón sin visado por un período de hasta 90 días para turismo. Solo necesitas el pasaporte con al menos 6 meses de validez desde la fecha de regreso. No es necesario tramitar ningún documento previo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rv" style="transition-delay:.05s">
+        <button class="faq-q" aria-expanded="false">
+          ¿Cuándo es la mejor época para ver el sakura?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>El sakura florece entre finales de marzo y principios de abril en Tokio y Kioto, aunque las fechas exactas varían cada año según el clima. En Hokkaido puede llegar hasta mayo. Nosotros monitorizamos las previsiones de floración y ajustamos los itinerarios para garantizarte el momento exacto de máximo esplendor.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rv" style="transition-delay:.1s">
+        <button class="faq-q" aria-expanded="false">
+          ¿Cuánto cuesta un viaje a Japón desde España?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Nuestros paquetes completos (vuelo + hotel + guía + actividades) parten desde 2.400 € por persona para 10 días. Los viajes más completos de 15 días están desde 3.490 €. El precio varía según la temporada, el tipo de alojamiento (hotel o ryokan) y las experiencias incluidas. Todos los precios son con IVA y sin costes ocultos.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rv" style="transition-delay:.15s">
+        <button class="faq-q" aria-expanded="false">
+          ¿El viaje incluye los vuelos desde España?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Sí. Todos nuestros paquetes incluyen vuelo de ida y vuelta desde Madrid (MEX) o Barcelona (BCN). Si prefieres salir desde otro aeropuerto, lo gestionamos con un suplemento según disponibilidad. Los vuelos son en clase turista con equipaje incluido; el upgrade a business está disponible bajo consulta.</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="faq-col">
+
+      <div class="faq-item rv" style="transition-delay:.2s">
+        <button class="faq-q" aria-expanded="false">
+          ¿Cómo es el transporte dentro de Japón?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>El Shinkansen (tren bala) es el principal medio de transporte entre ciudades y está incluido en nuestros paquetes mediante el JR Pass. Es puntual, cómodo y espectacular. Dentro de las ciudades usamos el metro y taxis. Nuestro guía gestiona todos los desplazamientos, así que nunca te preocupas por billetes ni direcciones.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rv" style="transition-delay:.25s">
+        <button class="faq-q" aria-expanded="false">
+          ¿Puedo viajar solo/a a Japón con Fuji Travel?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Absolutamente. Muchos de nuestros viajeros viajan en solitario y es una experiencia transformadora. Japón es uno de los países más seguros del mundo. Ofrecemos tanto paquetes en grupo reducido (máximo 10 personas) como viajes totalmente privados e individuales adaptados a tu ritmo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rv" style="transition-delay:.3s">
+        <button class="faq-q" aria-expanded="false">
+          ¿Qué es un ryokan y está incluido?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Un ryokan es un alojamiento tradicional japonés con tatami, futón, yukata (bata), baños onsen de aguas termales y cena kaiseki de múltiples platos. Es una experiencia cultural imprescindible. En nuestros paquetes incluimos al menos 2-3 noches en ryokan, normalmente en Hakone (con vistas al Fuji) o en el barrio de Gion en Kioto.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rv" style="transition-delay:.35s">
+        <button class="faq-q" aria-expanded="false">
+          ¿Con cuánta antelación debo reservar?
+          <svg class="faq-arrow" viewBox="0 0 14 14"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Recomendamos reservar con al menos 3-4 meses de antelación para temporada normal. Para temporada sakura (marzo-abril) y Año Nuevo japonés, lo ideal es reservar con 6-8 meses de antelación. Los mejores ryokans se agotan muy rápido. Dicho esto, si tu viaje es urgente, siempre intentamos encontrar opciones de última hora.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════ CONTACT ══════════════════ -->
 <section class="s-contact" id="contacto">
   <div class="s-contact-kanji">旅</div>
@@ -2242,6 +2922,63 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   </div>
 </footer>
 
+<!-- POP-UP SALIDA -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-modal" id="exitModal">
+    <button class="exit-close" id="exitClose">✕</button>
+    <div class="exit-deco">🗻</div>
+    <div class="exit-eyebrow">Antes de irte</div>
+    <h3 class="exit-title">Llévate nuestra<br><em>Guía Japón 2026</em></h3>
+    <p class="exit-txt">Más de 40 páginas con las mejores rutas, épocas de viaje, consejos de presupuesto, frases en japonés y los restaurantes que los turistas nunca encuentran. Gratis.</p>
+    <div class="exit-form">
+      <input class="exit-input" type="email" id="exitEmail" placeholder="tu@email.com">
+      <button class="exit-btn" id="exitSubmit">Quiero la guía gratis →</button>
+    </div>
+    <div class="exit-ok" id="exitOk">
+      <div style="font-size:2rem;margin-bottom:.8rem">✈️</div>
+      <strong>¡Perfecto!</strong> Te enviaremos la guía en los próximos minutos.
+    </div>
+    <p class="exit-note">Sin spam · Solo esta guía · Puedes darte de baja cuando quieras</p>
+  </div>
+</div>
+
+<!-- COOKIE BANNER RGPD -->
+<div class="cookie-banner" id="cookieBanner" role="alertdialog" aria-label="Política de cookies">
+  <div class="cb-content">
+    <div class="cb-icon">🍪</div>
+    <div class="cb-text">
+      <strong>Usamos cookies</strong>
+      <p>Utilizamos cookies propias y de terceros (Google Analytics) para analizar el tráfico y mejorar tu experiencia. Puedes aceptar todas, configurar tus preferencias o rechazarlas. <a href="#" class="cb-link">Más información</a></p>
+    </div>
+    <div class="cb-actions">
+      <button class="cb-btn cb-reject" id="cbReject">Solo esenciales</button>
+      <button class="cb-btn cb-config" id="cbConfig">Configurar</button>
+      <button class="cb-btn cb-accept" id="cbAccept">Aceptar todas</button>
+    </div>
+  </div>
+  <!-- Panel de configuración -->
+  <div class="cb-config-panel" id="cbConfigPanel" style="display:none">
+    <div class="cb-toggle-row">
+      <div class="cb-toggle-info">
+        <span class="cb-toggle-name">Cookies esenciales</span>
+        <span class="cb-toggle-desc">Necesarias para el funcionamiento básico del sitio. No se pueden desactivar.</span>
+      </div>
+      <div class="cb-toggle cb-toggle--on cb-toggle--disabled">✓</div>
+    </div>
+    <div class="cb-toggle-row">
+      <div class="cb-toggle-info">
+        <span class="cb-toggle-name">Cookies analíticas</span>
+        <span class="cb-toggle-desc">Google Analytics para entender cómo usan el sitio los visitantes (IP anonimizada).</span>
+      </div>
+      <label class="cb-toggle-switch">
+        <input type="checkbox" id="cbAnalytics" checked>
+        <span class="cb-slider"></span>
+      </label>
+    </div>
+    <button class="cb-btn cb-accept" id="cbSaveConfig" style="margin-top:1rem;width:100%">Guardar preferencias</button>
+  </div>
+</div>
+
 <!-- CHAT IA -->
 <button class="ai-chat-btn" id="aiChatBtn" aria-label="Chat con IA">
   <span class="ai-chat-tip">Pregúntame sobre Japón 🇯🇵</span>
@@ -2312,7 +3049,7 @@ document.querySelectorAll('a, button, .pkg-card, .tc, .gi, .anime-card, .ci, .se
 
 /* ── NAV ────────────────────────────────── */
 const nav = document.getElementById('mainNav');
-const sections = ['story','estaciones','paquetes','gastronomia','intolerancias','anime','contacto'];
+const sections = ['story','estaciones','paquetes','gastronomia','intolerancias','nosotros','faq','anime','contacto'];
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
   // Active link
@@ -2460,6 +3197,7 @@ function sendForm() {
   if (!ok) return;
   document.getElementById('cfForm').style.display = 'none';
   document.getElementById('cfOk').style.display = 'block';
+  if (window.trackFormSubmit) window.trackFormSubmit();
   fetch('/api/leads', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -2473,6 +3211,54 @@ function sendForm() {
     })
   }).catch(() => {});
 }
+
+/* ── COOKIE BANNER RGPD ──────────────────── */
+(function() {
+  const banner     = document.getElementById('cookieBanner');
+  const cbAccept   = document.getElementById('cbAccept');
+  const cbReject   = document.getElementById('cbReject');
+  const cbConfig   = document.getElementById('cbConfig');
+  const cbPanel    = document.getElementById('cbConfigPanel');
+  const cbSave     = document.getElementById('cbSaveConfig');
+  const cbAnalytics = document.getElementById('cbAnalytics');
+  const consent    = localStorage.getItem('fuji_cookie_consent');
+
+  if (!consent) {
+    setTimeout(() => banner.classList.add('show'), 1800);
+  }
+
+  function hideBanner() { banner.classList.remove('show') }
+
+  cbAccept.addEventListener('click', () => {
+    localStorage.setItem('fuji_cookie_consent', 'accepted');
+    loadGA();
+    hideBanner();
+  });
+
+  cbReject.addEventListener('click', () => {
+    localStorage.setItem('fuji_cookie_consent', 'rejected');
+    hideBanner();
+  });
+
+  cbConfig.addEventListener('click', () => {
+    cbPanel.style.display = cbPanel.style.display === 'none' ? 'block' : 'none';
+  });
+
+  cbSave.addEventListener('click', () => {
+    const val = cbAnalytics.checked ? 'accepted' : 'rejected';
+    localStorage.setItem('fuji_cookie_consent', val);
+    if (val === 'accepted') loadGA();
+    hideBanner();
+  });
+
+  // Evento GA para conversiones del formulario
+  window.trackFormSubmit = function() {
+    if (window._gtag) window._gtag('event', 'lead_submit', { event_category: 'conversion', event_label: 'contact_form' });
+  };
+  window.trackPopupSubmit = function() {
+    if (window._gtag) window._gtag('event', 'lead_submit', { event_category: 'conversion', event_label: 'exit_popup' });
+  };
+})();
 
 /* ── INTOLERANCIAS FILTER ────────────────── */
 const intolChips  = document.querySelectorAll('.intol-chip');
@@ -2535,6 +3321,130 @@ formIntolChips.forEach(chip => {
     }
     formIntolInput.value = Array.from(selectedIntols).join(', ');
   });
+});
+
+/* ── LIGHTBOX ────────────────────────────── */
+const lightbox  = document.getElementById('lightbox');
+const lbImg     = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbCounter = document.getElementById('lbCounter');
+const lbClose   = document.getElementById('lbClose');
+const lbPrev    = document.getElementById('lbPrev');
+const lbNext    = document.getElementById('lbNext');
+const giItems   = Array.from(document.querySelectorAll('.gi[data-lb-src]'));
+let lbCurrent   = 0;
+
+function lbOpen(idx) {
+  lbCurrent = idx;
+  lbShow();
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function lbClose_fn() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbShow() {
+  const item = giItems[lbCurrent];
+  lbImg.classList.remove('loaded');
+  lbImg.src = item.dataset.lbSrc;
+  lbCaption.textContent = item.dataset.lbCap || '';
+  lbCounter.textContent = `${lbCurrent + 1} / ${giItems.length}`;
+  lbImg.onload = () => lbImg.classList.add('loaded');
+}
+function lbGo(dir) {
+  lbCurrent = (lbCurrent + dir + giItems.length) % giItems.length;
+  lbShow();
+}
+
+giItems.forEach((gi, i) => gi.addEventListener('click', () => lbOpen(i)));
+lbClose.addEventListener('click', lbClose_fn);
+lbPrev.addEventListener('click', () => lbGo(-1));
+lbNext.addEventListener('click', () => lbGo(1));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lbClose_fn(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape')      lbClose_fn();
+  if (e.key === 'ArrowLeft')   lbGo(-1);
+  if (e.key === 'ArrowRight')  lbGo(1);
+});
+
+/* ── TIMELINE DE RUTAS ───────────────────── */
+document.querySelectorAll('.ptl-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.ptl-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.ptl-route').forEach(r => r.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.ptl-route[data-route="${tab.dataset.pkg}"]`).classList.add('active');
+  });
+});
+
+/* ── FAQ ACCORDION ───────────────────────── */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    // Cerrar todos
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.classList.remove('open');
+    });
+    // Abrir el clickado si estaba cerrado
+    if (!isOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.nextElementSibling.classList.add('open');
+    }
+  });
+});
+
+/* ── EXIT INTENT POP-UP ──────────────────── */
+const exitOverlay = document.getElementById('exitOverlay');
+const exitClose   = document.getElementById('exitClose');
+const exitSubmit  = document.getElementById('exitSubmit');
+const exitEmailEl = document.getElementById('exitEmail');
+let exitShown = false;
+
+function showExit() {
+  if (exitShown || sessionStorage.getItem('exitShown')) return;
+  exitShown = true;
+  sessionStorage.setItem('exitShown', '1');
+  exitOverlay.classList.add('show');
+}
+
+// Detectar intención de salida (ratón hacia arriba)
+document.addEventListener('mouseleave', e => {
+  if (e.clientY < 20) showExit();
+});
+
+// En mobile: mostrar al 70% de scroll si no se ha mostrado
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  if (pct > .7) showExit();
+}, { passive: true, once: true });
+
+exitClose.addEventListener('click', () => exitOverlay.classList.remove('show'));
+exitOverlay.addEventListener('click', e => {
+  if (e.target === exitOverlay) exitOverlay.classList.remove('show');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') exitOverlay.classList.remove('show');
+});
+
+exitSubmit.addEventListener('click', () => {
+  const email = exitEmailEl.value.trim();
+  if (!email || !email.includes('@')) {
+    exitEmailEl.style.borderColor = 'var(--red2)';
+    return;
+  }
+  // Enviar al backend
+  fetch('/api/leads', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, fuente: 'popup_salida', nombre: 'Guía Japón 2026' })
+  }).catch(() => {});
+  document.querySelector('.exit-form').style.display = 'none';
+  document.getElementById('exitOk').style.display = 'block';
+  if (window.trackPopupSubmit) window.trackPopupSubmit();
+  setTimeout(() => exitOverlay.classList.remove('show'), 3500);
 });
 
 /* ── COUNTER ANIMATION ───────────────────── */

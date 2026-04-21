@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Página no encontrada · Fuji Travel</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,300&family=Noto+Serif+JP:wght@200;300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #B5272B; --gold: #C8A951;
+  --ink: #060606; --paper: #F4EFE6;
+  --serif: 'Fraunces', serif; --jp: 'Noto Serif JP', serif; --sans: 'DM Sans', sans-serif;
+  --ease: cubic-bezier(.16,1,.3,1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box }
+html, body { height: 100% }
+body {
+  font-family: var(--sans); background: var(--ink); color: var(--paper);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 100vh; overflow: hidden;
+  position: relative;
+}
+a { color: inherit; text-decoration: none }
+
+/* Kanji de fondo */
+.bg-kanji {
+  position: fixed; font-family: var(--jp); font-size: 60vw; font-weight: 200;
+  color: rgba(244,239,230,.015); line-height: 1; pointer-events: none;
+  top: 50%; left: 50%; transform: translate(-50%, -48%);
+  user-select: none; z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translate(-50%,-48%) }
+  50%      { transform: translate(-50%,-52%) }
+}
+
+/* Sakura canvas */
+canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none }
+
+/* Contenido */
+.content {
+  position: relative; z-index: 2; text-align: center;
+  padding: 2rem; max-width: 600px;
+  animation: fadeUp .9s .3s var(--ease) both;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:none } }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: .6rem; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1.8rem;
+}
+.eyebrow::before, .eyebrow::after { content:''; width:18px; height:1px; background:var(--red) }
+
+.num {
+  font-family: var(--serif); font-size: clamp(7rem, 22vw, 14rem);
+  font-weight: 900; line-height: .85; font-optical-sizing: auto;
+  background: linear-gradient(135deg, var(--paper) 30%, rgba(244,239,230,.15) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: .3rem;
+}
+
+.jp-txt {
+  font-family: var(--jp); font-size: 1.1rem; font-weight: 200;
+  color: rgba(244,239,230,.25); letter-spacing: .3em; margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700; line-height: 1.2; margin-bottom: 1rem; font-optical-sizing: auto;
+}
+h1 em { font-style: italic; color: var(--gold); font-weight: 300 }
+
+p {
+  font-size: .92rem; font-weight: 300; line-height: 1.85;
+  color: rgba(244,239,230,.45); margin-bottom: 2.5rem;
+}
+
+.actions { display: flex; gap: .85rem; justify-content: center; flex-wrap: wrap }
+
+.btn-fill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--red); color: #fff;
+  padding: .85rem 2rem; font-size: .75rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; border-radius: 2px;
+  transition: all .3s var(--ease); overflow: hidden; position: relative;
+}
+.btn-fill::before {
+  content:''; position:absolute; inset:0;
+  background:rgba(255,255,255,.13);
+  transform:translateX(-110%) skewX(-10deg);
+  transition:transform .5s var(--ease);
+}
+.btn-fill:hover::before { transform:translateX(110%) skewX(-10deg) }
+.btn-fill:hover { background:#8b1a1e; transform:translateY(-2px); box-shadow:0 8px 28px rgba(181,39,43,.4) }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 1px solid rgba(244,239,230,.2); color: rgba(244,239,230,.55);
+  padding: .85rem 2rem; font-size: .75rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; border-radius: 2px;
+  transition: all .3s;
+}
+.btn-ghost:hover { border-color: var(--paper); color: var(--paper) }
+
+.links {
+  margin-top: 2.5rem; display: flex; gap: 2rem; justify-content: center;
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(244,239,230,.22); flex-wrap: wrap;
+}
+.links a { transition: color .25s }
+.links a:hover { color: var(--red) }
+
+/* Línea decorativa */
+.deco-line {
+  width: 60px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--red), transparent);
+  margin: 0 auto 2rem;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-kanji">迷</div>
+<canvas id="sakura"></canvas>
+
+<div class="content">
+  <div class="eyebrow">Fuji Travel · Error</div>
+  <div class="num">404</div>
+  <div class="jp-txt">ページが見つかりません</div>
+  <div class="deco-line"></div>
+  <h1>Esta página se ha <em>perdido en Japón</em></h1>
+  <p>Como un viajero que toma el tren equivocado en Tokio, esta página no existe o ha cambiado de dirección. No te preocupes — te ayudamos a encontrar el camino de vuelta.</p>
+  <div class="actions">
+    <a href="/" class="btn-fill">
+      Volver al inicio
+      <svg width="14" height="14" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="/#contacto" class="btn-ghost">Contactar con nosotros</a>
+  </div>
+  <div class="links">
+    <a href="/#paquetes">Paquetes</a>
+    <a href="/#gastronomia">Gastronomía</a>
+    <a href="/#anime">Anime</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#contacto">Contacto</a>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('sakura');
+const ctx = canvas.getContext('2d');
+let petals = [], animating = true;
+function resize() { canvas.width = innerWidth; canvas.height = innerHeight }
+resize(); window.addEventListener('resize', resize);
+class Petal {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = -20;
+    this.r = Math.random() * 7 + 3;
+    this.vx = (Math.random() - .5) * 1.2;
+    this.vy = Math.random() * 1.2 + .5;
+    this.rot = Math.random() * Math.PI * 2;
+    this.rs = (Math.random() - .5) * .06;
+    this.alpha = Math.random() * .45 + .2;
+    this.life = 1;
+    this.decay = .002 + Math.random() * .003;
+  }
+  tick() {
+    this.x += this.vx + Math.sin(Date.now() * .001 + this.y * .01) * .3;
+    this.y += this.vy; this.rot += this.rs; this.life -= this.decay;
+  }
+  draw() {
+    if (this.life <= 0) return;
+    ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot);
+    ctx.globalAlpha = this.alpha * this.life;
+    ctx.fillStyle = '#f8c0cb';
+    ctx.beginPath(); ctx.ellipse(0, 0, this.r, this.r * .55, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+}
+function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (Math.random() < .25) petals.push(new Petal());
+  petals = petals.filter(p => p.life > 0 && p.y < canvas.height + 20);
+  if (petals.length > 80) petals.splice(0, 5);
+  petals.forEach(p => { p.tick(); p.draw(); });
+  requestAnimationFrame(loop);
+}
+loop();
+</script>
+</body>
+</html>
