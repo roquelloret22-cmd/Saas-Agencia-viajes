@@ -3,10 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fuji Travel — El Japón que mereces</title>
-<meta name="description" content="Agencia de viajes premium especializada en Japón. Experiencias únicas diseñadas para quienes viajan diferente.">
+<title>Fuji Travel — El Japón que mereces | Agencia Premium desde España</title>
+<meta name="description" content="Agencia de viajes premium especializada en Japón desde la Costa Blanca. Itinerarios a medida, guía en español, ryokans y onsen. +16 años. Más de 2.500 viajeros satisfechos.">
+<meta name="keywords" content="viajes Japón, agencia viajes Japón España, paquetes Japón 2026, viaje Tokio, viaje Kioto, sakura Japón, anime tour, viaje Japón premium">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Fuji Travel">
+<link rel="canonical" href="https://saas-agencia-viajes-production.up.railway.app/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saas-agencia-viajes-production.up.railway.app/">
+<meta property="og:title" content="Fuji Travel — El Japón que mereces">
+<meta property="og:description" content="Agencia premium especializada en Japón desde España. Diseñamos experiencias únicas: sakura, anime, templos, onsen. Propuesta personalizada en 24 h.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Fuji Travel">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://saas-agencia-viajes-production.up.railway.app/">
+<meta name="twitter:title" content="Fuji Travel — El Japón que mereces">
+<meta name="twitter:description" content="Agencia premium especializada en Japón desde España. Sakura, anime, templos, onsen. Propuesta en 24 h.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85">
+
+<!-- Schema.org TravelAgency -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Fuji Travel",
+  "description": "Agencia de viajes premium especializada en Japón desde la Costa Blanca, España.",
+  "url": "https://saas-agencia-viajes-production.up.railway.app/",
+  "logo": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=400&q=80",
+  "image": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&q=85",
+  "telephone": "+34654841217",
+  "email": "fujitravel@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Villajoyosa",
+    "addressRegion": "Comunitat Valenciana",
+    "addressCountry": "ES"
+  },
+  "areaServed": "ES",
+  "priceRange": "€€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "312"
+  },
+  "sameAs": [
+    "https://www.instagram.com/fujitravel",
+    "https://www.facebook.com/fujitravel"
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,600&family=Noto+Serif+JP:wght@200;300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,600&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Noto+Serif+JP:wght@200;300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════
@@ -34,6 +89,7 @@
   --ease2: cubic-bezier(.45,0,.55,1);
   --ease3: cubic-bezier(.34,1.56,.64,1);
   --serif: 'Cormorant Garamond', serif;
+  --display: 'Fraunces', serif;
   --jp: 'Noto Serif JP', serif;
   --sans: 'DM Sans', sans-serif;
 }
@@ -48,6 +104,76 @@ body {
 }
 img, video { display: block; max-width: 100% }
 a { color: inherit; text-decoration: none }
+
+/* ═══════════════════════════════════════════════════
+   HAMBURGER MENU MOBILE
+═══════════════════════════════════════════════════ */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 40px; height: 40px; cursor: pointer;
+  border: none; background: none; padding: 4px;
+  z-index: 800; position: relative;
+}
+.nav-hamburger span {
+  display: block; width: 26px; height: 1.5px;
+  background: var(--paper); border-radius: 2px;
+  transition: all .4s var(--ease);
+  transform-origin: center;
+}
+body.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg) }
+body.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0) }
+body.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg) }
+
+.nav-mobile-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 690;
+  background: rgba(6,6,6,.96);
+  backdrop-filter: blur(20px) saturate(1.1);
+  flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .45s var(--ease);
+}
+body.menu-open .nav-mobile-overlay {
+  opacity: 1; pointer-events: auto;
+}
+.nav-mobile-overlay ul {
+  list-style: none; text-align: center;
+  display: flex; flex-direction: column; gap: .2rem;
+  margin-bottom: 2.5rem;
+}
+.nav-mobile-overlay ul a {
+  font-family: var(--serif); font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 300; color: rgba(244,239,230,.55);
+  letter-spacing: .04em; display: block; padding: .5rem 2rem;
+  transition: color .3s;
+}
+.nav-mobile-overlay ul a:hover, .nav-mobile-overlay ul a:active { color: var(--paper) }
+.nav-mobile-divider {
+  width: 1px; height: 40px; background: var(--mist3); margin-bottom: 2rem;
+}
+.nav-mobile-cta {
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; background: var(--red); color: #fff;
+  padding: .85rem 2.4rem; border-radius: 2px; transition: all .3s var(--ease);
+}
+.nav-mobile-cta:hover { background: #8b1a1e }
+.nav-mobile-contact {
+  margin-top: 2rem; font-size: .68rem; letter-spacing: .08em;
+  color: rgba(244,239,230,.2); text-align: center; line-height: 2.2;
+}
+body.menu-open .nav-mobile-overlay ul li {
+  animation: mobileNavIn .5s var(--ease) both;
+}
+body.menu-open .nav-mobile-overlay ul li:nth-child(1) { animation-delay: .08s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(2) { animation-delay: .14s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(3) { animation-delay: .20s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(4) { animation-delay: .26s }
+body.menu-open .nav-mobile-overlay ul li:nth-child(5) { animation-delay: .32s }
+@keyframes mobileNavIn {
+  from { opacity: 0; transform: translateY(18px) }
+  to   { opacity: 1; transform: none }
+}
 
 /* ═══════════════════════════════════════════════════
    CURSOR
@@ -113,7 +239,7 @@ body.c-link #cursor-dot { opacity: 0 }
   flex-direction: column; align-items: center; justify-content: center;
 }
 .ld-kanji { font-family: var(--jp); font-size: 1.8rem; color: var(--paper); font-weight: 200; opacity: .7; line-height: 1 }
-.ld-name { font-family: var(--serif); font-size: .9rem; letter-spacing: .18em; color: rgba(244,239,230,.35); margin-top: .3rem }
+.ld-name { font-family: var(--display); font-size: 1.1rem; font-weight: 900; letter-spacing: -.01em; color: rgba(244,239,230,.5); margin-top: .3rem; font-optical-sizing: auto }
 .ld-bar { width: 180px; height: 1px; background: rgba(244,239,230,.06); overflow: hidden; border-radius: 1px }
 .ld-fill { height: 100%; width: 0; background: linear-gradient(to right, var(--red), var(--gold)); animation: ldFill 2.2s var(--ease2) .3s forwards }
 @keyframes ldFill { to { width: 100% } }
@@ -135,8 +261,8 @@ nav.scrolled {
 }
 .nav-brand { display: flex; flex-direction: column; gap: .05rem }
 .nb-jp { font-family: var(--jp); font-size: .68rem; color: rgba(244,239,230,.3); letter-spacing: .35em; font-weight: 200 }
-.nb-en { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: var(--paper); letter-spacing: .06em; line-height: 1 }
-.nb-en em { font-style: normal; color: var(--red) }
+.nb-en { font-family: var(--display); font-size: 1.45rem; font-weight: 900; color: var(--paper); letter-spacing: -.01em; line-height: 1; font-optical-sizing: auto }
+.nb-en em { font-style: italic; color: var(--red); font-weight: 700 }
 .nav-links { list-style: none; display: flex; gap: 2.8rem }
 .nav-links a {
   font-size: .72rem; font-weight: 400; letter-spacing: .14em;
@@ -208,9 +334,10 @@ nav.scrolled {
 .ey-line { width: 26px; height: 1px; background: var(--red) }
 .ey-txt { font-size: .64rem; letter-spacing: .26em; text-transform: uppercase; color: var(--red); font-weight: 500 }
 .hero-title {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(4rem, 9vw, 10.5rem);
-  font-weight: 300; line-height: .92;
+  font-weight: 900; line-height: .92;
+  font-optical-sizing: auto;
   opacity: 0; animation: fadeUp .9s .7s var(--ease) forwards;
 }
 .ht-outline {
@@ -269,7 +396,7 @@ nav.scrolled {
   background: rgba(6,6,6,.45); backdrop-filter: blur(12px);
 }
 .hc-stat:last-child { border-right: 1px solid rgba(244,239,230,.1) }
-.hc-n { display: block; font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--paper); line-height: 1 }
+.hc-n { display: block; font-family: var(--display); font-size: 1.6rem; font-weight: 900; color: var(--paper); line-height: 1; font-optical-sizing: auto }
 .hc-l { display: block; font-size: .52rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(244,239,230,.3); margin-top: .2rem }
 
 /* ═══════════════════════════════════════════════════
@@ -329,11 +456,11 @@ nav.scrolled {
   pointer-events: none; width: 560px;
 }
 .story-panel.active { opacity: 1; transform: translateY(-50%); pointer-events: auto }
-.story-num { font-family: var(--serif); font-size: 5.5rem; font-weight: 300; color: rgba(244,239,230,.05); line-height: 1; margin-bottom: -.4rem }
+.story-num { font-family: var(--display); font-size: 5.5rem; font-weight: 900; color: rgba(244,239,230,.05); line-height: 1; margin-bottom: -.4rem; font-optical-sizing: auto }
 .story-tag { font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: .9rem; display: flex; align-items: center; gap: .6rem }
 .story-tag::before { content: ''; width: 18px; height: 1px; background: var(--red) }
-.story-h2 { font-family: var(--serif); font-size: clamp(2.2rem, 3.8vw, 3.8rem); font-weight: 300; line-height: 1.1; color: var(--paper); margin-bottom: 1.1rem }
-.story-h2 em { font-style: italic; color: var(--gold) }
+.story-h2 { font-family: var(--display); font-size: clamp(2.2rem, 3.8vw, 3.8rem); font-weight: 700; line-height: 1.1; color: var(--paper); margin-bottom: 1.1rem; font-optical-sizing: auto }
+.story-h2 em { font-style: italic; color: var(--gold); font-weight: 300 }
 .story-p { font-size: .9rem; font-weight: 300; line-height: 1.9; color: rgba(244,239,230,.52) }
 
 /* ═══════════════════════════════════════════════════
@@ -359,7 +486,7 @@ nav.scrolled {
 }
 .gi:hover .gi-over { opacity: 1 }
 .gi-tag { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: .3rem }
-.gi-name { font-family: var(--serif); font-size: 1.45rem; font-weight: 300; color: var(--paper) }
+.gi-name { font-family: var(--display); font-size: 1.45rem; font-weight: 700; color: var(--paper); font-optical-sizing: auto }
 .gi:first-child .gi-name { font-size: 2.1rem }
 .gi-badge {
   position: absolute; top: 1rem; right: 1rem;
@@ -408,8 +535,8 @@ nav.scrolled {
 .season-block.reverse .sb-kanji { right: auto; left: -1rem }
 .sb-season { font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem }
 .sb-season::before { content: ''; width: 18px; height: 1px; background: var(--red) }
-.sb-title { font-family: var(--serif); font-size: clamp(2.4rem,4vw,4rem); font-weight: 300; line-height: 1.05; color: var(--paper); margin-bottom: 1.4rem }
-.sb-title em { font-style: italic; color: var(--gold) }
+.sb-title { font-family: var(--display); font-size: clamp(2.4rem,4vw,4rem); font-weight: 700; line-height: 1.05; color: var(--paper); margin-bottom: 1.4rem; font-optical-sizing: auto }
+.sb-title em { font-style: italic; color: var(--gold); font-weight: 300 }
 .sb-body-txt { font-size: .9rem; font-weight: 300; line-height: 1.9; color: rgba(244,239,230,.5); margin-bottom: 2rem }
 .sb-chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 2rem }
 .sb-chip {
@@ -461,7 +588,7 @@ nav.scrolled {
   display: flex; align-items: center; gap: .5rem;
 }
 .pkg-region::before { content: ''; width: 12px; height: 1px; background: var(--red); flex-shrink: 0 }
-.pkg-name { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--paper); line-height: 1.15; margin-bottom: .7rem; transition: color .3s }
+.pkg-name { font-family: var(--display); font-size: 1.45rem; font-weight: 700; color: var(--paper); line-height: 1.15; margin-bottom: .7rem; transition: color .3s; font-optical-sizing: auto }
 .pkg-card:hover .pkg-name { color: var(--gold) }
 .pkg-desc { font-size: .83rem; font-weight: 300; color: rgba(244,239,230,.42); line-height: 1.75; margin-bottom: 1.4rem; flex: 1 }
 .pkg-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.5rem }
@@ -473,7 +600,7 @@ nav.scrolled {
 .pkg-card:hover .pkg-tag { background: var(--red-dim); color: rgba(244,239,230,.65) }
 .pkg-foot { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--mist); padding-top: 1.2rem }
 .pkg-price-from { font-size: .54rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,239,230,.25); display: block }
-.pkg-price-val { font-family: var(--serif); font-size: 1.55rem; font-weight: 300; color: var(--paper) }
+.pkg-price-val { font-family: var(--display); font-size: 1.55rem; font-weight: 700; color: var(--paper); font-optical-sizing: auto }
 .pkg-cta {
   display: inline-flex; align-items: center; gap: .4rem;
   font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
@@ -485,6 +612,151 @@ nav.scrolled {
 .pkg-card.featured .pkg-thumb { height: 100%; min-height: 400px }
 .pkg-card.featured .pkg-body { padding: 3.5rem }
 .pkg-card.featured .pkg-name { font-size: 2.2rem }
+
+/* ═══════════════════════════════════════════════════
+   GASTRONOMÍA
+═══════════════════════════════════════════════════ */
+.s-gastro {
+  padding: 8rem 4rem; background: var(--ink3);
+  position: relative; overflow: hidden;
+}
+.gastro-bg-kanji {
+  position: absolute; font-family: var(--jp); font-size: 42rem; font-weight: 200;
+  color: rgba(244,239,230,.018); right: -3rem; top: 50%; transform: translateY(-50%);
+  pointer-events: none; user-select: none; line-height: 1; z-index: 0;
+}
+.gastro-header { position: relative; z-index: 1; margin-bottom: 5rem; max-width: 640px }
+.gastro-intro {
+  font-size: .95rem; font-weight: 300; line-height: 1.9;
+  color: rgba(244,239,230,.42); margin-top: 1.2rem; max-width: 500px;
+}
+
+/* Mapa + cards layout */
+.gastro-map-wrap {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 4rem; align-items: start; position: relative; z-index: 1;
+}
+.gastro-map-svg-wrap {
+  position: sticky; top: 8rem;
+  background: rgba(6,6,6,.4); border: 1px solid var(--mist2);
+  border-radius: 4px; padding: 1.5rem;
+}
+.gastro-svg { width: 100%; height: auto; display: block }
+
+/* Animación pulso en los puntos del mapa */
+.gp-ring {
+  transform-origin: center; transform-box: fill-box;
+  animation: mapPulse 2.8s ease-in-out infinite;
+}
+@keyframes mapPulse {
+  0%, 100% { opacity: .5; transform: scale(1) }
+  50% { opacity: 0; transform: scale(1.8) }
+}
+
+/* City cards */
+.gastro-cities { display: flex; flex-direction: column; gap: 1.2rem }
+.gc-card {
+  display: grid; grid-template-columns: 48px 320px 1fr;
+  gap: 0; background: var(--ink2);
+  border: 1px solid var(--mist); border-radius: 3px;
+  overflow: hidden; transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s;
+  cursor: pointer;
+}
+.gc-card:hover {
+  border-color: rgba(181,39,43,.3); transform: translateX(6px);
+  box-shadow: 0 12px 48px rgba(6,6,6,.5);
+}
+.gc-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, var(--red), var(--gold));
+  transform: scaleY(0); transform-origin: top; transition: transform .5s var(--ease);
+}
+.gc-card { position: relative }
+.gc-card:hover::before { transform: scaleY(1) }
+
+.gc-num {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: .65rem; font-weight: 900;
+  color: rgba(244,239,230,.12); writing-mode: vertical-rl;
+  letter-spacing: .2em; background: rgba(6,6,6,.3);
+  border-right: 1px solid var(--mist); padding: 0 .5rem;
+  font-optical-sizing: auto;
+}
+.gc-img-wrap {
+  position: relative; overflow: hidden; height: 200px;
+}
+.gc-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .9s var(--ease), filter .5s;
+  filter: brightness(.75) saturate(.9);
+}
+.gc-card:hover .gc-img-wrap img { transform: scale(1.07); filter: brightness(.6) saturate(1.1) }
+.gc-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 60%, var(--ink2) 100%);
+}
+.gc-city-badge {
+  position: absolute; bottom: .8rem; left: .8rem;
+  font-family: var(--jp); font-size: .75rem; font-weight: 200;
+  color: rgba(244,239,230,.55); letter-spacing: .1em;
+  background: rgba(6,6,6,.55); backdrop-filter: blur(8px);
+  padding: .22rem .65rem; border-radius: 2px;
+}
+
+.gc-body { padding: 1.8rem 2rem; display: flex; flex-direction: column; justify-content: center }
+.gc-city {
+  font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: .4rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.gc-city::before { content: ''; width: 12px; height: 1px; background: var(--red); flex-shrink: 0 }
+.gc-title {
+  font-family: var(--display); font-size: 1.4rem; font-weight: 700;
+  color: var(--paper); line-height: 1.15; margin-bottom: .8rem;
+  font-optical-sizing: auto;
+}
+.gc-title em { font-style: italic; color: var(--gold); font-weight: 300 }
+.gc-desc {
+  font-size: .82rem; font-weight: 300; line-height: 1.8;
+  color: rgba(244,239,230,.42); margin-bottom: 1.1rem;
+}
+.gc-platos { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1rem }
+.gc-plato {
+  font-size: .6rem; letter-spacing: .06em;
+  background: var(--mist); color: rgba(244,239,230,.45);
+  padding: .22rem .65rem; border-radius: 100px;
+  transition: all .3s;
+}
+.gc-card:hover .gc-plato { background: var(--red-dim); color: rgba(244,239,230,.7) }
+.gc-michelin {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .7rem; color: rgba(244,239,230,.25);
+  border-top: 1px solid var(--mist); padding-top: .8rem; margin-top: auto;
+}
+.gc-m-ico { color: var(--gold); letter-spacing: .05em }
+
+/* CTA gastro */
+.gastro-cta-wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 4rem; padding: 2.4rem 3rem;
+  border: 1px solid var(--mist2); border-radius: 3px;
+  background: rgba(181,39,43,.04); position: relative; z-index: 1;
+}
+.gastro-cta-txt {
+  font-family: var(--display); font-size: 1.3rem; font-weight: 300;
+  font-style: italic; color: rgba(244,239,230,.6); font-optical-sizing: auto;
+}
+
+/* Responsive gastro */
+@media (max-width: 1024px) {
+  .gastro-map-wrap { grid-template-columns: 1fr }
+  .gastro-map-svg-wrap { display: none }
+  .gc-card { grid-template-columns: 1fr }
+  .gc-num { display: none }
+  .gc-img-wrap { height: 220px }
+  .gc-img-overlay { background: linear-gradient(to top, var(--ink2) 0%, transparent 50%) }
+  .gastro-cta-wrap { flex-direction: column; gap: 1.5rem; text-align: center }
+}
 
 /* ═══════════════════════════════════════════════════
    ANIME EXPERIENCE
@@ -532,7 +804,7 @@ nav.scrolled {
 .anime-card:hover img { transform: scale(1.09); filter: brightness(.7) saturate(1.2) }
 .anime-card-body { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.4rem; background: linear-gradient(to top, rgba(6,6,6,.9) 0%, transparent 55%) }
 .ac-label { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .25rem }
-.ac-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 300; color: var(--paper) }
+.ac-title { font-family: var(--display); font-size: 1.15rem; font-weight: 700; color: var(--paper); font-optical-sizing: auto }
 /* Per-style colors */
 .ac-ghibli { border-color: rgba(100,180,100,.15) }
 .ac-ghibli:hover { box-shadow: 0 0 36px rgba(100,180,100,.15) }
@@ -564,14 +836,30 @@ nav.scrolled {
 }
 .tc:hover { border-color: rgba(181,39,43,.2); transform: translateY(-5px); box-shadow: 0 22px 50px rgba(6,6,6,.45) }
 .tc:hover::before { transform: scaleX(1) }
+.tc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: .6rem }
+.tc-platform { display: flex; align-items: center; gap: .35rem; font-size: .6rem; letter-spacing: .08em; color: rgba(244,239,230,.22) }
 .tc-quote { font-family: var(--serif); font-size: 2.8rem; color: rgba(181,39,43,.18); line-height: .8; margin-bottom: .4rem; font-style: italic }
-.tc-stars { color: var(--gold); font-size: .72rem; letter-spacing: .12em; margin-bottom: 1rem }
+.tc-stars { color: var(--gold); font-size: .72rem; letter-spacing: .12em }
 .tc-text { font-size: .87rem; font-weight: 300; line-height: 1.85; color: rgba(244,239,230,.5); font-style: italic; margin-bottom: 1.8rem }
 .tc-author { display: flex; align-items: center; gap: .85rem }
-.tc-av { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--mist3); transition: border-color .3s }
+.tc-av { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--mist3); transition: border-color .3s; background: var(--ink2) }
 .tc:hover .tc-av { border-color: var(--red) }
-.tc-name { font-size: .85rem; font-weight: 500; color: var(--paper) }
+.tc-name { font-family: var(--display); font-size: .9rem; font-weight: 700; color: var(--paper); font-optical-sizing: auto }
 .tc-trip { font-size: .67rem; color: var(--red); margin-top: .1rem; letter-spacing: .04em }
+/* Rating bar */
+.test-rating {
+  display: flex; align-items: center; gap: 1.4rem;
+  margin-top: 3.5rem; padding: 1.8rem 2.2rem;
+  border: 1px solid var(--mist); border-radius: 3px;
+  background: var(--ink3);
+}
+.tr-score {
+  font-family: var(--display); font-size: 3.2rem; font-weight: 900;
+  color: var(--paper); line-height: 1; font-optical-sizing: auto;
+}
+.tr-stars { color: var(--gold); font-size: 1rem; letter-spacing: .12em }
+.tr-label { font-size: .78rem; color: rgba(244,239,230,.35); line-height: 1.6 }
+.tr-label strong { color: rgba(244,239,230,.6); font-weight: 500 }
 
 /* ═══════════════════════════════════════════════════
    CONTACT
@@ -585,8 +873,8 @@ nav.scrolled {
 .contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 6rem; align-items: start; position: relative; z-index: 1 }
 .contact-left .big-tag { font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: .6rem; margin-bottom: 1.1rem }
 .contact-left .big-tag::before { content: ''; width: 18px; height: 1px; background: var(--red) }
-.contact-title { font-family: var(--serif); font-size: clamp(2.4rem,4vw,4.2rem); font-weight: 300; line-height: 1.05; margin-bottom: 1.4rem }
-.contact-title em { font-style: italic; color: var(--gold) }
+.contact-title { font-family: var(--display); font-size: clamp(2.4rem,4vw,4.2rem); font-weight: 700; line-height: 1.05; margin-bottom: 1.4rem; font-optical-sizing: auto }
+.contact-title em { font-style: italic; color: var(--gold); font-weight: 300 }
 .contact-body { font-size: .92rem; font-weight: 300; line-height: 1.9; color: rgba(244,239,230,.45); margin-bottom: 2.5rem }
 .contact-items { display: flex; flex-direction: column; gap: .6rem }
 .ci {
@@ -603,7 +891,7 @@ nav.scrolled {
 .ci-lbl { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,239,230,.25); display: block; margin-bottom: .1rem }
 .ci-val { font-size: .88rem; font-weight: 500; color: var(--paper) }
 .contact-form { background: var(--ink3); border: 1px solid var(--mist2); border-radius: 4px; padding: 2.8rem }
-.cf-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--paper); margin-bottom: .35rem }
+.cf-title { font-family: var(--display); font-size: 1.6rem; font-weight: 700; color: var(--paper); margin-bottom: .35rem; font-optical-sizing: auto }
 .cf-sub { font-size: .8rem; color: rgba(244,239,230,.32); margin-bottom: 2rem; line-height: 1.6 }
 .fg { display: flex; flex-direction: column; gap: .28rem; margin-bottom: .9rem }
 .fg label { font-size: .59rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,239,230,.32); font-weight: 500 }
@@ -637,7 +925,7 @@ nav.scrolled {
 .cf-note { font-size: .63rem; color: rgba(244,239,230,.2); text-align: center; margin-top: .65rem; line-height: 1.5 }
 .cf-ok { display: none; text-align: center; padding: 3rem 1rem }
 .cf-ok-icon { font-size: 2.4rem; margin-bottom: 1rem }
-.cf-ok h4 { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; color: var(--paper); margin-bottom: .55rem }
+.cf-ok h4 { font-family: var(--display); font-size: 1.7rem; font-weight: 700; color: var(--paper); margin-bottom: .55rem; font-optical-sizing: auto }
 .cf-ok p { font-size: .85rem; color: rgba(244,239,230,.38); line-height: 1.7 }
 
 /* ═══════════════════════════════════════════════════
@@ -646,8 +934,8 @@ nav.scrolled {
 footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5rem 4rem 2.5rem }
 .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem }
 .ft-logo-jp { font-family: var(--jp); font-size: .65rem; color: rgba(244,239,230,.22); letter-spacing: .35em; font-weight: 200; display: block; margin-bottom: .1rem }
-.ft-logo-en { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; color: var(--paper); display: block; margin-bottom: .9rem }
-.ft-logo-en em { font-style: normal; color: var(--red) }
+.ft-logo-en { font-family: var(--display); font-size: 1.55rem; font-weight: 900; letter-spacing: -.01em; color: var(--paper); display: block; margin-bottom: .9rem; font-optical-sizing: auto }
+.ft-logo-en em { font-style: italic; color: var(--red); font-weight: 700 }
 .ft-desc { font-size: .8rem; font-weight: 300; color: rgba(244,239,230,.24); line-height: 1.8; max-width: 270px }
 .ft-col h5 { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: 1.1rem }
 .ft-links { list-style: none; display: flex; flex-direction: column; gap: .5rem }
@@ -687,8 +975,8 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 .s-eyebrow { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem }
 .s-ey-line { width: 22px; height: 1px; background: var(--red) }
 .s-ey-txt { font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--red); font-weight: 500 }
-.s-title { font-family: var(--serif); font-size: clamp(2.4rem,4vw,4.2rem); font-weight: 300; line-height: 1.07; color: var(--paper) }
-.s-title em { font-style: italic; color: var(--gold) }
+.s-title { font-family: var(--display); font-size: clamp(2.4rem,4vw,4.2rem); font-weight: 700; line-height: 1.07; color: var(--paper); font-optical-sizing: auto }
+.s-title em { font-style: italic; color: var(--gold); font-weight: 300 }
 
 /* ═══════════════════════════════════════════════════
    REVEALS + KEYFRAMES
@@ -709,6 +997,8 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 @media (max-width: 1024px) {
   nav { padding: 1.2rem 1.5rem } nav.scrolled { padding: .9rem 1.5rem }
   .nav-links { display: none }
+  .nav-hamburger { display: flex }
+  .nav-mobile-overlay { display: flex }
   .hero-content { padding: 0 1.5rem 5rem }
   .hero-counter { display: none }
   .hero-scroll { display: none }
@@ -777,11 +1067,33 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <li><a href="#story">Experiencia</a></li>
     <li><a href="#estaciones">Estaciones</a></li>
     <li><a href="#paquetes">Paquetes</a></li>
+    <li><a href="#gastronomia">Gastronomía</a></li>
     <li><a href="#anime">Anime</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="#contacto" class="nav-cta">Planifica tu viaje</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="nav-mobile-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <ul>
+    <li><a href="#story" class="mobile-link">Experiencia</a></li>
+    <li><a href="#estaciones" class="mobile-link">Estaciones</a></li>
+    <li><a href="#paquetes" class="mobile-link">Paquetes</a></li>
+    <li><a href="#gastronomia" class="mobile-link">Gastronomía</a></li>
+    <li><a href="#anime" class="mobile-link">Anime</a></li>
+    <li><a href="#contacto" class="mobile-link">Contacto</a></li>
+  </ul>
+  <div class="nav-mobile-divider"></div>
+  <a href="#contacto" class="nav-mobile-cta mobile-link">Planifica tu viaje ✈</a>
+  <div class="nav-mobile-contact">
+    fujitravel@gmail.com · +34 654 84 12 17<br>
+    Villajoyosa, Costa Blanca
+  </div>
+</div>
 
 <!-- ══════════════════ HERO ══════════════════ -->
 <section class="hero" id="home">
@@ -816,8 +1128,8 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   </div>
 
   <div class="hero-counter">
-    <div class="hc-stat"><span class="hc-n">15+</span><span class="hc-l">Años</span></div>
-    <div class="hc-stat"><span class="hc-n">2.400</span><span class="hc-l">Viajeros</span></div>
+    <div class="hc-stat"><span class="hc-n">16+</span><span class="hc-l">Años</span></div>
+    <div class="hc-stat"><span class="hc-n">2.500</span><span class="hc-l">Viajeros</span></div>
     <div class="hc-stat"><span class="hc-n">4.9★</span><span class="hc-l">Valoración</span></div>
     <div class="hc-stat"><span class="hc-n">48</span><span class="hc-l">Destinos</span></div>
   </div>
@@ -851,7 +1163,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 </div></div>
 
 <!-- ══════════════════ SCROLL STORY ══════════════════ -->
-<div id="story" style="height: 280vh"><!-- spacer for pin -->
+<div id="story" style="height: 200vh"><!-- spacer for pin -->
   <div class="story-wrap">
     <div class="story-pin" id="storyPin">
       <!-- Background slides -->
@@ -987,7 +1299,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
 <!-- ══════════════════ PACKAGES ══════════════════ -->
 <section class="s-packages" id="paquetes">
   <div class="rv">
-    <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Nuestros paquetes 2025</span></div>
+    <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Nuestros paquetes 2026</span></div>
     <h2 class="s-title">Experiencias <em>diseñadas</em><br>para ti</h2>
   </div>
   <div class="pkg-grid">
@@ -1075,6 +1387,186 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
   </div>
 </section>
 
+<!-- ══════════════════ GASTRONOMÍA ══════════════════ -->
+<section class="s-gastro" id="gastronomia">
+  <div class="gastro-bg-kanji">食</div>
+
+  <div class="gastro-header rv">
+    <div class="s-eyebrow"><div class="s-ey-line"></div><span class="s-ey-txt">Rutas gastronómicas 2026</span></div>
+    <h2 class="s-title">Japón se come<br><em>ciudad a ciudad</em></h2>
+    <p class="gastro-intro">Cada ciudad japonesa tiene una identidad culinaria única e irrepetible. Diseñamos rutas donde el plato es el destino.</p>
+  </div>
+
+  <!-- MAPA VISUAL -->
+  <div class="gastro-map-wrap rv">
+
+    <!-- SVG del mapa de Japón simplificado con puntos -->
+    <div class="gastro-map-svg-wrap">
+      <svg class="gastro-svg" viewBox="0 0 340 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hokkaido -->
+        <path d="M210 40 C230 30 270 35 280 55 C295 70 285 90 265 95 C245 105 215 95 205 78 C195 62 195 50 210 40Z" fill="rgba(244,239,230,.04)" stroke="rgba(244,239,230,.12)" stroke-width="1"/>
+        <!-- Honshu norte -->
+        <path d="M195 110 C210 100 240 108 250 125 C260 145 255 170 240 182 C225 195 205 190 195 175 C182 158 180 122 195 110Z" fill="rgba(244,239,230,.04)" stroke="rgba(244,239,230,.12)" stroke-width="1"/>
+        <!-- Honshu centro -->
+        <path d="M155 200 C185 188 230 195 245 220 C260 248 252 285 228 298 C205 312 170 305 155 285 C138 262 130 215 155 200Z" fill="rgba(244,239,230,.04)" stroke="rgba(244,239,230,.12)" stroke-width="1"/>
+        <!-- Honshu sur / Kinki -->
+        <path d="M130 310 C160 298 210 305 225 330 C238 355 228 390 205 400 C182 412 148 404 133 382 C116 358 108 325 130 310Z" fill="rgba(244,239,230,.04)" stroke="rgba(244,239,230,.12)" stroke-width="1"/>
+        <!-- Shikoku -->
+        <path d="M95 420 C115 412 145 418 152 435 C160 452 150 472 132 478 C114 484 92 474 86 458 C78 440 80 428 95 420Z" fill="rgba(244,239,230,.04)" stroke="rgba(244,239,230,.12)" stroke-width="1"/>
+        <!-- Kyushu -->
+        <path d="M75 480 C98 470 130 476 138 498 C148 522 135 548 112 555 C90 562 62 550 55 526 C46 500 55 490 75 480Z" fill="rgba(244,239,230,.04)" stroke="rgba(244,239,230,.12)" stroke-width="1"/>
+
+        <!-- Línea de ruta punteada -->
+        <path d="M248 68 L222 148 L200 250 L178 345 L120 445 L95 510" stroke="rgba(181,39,43,.25)" stroke-width="1" stroke-dasharray="5 6" stroke-linecap="round"/>
+
+        <!-- PUNTO: Sapporo -->
+        <g class="gp" data-city="sapporo">
+          <circle cx="248" cy="68" r="14" fill="rgba(181,39,43,.12)" stroke="rgba(181,39,43,.35)" stroke-width="1"/>
+          <circle cx="248" cy="68" r="5" fill="#B5272B"/>
+          <circle cx="248" cy="68" r="10" fill="none" stroke="rgba(181,39,43,.5)" stroke-width="1" class="gp-ring"/>
+        </g>
+        <!-- PUNTO: Sendai -->
+        <g class="gp" data-city="sendai">
+          <circle cx="222" cy="148" r="11" fill="rgba(200,169,81,.08)" stroke="rgba(200,169,81,.25)" stroke-width="1"/>
+          <circle cx="222" cy="148" r="4" fill="#C8A951"/>
+          <circle cx="222" cy="148" r="8" fill="none" stroke="rgba(200,169,81,.4)" stroke-width="1" class="gp-ring"/>
+        </g>
+        <!-- PUNTO: Tokio -->
+        <g class="gp" data-city="tokio">
+          <circle cx="200" cy="250" r="18" fill="rgba(181,39,43,.15)" stroke="rgba(181,39,43,.5)" stroke-width="1.5"/>
+          <circle cx="200" cy="250" r="6" fill="#B5272B"/>
+          <circle cx="200" cy="250" r="13" fill="none" stroke="rgba(181,39,43,.4)" stroke-width="1" class="gp-ring"/>
+        </g>
+        <!-- PUNTO: Kioto/Osaka -->
+        <g class="gp" data-city="kioto">
+          <circle cx="178" cy="345" r="16" fill="rgba(181,39,43,.12)" stroke="rgba(181,39,43,.4)" stroke-width="1.5"/>
+          <circle cx="178" cy="345" r="5.5" fill="#B5272B"/>
+          <circle cx="178" cy="345" r="11" fill="none" stroke="rgba(181,39,43,.35)" stroke-width="1" class="gp-ring"/>
+        </g>
+        <!-- PUNTO: Hiroshima -->
+        <g class="gp" data-city="hiroshima">
+          <circle cx="120" cy="445" r="11" fill="rgba(200,169,81,.08)" stroke="rgba(200,169,81,.25)" stroke-width="1"/>
+          <circle cx="120" cy="445" r="4" fill="#C8A951"/>
+          <circle cx="120" cy="445" r="8" fill="none" stroke="rgba(200,169,81,.4)" stroke-width="1" class="gp-ring"/>
+        </g>
+        <!-- PUNTO: Fukuoka -->
+        <g class="gp" data-city="fukuoka">
+          <circle cx="95" cy="510" r="13" fill="rgba(181,39,43,.1)" stroke="rgba(181,39,43,.35)" stroke-width="1"/>
+          <circle cx="95" cy="510" r="4.5" fill="#B5272B"/>
+          <circle cx="95" cy="510" r="9" fill="none" stroke="rgba(181,39,43,.3)" stroke-width="1" class="gp-ring"/>
+        </g>
+
+        <!-- Labels de ciudad -->
+        <text x="268" y="72" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(244,239,230,.4)" letter-spacing="1">SAPPORO</text>
+        <text x="238" y="152" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(244,239,230,.4)" letter-spacing="1">SENDAI</text>
+        <text x="218" y="254" font-family="DM Sans, sans-serif" font-size="10" fill="rgba(244,239,230,.6)" font-weight="600" letter-spacing="1">TOKIO</text>
+        <text x="196" y="349" font-family="DM Sans, sans-serif" font-size="10" fill="rgba(244,239,230,.6)" font-weight="600" letter-spacing="1">KIOTO · OSAKA</text>
+        <text x="136" y="449" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(244,239,230,.4)" letter-spacing="1">HIROSHIMA</text>
+        <text x="110" y="514" font-family="DM Sans, sans-serif" font-size="9" fill="rgba(244,239,230,.4)" letter-spacing="1">FUKUOKA</text>
+      </svg>
+    </div>
+
+    <!-- CARDS de ciudad -->
+    <div class="gastro-cities">
+
+      <div class="gc-card rv" data-city="sapporo">
+        <div class="gc-num">01</div>
+        <div class="gc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=600&q=80" alt="Ramen Sapporo">
+          <div class="gc-img-overlay"></div>
+          <div class="gc-city-badge">北海道 · Hokkaido</div>
+        </div>
+        <div class="gc-body">
+          <div class="gc-city">Sapporo</div>
+          <h3 class="gc-title">Ramen & Mariscos<br><em>del norte</em></h3>
+          <p class="gc-desc">El ramen de miso de Sapporo es diferente a todo lo que habrás probado. Combinado con el cangrejo real de Hokkaido y el marisco de las aguas frías del Pacífico norte, es una experiencia que justifica el viaje.</p>
+          <div class="gc-platos">
+            <span class="gc-plato">🍜 Miso Ramen</span>
+            <span class="gc-plato">🦀 Kani (cangrejo)</span>
+            <span class="gc-plato">🦪 Uni (erizo)</span>
+            <span class="gc-plato">🍦 Soft cream Hokkaido</span>
+          </div>
+          <div class="gc-michelin"><span class="gc-m-ico">★</span> 1 restaurante Michelin incluido en ruta</div>
+        </div>
+      </div>
+
+      <div class="gc-card rv" style="transition-delay:.1s" data-city="tokio">
+        <div class="gc-num">02</div>
+        <div class="gc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&q=80" alt="Gastronomia Tokio">
+          <div class="gc-img-overlay"></div>
+          <div class="gc-city-badge">東京 · Tokio</div>
+        </div>
+        <div class="gc-body">
+          <div class="gc-city">Tokio</div>
+          <h3 class="gc-title">La capital<br><em>gastronómica</em> del mundo</h3>
+          <p class="gc-desc">Más estrellas Michelin que París y Nueva York juntas. Desde el sushi de Tsukiji al yakitori de Shinjuku, pasando por los izakayas de Shibuya. Cada barrio, una cocina diferente.</p>
+          <div class="gc-platos">
+            <span class="gc-plato">🍣 Omakase sushi</span>
+            <span class="gc-plato">🍢 Yakitori Shinjuku</span>
+            <span class="gc-plato">🥩 Wagyu A5</span>
+            <span class="gc-plato">🍱 Depachika gourmet</span>
+          </div>
+          <div class="gc-michelin"><span class="gc-m-ico">★★</span> Acceso a restaurante Michelin 2 estrellas</div>
+        </div>
+      </div>
+
+      <div class="gc-card rv" style="transition-delay:.2s" data-city="kioto">
+        <div class="gc-num">03</div>
+        <div class="gc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Kaiseki Kioto">
+          <div class="gc-img-overlay"></div>
+          <div class="gc-city-badge">京都 · Kioto</div>
+        </div>
+        <div class="gc-body">
+          <div class="gc-city">Kioto · Osaka</div>
+          <h3 class="gc-title">Kaiseki & Takoyaki:<br><em>dos mundos</em></h3>
+          <p class="gc-desc">Kioto es la cuna del kaiseki, la alta cocina japonesa de temporada servida en 12 platos. A 30 minutos, Osaka es el street food más adictivo del planeta: takoyaki, okonomiyaki, kushikatsu.</p>
+          <div class="gc-platos">
+            <span class="gc-plato">🎎 Kaiseki 12 platos</span>
+            <span class="gc-plato">🐙 Takoyaki Dotonbori</span>
+            <span class="gc-plato">🥞 Okonomiyaki</span>
+            <span class="gc-plato">🍵 Matcha Uji</span>
+          </div>
+          <div class="gc-michelin"><span class="gc-m-ico">★★★</span> Cena kaiseki en ryokan incluida en ruta premium</div>
+        </div>
+      </div>
+
+      <div class="gc-card rv" style="transition-delay:.3s" data-city="fukuoka">
+        <div class="gc-num">04</div>
+        <div class="gc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80" alt="Ramen Fukuoka">
+          <div class="gc-img-overlay"></div>
+          <div class="gc-city-badge">福岡 · Kyushu</div>
+        </div>
+        <div class="gc-body">
+          <div class="gc-city">Fukuoka</div>
+          <h3 class="gc-title">Tonkotsu & Yatai:<br><em>la ciudad que vive</em></h3>
+          <p class="gc-desc">Los yatai son puestos callejeros nocturnos únicos de Fukuoka: mesas al aire libre bajo faroles, ramen tonkotsu humeante y sake frío. Una escena que no existe en ningún otro lugar de Japón.</p>
+          <div class="gc-platos">
+            <span class="gc-plato">🍜 Tonkotsu ramen</span>
+            <span class="gc-plato">🏮 Yatai nocturno</span>
+            <span class="gc-plato">🐟 Mentaiko (huevas)</span>
+            <span class="gc-plato">🍶 Sake local Kyushu</span>
+          </div>
+          <div class="gc-michelin"><span class="gc-m-ico">★</span> Visita guiada a los yatai históricos del río Naka</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="gastro-cta-wrap rv">
+    <p class="gastro-cta-txt">¿Quieres una ruta diseñada solo alrededor de la gastronomía?</p>
+    <a href="#contacto" class="btn-fill">
+      Diseñar mi ruta gastronómica
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</section>
+
 <!-- ══════════════════ ANIME ══════════════════ -->
 <section class="s-anime" id="anime">
   <div class="anime-ambiance"></div>
@@ -1125,34 +1617,76 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <h2 class="s-title">Lo dicen quienes<br><em>ya viajaron</em></h2>
   </div>
   <div class="test-grid">
+
+    <!-- Testimonio 1 -->
     <div class="tc rv">
+      <div class="tc-header">
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-platform">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor" opacity=".3"/><path d="M21.35 11.1H12.18V13h5.51c-.25 1.28-.96 2.36-1.99 3.09v2.56h3.22c1.89-1.74 2.98-4.3 2.98-7.3 0-.66-.06-1.29-.17-1.9" fill="#4285F4"/><path d="M12 22c2.7 0 4.96-.89 6.62-2.41l-3.22-2.56c-.89.6-2.04.96-3.4.96-2.61 0-4.83-1.76-5.62-4.14H3.06v2.64C4.71 19.77 8.09 22 12 22z" fill="#34A853"/><path d="M6.38 13.85A5.95 5.95 0 016.08 12c0-.65.11-1.28.3-1.85V7.51H3.06A9.96 9.96 0 002 12c0 1.61.38 3.14 1.06 4.49l3.32-2.64z" fill="#FBBC05"/><path d="M12 6.58c1.47 0 2.79.51 3.83 1.5l2.87-2.87C16.95 3.59 14.69 2.58 12 2.58 8.09 2.58 4.71 4.81 3.06 8.1l3.32 2.64C7.17 8.34 9.39 6.58 12 6.58z" fill="#EA4335"/></svg>
+          <span>Google</span>
+        </div>
+      </div>
       <div class="tc-quote">"</div>
-      <div class="tc-stars">★★★★★</div>
-      <p class="tc-text">El viaje más memorable de mi vida. Cada detalle estaba pensado. El ryokan en Hakone con vistas al Fuji nevado al amanecer es algo que no podré olvidar jamás.</p>
+      <p class="tc-text">El viaje más memorable de mi vida. Cada detalle estaba pensado con una precisión increíble. El ryokan en Hakone con vistas al Fuji nevado al amanecer es algo que no podré olvidar jamás. Gracias por hacerlo tan fácil desde España.</p>
       <div class="tc-author">
-        <img class="tc-av" src="https://picsum.photos/seed/ana-ft/80/80" alt="Ana">
-        <div><div class="tc-name">Ana Rodríguez</div><div class="tc-trip">Gran Japón Imperial · Familia · 15 días</div></div>
+        <img class="tc-av" src="https://api.dicebear.com/7.x/personas/svg?seed=ana-rodriguez&backgroundColor=b6e3f4" alt="Ana R.">
+        <div>
+          <div class="tc-name">Ana Rodríguez</div>
+          <div class="tc-trip">Gran Japón Imperial · Familia de 4 · 15 días</div>
+        </div>
       </div>
     </div>
+
+    <!-- Testimonio 2 -->
     <div class="tc rv" style="transition-delay:.1s">
+      <div class="tc-header">
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-platform">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor" opacity=".3"/><path d="M21.35 11.1H12.18V13h5.51c-.25 1.28-.96 2.36-1.99 3.09v2.56h3.22c1.89-1.74 2.98-4.3 2.98-7.3 0-.66-.06-1.29-.17-1.9" fill="#4285F4"/><path d="M12 22c2.7 0 4.96-.89 6.62-2.41l-3.22-2.56c-.89.6-2.04.96-3.4.96-2.61 0-4.83-1.76-5.62-4.14H3.06v2.64C4.71 19.77 8.09 22 12 22z" fill="#34A853"/><path d="M6.38 13.85A5.95 5.95 0 016.08 12c0-.65.11-1.28.3-1.85V7.51H3.06A9.96 9.96 0 002 12c0 1.61.38 3.14 1.06 4.49l3.32-2.64z" fill="#FBBC05"/><path d="M12 6.58c1.47 0 2.79.51 3.83 1.5l2.87-2.87C16.95 3.59 14.69 2.58 12 2.58 8.09 2.58 4.71 4.81 3.06 8.1l3.32 2.64C7.17 8.34 9.39 6.58 12 6.58z" fill="#EA4335"/></svg>
+          <span>Google</span>
+        </div>
+      </div>
       <div class="tc-quote">"</div>
-      <div class="tc-stars">★★★★★</div>
-      <p class="tc-text">Luna de miel perfecta. Tres noches en un ryokan en Kioto con onsen privado y cena kaiseki de 12 platos. Un guía que habla japonés nativo. Superó todas nuestras expectativas.</p>
+      <p class="tc-text">Luna de miel perfecta e irrepetible. Tres noches en un ryokan de Kioto con onsen privado y cena kaiseki de 12 platos. Un guía que habla japonés nativo y conoce cada rincón. Superó todas nuestras expectativas con creces.</p>
       <div class="tc-author">
-        <img class="tc-av" src="https://picsum.photos/seed/carlos-ft/80/80" alt="Carlos">
-        <div><div class="tc-name">Carlos & Marta García</div><div class="tc-trip">Luna de miel · Kioto · Tokio · 12 días</div></div>
+        <img class="tc-av" src="https://api.dicebear.com/7.x/personas/svg?seed=carlos-garcia&backgroundColor=ffdfbf" alt="Carlos G.">
+        <div>
+          <div class="tc-name">Carlos & Marta García</div>
+          <div class="tc-trip">Luna de miel · Kioto & Tokio · 12 días</div>
+        </div>
       </div>
     </div>
+
+    <!-- Testimonio 3 -->
     <div class="tc rv" style="transition-delay:.2s">
+      <div class="tc-header">
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-platform">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor" opacity=".3"/><path d="M21.35 11.1H12.18V13h5.51c-.25 1.28-.96 2.36-1.99 3.09v2.56h3.22c1.89-1.74 2.98-4.3 2.98-7.3 0-.66-.06-1.29-.17-1.9" fill="#4285F4"/><path d="M12 22c2.7 0 4.96-.89 6.62-2.41l-3.22-2.56c-.89.6-2.04.96-3.4.96-2.61 0-4.83-1.76-5.62-4.14H3.06v2.64C4.71 19.77 8.09 22 12 22z" fill="#34A853"/><path d="M6.38 13.85A5.95 5.95 0 016.08 12c0-.65.11-1.28.3-1.85V7.51H3.06A9.96 9.96 0 002 12c0 1.61.38 3.14 1.06 4.49l3.32-2.64z" fill="#FBBC05"/><path d="M12 6.58c1.47 0 2.79.51 3.83 1.5l2.87-2.87C16.95 3.59 14.69 2.58 12 2.58 8.09 2.58 4.71 4.81 3.06 8.1l3.32 2.64C7.17 8.34 9.39 6.58 12 6.58z" fill="#EA4335"/></svg>
+          <span>Google</span>
+        </div>
+      </div>
       <div class="tc-quote">"</div>
-      <div class="tc-stars">★★★★★</div>
-      <p class="tc-text">El paquete anime fue increíble. El museo Ghibli, las localizaciones reales de Spirited Away, Akihabara completo. Soy fanático desde los 12 años y fue como vivir dentro de un anime.</p>
+      <p class="tc-text">El paquete anime fue increíble. El museo Ghibli, las localizaciones reales de Spirited Away, Akihabara completo... Soy fanático desde los 12 años y fue exactamente como vivir dentro de un anime. El equipo entiende el mundo otaku.</p>
       <div class="tc-author">
-        <img class="tc-av" src="https://picsum.photos/seed/miguel-ft/80/80" alt="Miguel">
-        <div><div class="tc-name">Miguel Torres</div><div class="tc-trip">Anime Experience · Tokio · 10 días</div></div>
+        <img class="tc-av" src="https://api.dicebear.com/7.x/personas/svg?seed=miguel-torres&backgroundColor=c0aede" alt="Miguel T.">
+        <div>
+          <div class="tc-name">Miguel Torres</div>
+          <div class="tc-trip">Anime Experience · Tokio · 10 días</div>
+        </div>
       </div>
     </div>
+
   </div>
+
+  <!-- Rating bar -->
+  <div class="test-rating rv">
+    <div class="tr-score">4.9</div>
+    <div class="tr-stars">★★★★★</div>
+    <div class="tr-label">Valoración media en Google · <strong>+312 reseñas verificadas</strong></div>
+  </div>
+
 </section>
 
 <!-- ══════════════════ CONTACT ══════════════════ -->
@@ -1235,7 +1769,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     <div>
       <span class="ft-logo-jp">富士トラベル</span>
       <span class="ft-logo-en">Fuji<em>.</em>Travel</span>
-      <p class="ft-desc">Agencia de viajes premium especializada en Japón desde la Costa Blanca. 15 años diseñando experiencias únicas para quienes viajan diferente.</p>
+      <p class="ft-desc">Agencia de viajes premium especializada en Japón desde la Costa Blanca. 16 años diseñando experiencias únicas para quienes viajan diferente.</p>
     </div>
     <div class="ft-col"><h5>Paquetes</h5>
       <ul class="ft-links">
@@ -1265,7 +1799,7 @@ footer { background: var(--ink2); border-top: 1px solid var(--mist); padding: 5r
     </div>
   </div>
   <div class="ft-bottom">
-    <p class="ft-copy">© 2025 Fuji Travel · Villajoyosa, Costa Blanca · Todos los derechos reservados</p>
+    <p class="ft-copy">© 2026 Fuji Travel · Villajoyosa, Costa Blanca · Todos los derechos reservados</p>
     <div class="ft-soc">
       <a href="#" class="soc-btn">ig</a>
       <a href="#" class="soc-btn">fb</a>
@@ -1312,7 +1846,7 @@ document.querySelectorAll('a, button, .pkg-card, .tc, .gi, .anime-card, .ci, .se
 
 /* ── NAV ────────────────────────────────── */
 const nav = document.getElementById('mainNav');
-const sections = ['story','estaciones','paquetes','anime','contacto'];
+const sections = ['story','estaciones','paquetes','gastronomia','anime','contacto'];
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
   // Active link
@@ -1472,6 +2006,28 @@ function sendForm() {
     })
   }).catch(() => {});
 }
+
+/* ── HAMBURGER MENU ──────────────────────── */
+const hamburger   = document.getElementById('navHamburger');
+const mobileMenu  = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+function toggleMenu(open) {
+  document.body.classList.toggle('menu-open', open);
+  hamburger.setAttribute('aria-expanded', String(open));
+}
+
+hamburger.addEventListener('click', () => {
+  toggleMenu(!document.body.classList.contains('menu-open'));
+});
+
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => toggleMenu(false));
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.body.classList.contains('menu-open')) toggleMenu(false);
+});
 </script>
 </body>
 </html>
